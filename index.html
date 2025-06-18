@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Giovanni Bistoni Group</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js">    // Example ORCID data fetch (mocked)
+    document.getElementById("orcid-stats").innerText = "h-index: 18 · Citations: 1234 (from ORCID API)";
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --bg-card: rgba(255, 255, 255, 0.1);
+      --color-text: #ffffff;
+      --accent: #ffd93d;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: var(--bg-gradient);
+      color: var(--color-text);
+      line-height: 1.6;
+    }
+
+    header {
+      height: 100vh;
+      background: var(--bg-gradient);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    header img.logo {
+      width: 100px;
+      margin-bottom: 30px;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    header h1 {
+      font-size: 4rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, #fff, #ccc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    header p {
+      font-size: 1.3rem;
+      max-width: 700px;
+      color: #e0f7ff;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      background-color: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      padding: 10px 0;
+      z-index: 10;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    section {
+      padding: 80px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    section h2 {
+      text-align: center;
+      font-size: 2.8rem;
+      margin-bottom: 40px;
+    }
+
+    .members, .research-areas {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .card, .research-card, .publication {
+      margin-bottom: 30px;
+      background: var(--bg-card);
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      border-radius: 16px;
+      color: var(--color-text);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .card img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+
+    .social-icons a {
+      margin: 0 8px;
+      color: var(--color-text);
+      font-size: 1.2rem;
+      transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: var(--accent);
+    }
+
+    .publication-title {
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .abstract {
+      display: none;
+      margin-top: 10px;
+      font-size: 0.95rem;
+      color: #eee;
+    }
+
+    .github-section {
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    .github-section a {
+      color: white;
+      font-weight: bold;
+      font-size: 1.2rem;
+      text-decoration: none;
+      background: rgba(255,255,255,0.1);
+      padding: 10px 20px;
+      border-radius: 30px;
+      display: inline-block;
+      margin-top: 20px;
+    }
+
+    .github-section a:hover {
+      background: rgba(255,255,255,0.3);
+    }
+
+    footer {
+      background: rgba(0, 0, 0, 0.3);
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <img class="logo" src="images/logo.png" alt="Group Logo">
+    <h1>Giovanni Bistoni Group</h1>
+    <p>Innovating Quantum Chemistry for Catalysis and Molecular Systems at the University of Perugia</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#members">Team</a></li>
+      <li><a href="#research-areas">Research</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section id="about">
+    <h2>About the Group</h2>
+    <p style="text-align:center; max-width:700px; margin:auto;">
+      The Bistoni Group develops and applies advanced quantum chemical methods—multireference approaches, DFT, and local correlation—to study catalytic mechanisms, noncovalent interactions, and biomolecular systems in the gas and solution phase.
+    </p>
+  </section>
+
+  <section id="members">
+    <h2>Team</h2>
+    <div class="members">
+      <div class="card">
+        <img src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=OfDkyicAAAAJ" alt="Giovanni Bistoni">
+        <h3>Giovanni Bistoni</h3>
+        <p>Principal Investigator</p>
+        <div class="social-icons">
+          <a href="https://www.linkedin.com/in/giovannibistoni"><i class="fab fa-linkedin"></i></a>
+          <a href="https://orcid.org/0000-0002-8555-3442"><i class="fab fa-orcid"></i></a>
+          <a href="https://scholar.google.com/citations?user=OfDkyicAAAAJ"><i class="fas fa-graduation-cap"></i></a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=ROTB2YsAAAAJ" alt="Isaac F. Leach">
+        <h3>Isaac F. Leach</h3>
+        <p>Postdoctoral Researcher</p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-orcid"></i></a>
+          <a href="https://scholar.google.com/citations?user=ROTB2YsAAAAJ"><i class="fas fa-graduation-cap"></i></a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=d6xZC4oAAAAJ" alt="Lorenzo Baldinelli">
+        <h3>Lorenzo Baldinelli</h3>
+        <p>PhD Student</p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-orcid"></i></a>
+          <a href="https://scholar.google.com/citations?user=d6xZC4oAAAAJ"><i class="fas fa-graduation-cap"></i></a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=W3GJS3UAAAAJ" alt="Martina Colucci">
+        <h3>Martina Colucci</h3>
+        <p>PhD Student</p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-orcid"></i></a>
+          <a href="https://scholar.google.com/citations?user=W3GJS3UAAAAJ"><i class="fas fa-graduation-cap"></i></a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/100" alt="Giovanni Bistoni">
+        <h3>Giovanni Bistoni</h3>
+        <p>Principal Investigator</p>
+        <div class="social-icons">
+          <a href="https://www.linkedin.com/in/giovannibistoni"><i class="fab fa-linkedin"></i></a>
+          <a href="https://orcid.org/0000-0002-8555-3442"><i class="fab fa-orcid"></i></a>
+          <a href="https://scholar.google.com/citations?user=OfDkyicAAAAJ"><i class="fas fa-graduation-cap"></i></a>
+        </div>
+      </div>
+    <div class="card">
+        <img src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=p6t7lKMAAAAJ" alt="Carlos Jacinto">
+        <h3>Carlos Jacinto</h3>
+        <p>PhD Student</p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-orcid"></i></a>
+          <a href="https://scholar.google.com/citations?user=p6t7lKMAAAAJ"><i class="fas fa-graduation-cap"></i></a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=BvAyEYoAAAAJ" alt="Sofia Lerda">
+        <h3>Sofia Lerda</h3>
+        <p>PhD Student</p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-orcid"></i></a>
+          <a href="https://scholar.google.com/citations?user=BvAyEYoAAAAJ"><i class="fas fa-graduation-cap"></i></a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=6B1EtKYAAAAJ" alt="Gianluca Regni">
+        <h3>Gianluca Regni</h3>
+        <p>PhD Student</p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-orcid"></i></a>
+          <a href="https://scholar.google.com/citations?user=6B1EtKYAAAAJ"><i class="fas fa-graduation-cap"></i></a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=j13TjXMAAAAJ" alt="Ronald Cardenas">
+        <h3>Ronald Cardenas</h3>
+        <p>MSc Student</p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-orcid"></i></a>
+          <a href="https://scholar.google.com/citations?user=j13TjXMAAAAJ"><i class="fas fa-graduation-cap"></i></a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=4rYmP6cAAAAJ" alt="Vinicius Martinelli">
+        <h3>Vinicius Martinelli</h3>
+        <p>Visiting PhD Student</p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-orcid"></i></a>
+          <a href="https://scholar.google.com/citations?user=4rYmP6cAAAAJ"><i class="fas fa-graduation-cap"></i></a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=q2PM-lsAAAAJ" alt="Monia Zarhouni">
+        <h3>Monia Zarhouni</h3>
+        <p>MSc Student</p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-orcid"></i></a>
+          <a href="https://scholar.google.com/citations?user=q2PM-lsAAAAJ"><i class="fas fa-graduation-cap"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="research-areas">
+    <h2>Research Areas</h2>
+    <div class="research-areas">
+      <div class="research-card">
+        <h4>Theoretical Chemistry</h4>
+        <p>Quantum mechanical methods applied to molecular systems.</p>
+      </div>
+      <div class="research-card">
+        <h4>Computational Catalysis</h4>
+        <p>Mechanistic insights and prediction of reactivity/selectivity.</p>
+      </div>
+      <div class="research-card">
+        <h4>Noncovalent Interactions</h4>
+        <p>Understanding dispersion, hydrogen bonding and electrostatics.</p>
+      </div>
+      <div class="research-card">
+        <h4>Machine Learning in Chemistry</h4>
+        <p>Data-driven models and hybrid quantum–ML approaches.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="publications">
+    <h2>Publications</h2>
+    <div class="publication">
+      <div class="publication-title" onclick="toggleAbstract(this)">
+        2025 – Dissecting London dispersion with quantum chemistry. <em>ACS Central Science</em>
+      </div>
+      <div class="abstract">
+        This study introduces a new method for breaking down dispersion forces into atom-specific contributions, enhancing interpretability of intermolecular interactions.
+      </div>
+    </div>
+    <div class="publication">
+      <div class="publication-title" onclick="toggleAbstract(this)">
+        2024 – Local energy decomposition of dispersion effects. <em>Acc. Chem. Res.</em>
+      </div>
+      <div class="abstract">
+        A novel decomposition scheme reveals the contribution of dispersion to chemical bonding and reactivity in organometallic systems.
+      </div>
+    </div>
+  </section>
+
+  
+
+  <section class="github-section">
+    <h2>Open Science</h2>
+    <p>Access our tools and datasets:</p>
+    <a href="https://github.com/bistonigroup" target="_blank">Visit GitHub Page</a>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p style="text-align:center; font-size:1.1rem;">
+      Department of Chemistry, Biology and Biotechnology, University of Perugia<br />
+      Email: <a href="mailto:giovanni.bistoni@unipg.it" style="color: var(--accent);">giovanni.bistoni@unipg.it</a>
+    </p>
+  </section>
+  <script>
+    function toggleAbstract(el) {
+      const abstract = el.nextElementSibling;
+      abstract.style.display = abstract.style.display === 'block' ? 'none' : 'block';
+    }
+
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.utils.toArray('.card, .research-card, .publication').forEach(item => {
+      gsap.fromTo(item, { opacity: 0, y: 40 }, {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        scrollTrigger: {
+          trigger: item,
+          start: 'top 80%',
+          toggleActions: 'play none none none'
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
