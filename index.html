@@ -6,18 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Giovanni Bistoni Group</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js">    // Example ORCID data fetch (mocked)
-    document.getElementById("orcid-stats").innerText = "h-index: 18 · Citations: 1234 (from ORCID API)";
-  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.css" rel="stylesheet">
   <style>
-    :root {
-      --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      --bg-card: rgba(255, 255, 255, 0.1);
-      --color-text: #ffffff;
-      --accent: #ffd93d;
-    }
+  :root {
+    --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --bg-card: rgba(255, 255, 255, 0.1);
+    --color-text: #ffffff;
+    --accent: #ffd93d;
+  }
 
     * {
       box-sizing: border-box;
@@ -41,17 +40,29 @@
       align-items: center;
       text-align: center;
       padding: 0 20px;
+      position: relative;
     }
 
-    header img.logo {
-      width: 100px;
-      margin-bottom: 30px;
-      animation: float 6s ease-in-out infinite;
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('images/logo-cropped.png');
+      background-size: 80% auto;
+      background-position: center center;
+      background-repeat: no-repeat;
+      opacity: 0.1;
+      z-index: 0;
     }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+
+    header h1,
+    header p {
+      position: relative;
+      z-index: 1;
     }
 
     header h1 {
@@ -107,13 +118,17 @@
       margin-bottom: 40px;
     }
 
-    .members, .research-areas {
+    .members,
+    .research-areas {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 30px;
+      justify-content: center;
     }
 
-    .card, .research-card, .publication {
+    .card,
+    .research-card,
+    .publication {
       margin-bottom: 30px;
       background: var(--bg-card);
       backdrop-filter: blur(10px);
@@ -164,7 +179,7 @@
       font-weight: bold;
       font-size: 1.2rem;
       text-decoration: none;
-      background: rgba(255,255,255,0.1);
+      background: rgba(255, 255, 255, 0.1);
       padding: 10px 20px;
       border-radius: 30px;
       display: inline-block;
@@ -172,7 +187,7 @@
     }
 
     .github-section a:hover {
-      background: rgba(255,255,255,0.3);
+      background: rgba(255, 255, 255, 0.3);
     }
 
     footer {
@@ -181,14 +196,64 @@
       text-align: center;
       padding: 40px 20px;
     }
+
+    .social-buttons {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .social-buttons a {
+      display: inline-block;
+      margin: 0 15px;
+      color: var(--color-text);
+      font-size: 2rem;
+      transition: color 0.3s;
+    }
+
+    .social-buttons a:hover {
+      color: var(--accent);
+    }
+
+
+    .research-areas {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .research-card {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      background: var(--bg-card);
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      border-radius: 16px;
+      color: var(--color-text);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .research-text {
+      flex: 1;
+      text-align: left;
+    }
+
+    .research-image img {
+      width: 300px;
+      height: auto;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
   </style>
 </head>
 
 <body>
   <header>
-    <img class="logo" src="images/logo.png" alt="Group Logo">
     <h1>Giovanni Bistoni Group</h1>
-    <p>Innovating Quantum Chemistry for Catalysis and Molecular Systems at the University of Perugia</p>
+    <p>Development and Application of Quantum Chemistry Methods at the University of Perugia</p>
   </header>
 
   <nav>
@@ -204,7 +269,14 @@
   <section id="about">
     <h2>About the Group</h2>
     <p style="text-align:center; max-width:700px; margin:auto;">
-      The Bistoni Group develops and applies advanced quantum chemical methods—multireference approaches, DFT, and local correlation—to study catalytic mechanisms, noncovalent interactions, and biomolecular systems in the gas and solution phase.
+      We combines advanced quantum chemical methods with machine learning techniques to address complex challenges in theoretical chemistry. Our research spans homogeneous, heterogeneous, and biological catalysis, with particular emphasis on systems that push the limits of conventional computational approaches.
+    </p>
+  </section>
+
+  <section id="background">
+    <h2>Background</h2>
+    <p style="text-align:center; max-width:800px; margin:auto;">
+      Prof. Giovanni Bistoni completed his Ph. D. at the University of Perugia in 2015. He was Postdoctoral Fellow in Prof. Frank Neese’s group at the Max Planck Institute for Chemical Energy Conversion and was promoted to Group Leader in 2017. He moved to the Max-Planck-Institut für Kohlenforschung in 2018, where he led the “Intermolecular Interactions and Homogeneous Catalysis” group. He got his Habilitation in Theoretical and Computational Chemistry from Universität Duisburg-Essen in 2021. His research group moved to the University of Perugia in January 2022.
     </p>
   </section>
 
@@ -212,174 +284,284 @@
     <h2>Team</h2>
     <div class="members">
       <div class="card">
-        <img src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=OfDkyicAAAAJ" alt="Giovanni Bistoni">
+        <img src="images/giovannibistoni.jpg" alt="Giovanni Bistoni">
         <h3>Giovanni Bistoni</h3>
         <p>Principal Investigator</p>
         <div class="social-icons">
-          <a href="https://www.linkedin.com/in/giovannibistoni"><i class="fab fa-linkedin"></i></a>
+          <a href="mailto:giovanni.bistoni@unipg.it"><i class="fas fa-envelope"></i></a>
+          <a href="https://www.linkedin.com/in/giovanni-bistoni-349ba4b3"><i class="fab fa-linkedin"></i></a>
           <a href="https://orcid.org/0000-0002-8555-3442"><i class="fab fa-orcid"></i></a>
           <a href="https://scholar.google.com/citations?user=OfDkyicAAAAJ"><i class="fas fa-graduation-cap"></i></a>
         </div>
       </div>
       <div class="card">
-        <img src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=ROTB2YsAAAAJ" alt="Isaac F. Leach">
+        <img src="images/isaacfleach.jpg" alt="Isaac F. Leach">
         <h3>Isaac F. Leach</h3>
         <p>Postdoctoral Researcher</p>
         <div class="social-icons">
-          <a href="#"><i class="fab fa-linkedin"></i></a>
-          <a href="#"><i class="fab fa-orcid"></i></a>
-          <a href="https://scholar.google.com/citations?user=ROTB2YsAAAAJ"><i class="fas fa-graduation-cap"></i></a>
+          <a href="mailto:isaacfrancois.leach@unipg.it"><i class="fas fa-envelope"></i></a>
+          <a href="https://www.linkedin.com/in/isaac-f-leach/"><i class="fab fa-linkedin"></i></a>
+          <a href="https://orcid.org/0000-0001-7377-6561"><i class="fab fa-orcid"></i></a>
+          <a href="https://scholar.google.com/citations?user=ah7wOzEAAAAJ"><i class="fas fa-graduation-cap"></i></a>
         </div>
       </div>
       <div class="card">
-        <img src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=d6xZC4oAAAAJ" alt="Lorenzo Baldinelli">
+        <img src="images/lorenzobaldinelli.png" alt="Lorenzo Baldinelli">
         <h3>Lorenzo Baldinelli</h3>
         <p>PhD Student</p>
         <div class="social-icons">
-          <a href="#"><i class="fab fa-linkedin"></i></a>
-          <a href="#"><i class="fab fa-orcid"></i></a>
-          <a href="https://scholar.google.com/citations?user=d6xZC4oAAAAJ"><i class="fas fa-graduation-cap"></i></a>
+          <a href="mailto:lorenzo.baldinelli@dottorandi.unipg.it"><i class="fas fa-envelope"></i></a>
+          <a href="https://orcid.org/0000-0002-0279-2094"><i class="fab fa-orcid"></i></a>
+          <a href="https://scholar.google.com/citations?user=gsbh6tMAAAAJ"><i class="fas fa-graduation-cap"></i></a>
         </div>
       </div>
       <div class="card">
-        <img src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=W3GJS3UAAAAJ" alt="Martina Colucci">
+        <img src="images/martinacolucci.jpeg" alt="Martina Colucci">
         <h3>Martina Colucci</h3>
         <p>PhD Student</p>
         <div class="social-icons">
-          <a href="#"><i class="fab fa-linkedin"></i></a>
-          <a href="#"><i class="fab fa-orcid"></i></a>
-          <a href="https://scholar.google.com/citations?user=W3GJS3UAAAAJ"><i class="fas fa-graduation-cap"></i></a>
+          <a href="mailto:martina.colucci@dottorandi.unipg.it"><i class="fas fa-envelope"></i></a>
+          <a href="https://www.linkedin.com/in/martina-colucci-0668192b4/"><i class="fab fa-linkedin"></i></a>
         </div>
       </div>
       <div class="card">
-        <img src="https://via.placeholder.com/100" alt="Giovanni Bistoni">
-        <h3>Giovanni Bistoni</h3>
-        <p>Principal Investigator</p>
-        <div class="social-icons">
-          <a href="https://www.linkedin.com/in/giovannibistoni"><i class="fab fa-linkedin"></i></a>
-          <a href="https://orcid.org/0000-0002-8555-3442"><i class="fab fa-orcid"></i></a>
-          <a href="https://scholar.google.com/citations?user=OfDkyicAAAAJ"><i class="fas fa-graduation-cap"></i></a>
-        </div>
-      </div>
-    <div class="card">
-        <img src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=p6t7lKMAAAAJ" alt="Carlos Jacinto">
+        <img src="images/carlosjacinto.jpg" alt="Carlos Jacinto">
         <h3>Carlos Jacinto</h3>
         <p>PhD Student</p>
         <div class="social-icons">
-          <a href="#"><i class="fab fa-linkedin"></i></a>
-          <a href="#"><i class="fab fa-orcid"></i></a>
-          <a href="https://scholar.google.com/citations?user=p6t7lKMAAAAJ"><i class="fas fa-graduation-cap"></i></a>
+          <a href="mailto:carlosroberto.jacintomejia@dottorandi.unipg.it"><i class="fas fa-envelope"></i></a>
+          <a href="https://www.linkedin.com/in/crjacinto/"><i class="fab fa-linkedin"></i></a>
         </div>
       </div>
       <div class="card">
-        <img src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=BvAyEYoAAAAJ" alt="Sofia Lerda">
+        <img src="images/sofialerda.jpeg" alt="Sofia Lerda">
         <h3>Sofia Lerda</h3>
         <p>PhD Student</p>
         <div class="social-icons">
-          <a href="#"><i class="fab fa-linkedin"></i></a>
-          <a href="#"><i class="fab fa-orcid"></i></a>
-          <a href="https://scholar.google.com/citations?user=BvAyEYoAAAAJ"><i class="fas fa-graduation-cap"></i></a>
+          <a href="mailto:sofia.lerda@dottorandi.unipg.it"><i class="fas fa-envelope"></i></a>
+          <a href="https://www.linkedin.com/in/sofia-lerda/"><i class="fab fa-linkedin"></i></a>
+          <a href="https://orcid.org/0009-0005-8824-6244"><i class="fab fa-orcid"></i></a>
+          <a href="https://scholar.google.com/citations?user=aPp5ErgAAAAJ"><i class="fas fa-graduation-cap"></i></a>
         </div>
       </div>
       <div class="card">
-        <img src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=6B1EtKYAAAAJ" alt="Gianluca Regni">
+        <img src="images/gianlucaregni.jpg" alt="Gianluca Regni">
         <h3>Gianluca Regni</h3>
         <p>PhD Student</p>
         <div class="social-icons">
-          <a href="#"><i class="fab fa-linkedin"></i></a>
-          <a href="#"><i class="fab fa-orcid"></i></a>
-          <a href="https://scholar.google.com/citations?user=6B1EtKYAAAAJ"><i class="fas fa-graduation-cap"></i></a>
+          <a href="mailto:gianluca.regni@dottorandi.unipg.it"><i class="fas fa-envelope"></i></a>
+          <a href="https://www.linkedin.com/in/gianluca-regni/"><i class="fab fa-linkedin"></i></a>
+          <a href="https://orcid.org/0009-0006-9459-519X"><i class="fab fa-orcid"></i></a>
+          <a href="https://scholar.google.com/citations?user=oHEU9VYAAAAJ"><i class="fas fa-graduation-cap"></i></a>
         </div>
       </div>
-      <div class="card">
-        <img src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=j13TjXMAAAAJ" alt="Ronald Cardenas">
+      <!-- <div class="card">
+        <img src="images/ronaldcardenas.jpeg" alt="Ronald Cardenas">
         <h3>Ronald Cardenas</h3>
-        <p>MSc Student</p>
+        <p>PhD Student</p>
         <div class="social-icons">
-          <a href="#"><i class="fab fa-linkedin"></i></a>
-          <a href="#"><i class="fab fa-orcid"></i></a>
-          <a href="https://scholar.google.com/citations?user=j13TjXMAAAAJ"><i class="fas fa-graduation-cap"></i></a>
+          <a href="mailto:ronaldcs@pks.mpg.de"><i class="fas fa-envelope"></i></a>
+          <a href="https://www.linkedin.com/in/ronald-cardenas/"><i class="fab fa-linkedin"></i></a>
         </div>
       </div>
       <div class="card">
-        <img src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=4rYmP6cAAAAJ" alt="Vinicius Martinelli">
+        <img src="images/viniciusmartinelli.jpeg" alt="Vinicius Martinelli">
         <h3>Vinicius Martinelli</h3>
-        <p>Visiting PhD Student</p>
+        <p>PhD Student</p>
         <div class="social-icons">
-          <a href="#"><i class="fab fa-linkedin"></i></a>
-          <a href="#"><i class="fab fa-orcid"></i></a>
-          <a href="https://scholar.google.com/citations?user=4rYmP6cAAAAJ"><i class="fas fa-graduation-cap"></i></a>
+          <a href="mailto:martinelli001@gmail.com"><i class="fas fa-envelope"></i></a>
         </div>
-      </div>
+      </div> -->
       <div class="card">
-        <img src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=q2PM-lsAAAAJ" alt="Monia Zarhouni">
+        <img src="images/moniazarhouni.jpg" alt="Monia Zarhouni">
         <h3>Monia Zarhouni</h3>
         <p>MSc Student</p>
         <div class="social-icons">
-          <a href="#"><i class="fab fa-linkedin"></i></a>
-          <a href="#"><i class="fab fa-orcid"></i></a>
-          <a href="https://scholar.google.com/citations?user=q2PM-lsAAAAJ"><i class="fas fa-graduation-cap"></i></a>
+          <a href="mailto:monia.zarhouni@studenti.unipg.it"><i class="fas fa-envelope"></i></a>
         </div>
       </div>
     </div>
   </section>
 
+  <section id="former-members">
+  <h2>Former Members</h2>
+  <div class="members">
+
+    <div class="card">
+      <img src="images/ronaldcardenas.jpeg" alt="Ronald Cardenas">
+      <h3>Ronald Cardenas</h3>
+      <p>Former MSc Student – now PhD Student at Max Planck Institute</p>
+      <div class="social-icons">
+        <a href="mailto:ronaldcs@pks.mpg.de"><i class="fas fa-envelope"></i></a>
+        <a href="https://www.linkedin.com/in/ronald-cardenas/"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="images/viniciusmartinelli.jpeg" alt="Vinicius Martinelli">
+      <h3>Vinicius Martinelli</h3>
+      <p>Visiting PhD Student (2024–2025)</p>
+      <div class="social-icons">
+        <a href="mailto:martinelli001@gmail.com"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
   <section id="research-areas">
     <h2>Research Areas</h2>
-    <div class="research-areas">
-      <div class="research-card">
-        <h4>Theoretical Chemistry</h4>
-        <p>Quantum mechanical methods applied to molecular systems.</p>
+    <div class="research-card">
+      <div class="research-text">
+        <h3>Computational Catalysis</h3>
+        <p>Catalysis is a cornerstone of modern chemical research, playing a role in the production of over 80% of all manufactured goods. Yet, despite advances in theory and computation, the number of catalyst predictions that successfully translate into experimental discovery remains limited. In our group, we aim to bridge this gap by combining state-of-the-art computational tools to elucidate the mechanisms of complex catalytic reactions and the electronic structure of key intermediates.
+        
+        Our approach integrates advanced methodologies, including novel local coupled cluster techniques, enhanced conformational sampling algorithms, modern exchange–correlation functionals, machine learning techniques, energy decomposition and bond analysis schemes, quantum embedding frameworks, and both implicit and explicit solvation models. These tools allow us to deliver detailed, predictive insights into catalysis at the atomic level.
+
+        Our work targets the development of new synthetic processes with industrial relevance, with applications in:
+        (i) asymmetric organo- and transition metal catalysis,
+        (ii) electrocatalytic hydrogen and oxygen evolution reactions, and
+        (iii) biocatalysis.
+
+        This research is conducted in close collaboration with experimental groups, enabling a feedback loop between computation and synthesis.</p>
       </div>
-      <div class="research-card">
-        <h4>Computational Catalysis</h4>
-        <p>Mechanistic insights and prediction of reactivity/selectivity.</p>
+      <div class="research-image">
+        <img src="images/computationalcatalysis.png" alt="Computational Catalysis" />
       </div>
-      <div class="research-card">
-        <h4>Noncovalent Interactions</h4>
-        <p>Understanding dispersion, hydrogen bonding and electrostatics.</p>
+    </div>
+    <div class="research-card">
+      <div class="research-text">
+        <h3>Noncovalent Interactions</h3>
+        <p>Noncovalent interactions (NCIs) are fundamental to the structure and function of molecules in chemistry, biology, and materials science. In our group, we develop and apply advanced electronic structure methods to gain quantitative and chemically intuitive insights into the strength and nature of NCIs across diverse systems. Many of these methods are developed in-house or in collaboration with the ORCA team, with a focus on combining high accuracy with broad applicability.
+
+        Our work covers a wide range of applications, including:
+        (i) protein–ligand and DNA/RNA–ligand recognition,
+        (ii) catalyst–substrate interactions in homogeneous and heterogeneous catalysis (both organic and organometallic), and
+        (iii) intermolecular interactions in functional solids, such as pharmaceuticals and energy-relevant materials.
+
+        Beyond individual case studies, we aim to deliver general-purpose computational tools that help chemists quantify and understand NCIs across all areas of molecular science.
+        </p>
       </div>
-      <div class="research-card">
-        <h4>Machine Learning in Chemistry</h4>
-        <p>Data-driven models and hybrid quantum–ML approaches.</p>
+      <div class="research-image">
+        <img src="images/noncovalentinteractions.png" alt="Noncovalent Interactions" />
+      </div>
+    </div>
+    <div class="research-card">
+      <div class="research-text">
+        <h4>Local Correlation Methods</h4>
+        <p>By exploiting the “short-sighted” nature of electron correlation, local correlation approaches allow us to reduce the inherent steep scaling of highly correlated wavefunction-based methods. This has enabled highly accurate electronic structure calculations on systems with hundreds of atoms and thousands of basis functions. In our group, we develop computational methods and protocols which can be used to increase the efficiency and accuracy, and hence the range of applicability, of local correlation approaches. Special focus is on the local CCSD(T) approaches. Aside from our work on methods for noncovalent interactions (see above), we also develop extrapolation schemes, embedding approaches and other highly accurate computational protocols of broad applicability.
+        </p>
+      </div>
+      <div class="research-image">
+        <img src="images/localcorrelationmethods.webp" alt="Local Correlation Methods" />
       </div>
     </div>
   </section>
 
-  <section id="publications">
-    <h2>Publications</h2>
-    <div class="publication">
-      <div class="publication-title" onclick="toggleAbstract(this)">
-        2025 – Dissecting London dispersion with quantum chemistry. <em>ACS Central Science</em>
-      </div>
-      <div class="abstract">
-        This study introduces a new method for breaking down dispersion forces into atom-specific contributions, enhancing interpretability of intermolecular interactions.
-      </div>
-    </div>
-    <div class="publication">
-      <div class="publication-title" onclick="toggleAbstract(this)">
-        2024 – Local energy decomposition of dispersion effects. <em>Acc. Chem. Res.</em>
-      </div>
-      <div class="abstract">
-        A novel decomposition scheme reveals the contribution of dispersion to chemical bonding and reactivity in organometallic systems.
-      </div>
-    </div>
-  </section>
+<section id="publications">
+  <h2>Selected Research Highlight</h2>
 
-  
+  <div class="publication">
+    <div class="publication-title" onclick="toggleAbstract(this)">
+      <strong>A Quantum Chemical Method for Dissecting London Dispersion Energy into Atomic Building Blocks.</strong><br>
+      <em>ACS Central Science</em>, 2025, in press<br>
+      <small>DOI: <a href="https://doi.org/10.1021/acscentsci.5c00356" target="_blank">10.1021/acscentsci.5c00356</a></small>
+    </div>
+    <div class="abstract">
+      London dispersion (LD) forces are ubiquitous in chemistry and biology, governing processes such as binding of drugs to protein targets, the formation and stability of reaction intermediates, and the selectivity of enantioselective transformations. Developing an experimental or quantum chemical method to quantify atomic contributions to LD energy could open up new pathways for controlling reaction selectivity and guiding molecular design. Herein, we initially introduce Atomic Decomposition of London Dispersion energy (ADLD), a computational method that provides atomic-level resolution in quantifying LD energy at the “gold standard” level of quantum chemistry. Through a series of case studies, we reveal that LD is highly sensitive to variations in the electronic structure, including spin state, charge, and valence bond resonance effects─key factors often overlooked. Furthermore, we uncover the fundamental origin of the recently proposed gravitational-like relationship describing the distance dependence of LD energy in molecular systems. In doing so, we reconcile these recent findings with Fritz London’s original formulation in 1930, offering a unified perspective on the fundamental nature of LD forces.
+    </div>
+  </div>
+
+  <div class="publication">
+    <div class="publication-title" onclick="toggleAbstract(this)">
+      Local Energy Decomposition of London Dispersion Effects. 
+      <em>Acc. Chem. Res.</em>, 2024, <strong>57</strong>, 9, 1411–1420<br>
+      <small>DOI: <a href="https://doi.org/10.1021/acs.accounts.4c00085" target="_blank">10.1021/acs.accounts.4c00085</a></small>
+    </div>
+    <div class="abstract">
+      London dispersion (LD) forces are ubiquitous in chemistry, playing a pivotal role in a wide range of chemical processes. For example, they influence the structure of molecular crystals, the selectivity of organocatalytic transformations, and the formation of biomolecular assemblies. Harnessing these forces for chemical applications requires consistent quantification of the LD energy across a broad and diverse spectrum of chemical scenarios. Despite the great progress made in recent years in the development of experimental strategies for LD quantification, quantum chemical methods remain one of the most useful tools in the hand of chemists for the study of these weak interactions. Unfortunately, the accurate quantification of LD effects in complex systems poses many challenges for electronic structure theories. One of the problems stems from the fact that LD forces originate from long-range electronic dynamic correlation, and hence, their rigorous description requires the use of complex, highly correlated wave function-based methods. These methods typically feature a steep scaling with the system size, limiting their applicability to small model systems. Another core challenge lies in disentangling short-range from long-range dynamic correlation, which from a rigorous quantum mechanical perspective is not possible.
+
+      In this Account, we describe our research endeavors in the development of broadly applicable computational methods for LD quantification in molecular chemistry as well as challenging applications of these schemes in various domains of chemical research. Our strategy lies in the use of local correlation theories to reduce the computational cost associated with complex electronic structure methods while providing at the same time a simple means of decomposition of dynamic correlation into its long-range and short-range components. In particular, the local energy decomposition (LED) scheme at the domain-based local pair natural orbital coupled cluster (DLPNO-CCSD(T)) level has emerged as a powerful tool in our research, offering a clear-cut quantitative definition of the LD energy that remains valid across a plethora of different chemical scenarios. Typical applications of this scheme are examined, encompassing protein–ligand interactions and reactivity studies involving many fragments and complex electronic structures. In addition, our research also involves the development of novel cost-effective methodologies, which exploit the LED definition of the LD energy, for LD energy quantification that are, in principle, applicable to systems with thousands of atoms. The Hartree–Fock plus London Dispersion (HFLD) scheme, correcting the HF interaction energy using an approximate CCSD(T)-based LD energy, is a useful, parameter-free electronic structure method for the study of LD effects in systems with hundreds of molecular fragments. However, the usefulness of the LED scheme reaches beyond providing an interpretation of the calculated DLPNO-CCSD(T) or DLPNO-MP2 interaction energies. For example, the dispersion energies obtained from the LED can be fruitfully used in order to parametrize semiempirical dispersion models. We will demonstrate this in the context of an emerging semiempirical method, namely, the Natural Orbital Tied Constructed Hamiltonian (NOTCH) method. NOTCH incorporates LED-derived LD energies and shows promising accuracy at a minimum amount of empiricism. Thus, it holds substantial promise for large and complex systems.
+    </div>
+  </div>
+
+  <div class="publication">
+    <div class="publication-title" onclick="toggleAbstract(this)">
+      The Sugar Cube: Network Control and Emergence in Stereoediting Reactions. 
+      <em>Science</em>, 2024, <strong>385</strong>, 456–463<br>
+      <small>DOI: <a href="https://doi.org/10.1126/science.adp2447" target="_blank">10.1126/science.adp2447</a></small>
+    </div>
+    <div class="abstract">
+      Stereochemical editing strategies have recently enabled the transformation of readily accessible substrates into rare and valuable products. Typically, site selectivity is achieved by minimizing kinetic complexity by using protecting groups to suppress reactivity at undesired sites (substrate control) or by using catalysts with tailored shapes to drive reactivity at the desired site (catalyst control). We propose “network control,” a contrasting paradigm that exploits hidden interactions between rate constants to greatly amplify modest intrinsic biases and enable precise multisite editing. When network control is applied to the photochemical isomerization of hexoses, six of the eight possible diastereomers can be selectively obtained. The amplification effect can be viewed as a mesoscale phenomenon between the limiting regimes of kinetic control in simple chemical systems and metabolic regulation in complex biological systems.
+    </div>
+  </div>
+
+  <div class="publication">
+    <div class="publication-title" onclick="toggleAbstract(this)">
+      Taming Secondary Benzylic Cations in Catalytic Asymmetric SN1 Reactions. 
+      <em>Science</em>, 2023, <strong>382</strong>, 325–329<br>
+      <small>DOI: <a href="https://doi.org/10.1126/science.adj7007" target="_blank">10.1126/science.adj7007</a></small>
+    </div>
+    <div class="abstract">
+      Benzylic stereogenic centers are ubiquitous in natural products and pharmaceuticals. A potentially general, though challenging, approach toward their selective creation would be asymmetric unimolecular nucleophilic substitution (SN1) reactions that proceed through highly reactive benzylic cations. We now report a broadly applicable solution to this problem by identifying chiral counteranions that pair with secondary benzylic cations to engage in catalytic asymmetric C−C, C−O, and C−N bond-forming reactions with excellent enantioselectivity. The critical cationic intermediate can be accessed from different precursors via Lewis- or Brønsted acid catalysis. Key to our strategy is the use of only weakly basic, confined counteranions that are posited to prolong the lifetime of the carbocation, thereby avoiding nonproductive deprotonation pathways to the corresponding styrene.
+    </div>
+  </div>
+
+  <div class="publication">
+    <div class="publication-title" onclick="toggleAbstract(this)">
+      Catalytic Asymmetric Synthesis of Cannabinoids and Menthol from Neral. 
+      <em>Nature</em>, 2023, <strong>615</strong>, 634–639<br>
+      <small>DOI: <a href="https://doi.org/10.1038/s41586-023-05747-9" target="_blank">10.1038/s41586-023-05747-9</a></small>
+    </div>
+    <div class="abstract">
+      The selective conversion of natural or synthetic neral to (1R,6S)-trans-isopiperitenol would enable and expedite sustainable routes to menthol and cannabinoids. However, this reaction has been considered impossible because its product is more reactive to the required acid catalysts than its starting material, resulting in several side products. We now show that an unsymmetric, strong and confined chiral acid, a highly fluorinated imino-imidodiphosphate, catalyses this process with excellent efficiency and selectivity. Expanding the method to other α,β-unsaturated aldehydes could enable access to new cannabinoids and menthol derivatives not readily accessible previously. Mechanistic studies suggest that the confined catalyst accomplishes this reaction by binding the product in an unreactive conformation, thereby preventing its decomposition. We also show how (1R,6S)-trans-isopiperitenol can be readily converted to pharmaceutically useful cannabinoids and menthol, each in the shortest and most atom-economic routes so far.
+    </div>
+  </div>
+
+  <div class="publication">
+    <div class="publication-title" onclick="toggleAbstract(this)">
+      Unveiling the Delicate Balance of Steric and Dispersion Interactions in Organocatalysis. 
+      <em>J. Am. Chem. Soc.</em>, 2020, <strong>142</strong>, 7, 3613–3625<br>
+      <small>DOI: <a href="https://doi.org/10.1021/jacs.9b13725" target="_blank">10.1021/jacs.9b13725</a></small>
+    </div>
+    <div class="abstract">
+      High-level quantum electronic structure calculations are used to provide a deep insight into the mechanism and stereocontrolling factors of two recently developed catalytic asymmetric Diels–Alder (DA) reactions of cinnamate esters with cyclopentadiene. The reactions employ two structurally and electronically very different in situ silylated enantiopure Lewis acid organocatalysts: i.e., binaphthyl-allyl-tetrasulfone (BALT) and imidodiphosphorimidate (IDPi). Each of these catalysts activates only specific substrates in an enantioselective fashion. Emphasis is placed on identifying and quantifying the key noncovalent interactions responsible for the selectivity of these transformations, with the final aim of aiding in the development of designing principles for catalysts with a broader scope. Our results shed light into the mechanism through which the catalyst architecture determines the selectivity of these transformations via a delicate balance of dispersion and steric interactions.
+    </div>
+  </div>
+
+  <div class="publication">
+    <div class="publication-title" onclick="toggleAbstract(this)">
+      Finding Chemical Concepts in the Hilbert Space: Coupled Cluster Analyses of Noncovalent Interactions. 
+      <em>WIREs Comput. Mol. Sci.</em>, 2020, <strong>10</strong>, e1442<br>
+      <small>DOI: <a href="https://doi.org/10.1002/wcms.1442" target="_blank">10.1002/wcms.1442</a></small>
+    </div>
+    <div class="abstract">
+      Noncovalent interactions (NCIs) play a major role in essentially all fields of chemical research. Energy decomposition analysis (EDA) schemes provide in-depth insights into their nature by decomposing interaction energies into additive contributions, such as electrostatics, polarization, and London dispersion. Although modern local variants of the “gold standard” coupled-cluster singles and doubles method plus perturbative triples (CCSD(T)) have made it possible to accurately quantify NCIs for relatively large systems, extracting chemically meaningful energy terms from such high level electronic structure calculations has been a long lasting challenge in computational chemistry. This review describes basic principles, interpretative aspects and applications of recently developed coupled cluster-based EDAs for the analysis of NCIs. The focus is on computationally efficient methods for systems with a few hundred atoms, for example, the recently introduced local energy decomposition analysis. In order to draw connections between different interpretative frameworks, these schemes are compared with other popular approaches for the quantification and analysis of NCIs, such as Symmetry Adapted Perturbation Theory and supermolecular EDAs based on mean-field as well as correlated approaches. Strengths and limitations of the various techniques are discussed.
+    </div>
+  </div>
+</section>
+
+
 
   <section class="github-section">
-    <h2>Open Science</h2>
-    <p>Access our tools and datasets:</p>
+    <h2>Resources</h2>
+    <p>Access our tools and scripts:</p>
     <a href="https://github.com/bistonigroup" target="_blank">Visit GitHub Page</a>
+    <div id="github-projects"></div>
   </section>
 
   <section id="contact">
     <h2>Contact</h2>
-    <p style="text-align:center; font-size:1.1rem;">
-      Department of Chemistry, Biology and Biotechnology, University of Perugia<br />
+    <p style="text-align:center; font-size:1.1rem; max-width:650px; margin:auto;">
+      Department of Chemistry, Biology and Biotechnology, University of Perugia
+      Via Elce di Sotto, 8 06123 – Perugia, Italy<br />
       Email: <a href="mailto:giovanni.bistoni@unipg.it" style="color: var(--accent);">giovanni.bistoni@unipg.it</a>
     </p>
+    <div class="social-buttons">
+      <a href="https://x.com/BistoniGroup" target="_blank" aria-label="Twitter">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </div>
   </section>
   <script>
     function toggleAbstract(el) {
