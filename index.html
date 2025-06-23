@@ -239,23 +239,24 @@
       border-radius: 8px;
       transition: all 0.3s ease;
       border-left: 4px solid transparent;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      text-align: left;
+      padding-left: 0;
     }
 
     .publication-title:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-left-color: var(--accent);
-      transform: translateX(5px);
+      color: var(--accent);
+      cursor: pointer;
     }
 
     .publication {
-      margin-bottom: 30px;
       background: var(--bg-card);
       backdrop-filter: blur(10px);
-      padding: 0;
-      border-radius: 16px;
-      color: var(--color-text);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 0;
+      border: 1px solid rgba(255, 255, 255, 0.1);
       transition: all 0.3s ease;
     }
 
@@ -266,9 +267,11 @@
 
     .publication-header {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
+      justify-content: space-between;
       gap: 20px;
-      padding: 20px;
+      padding: 15px 20px;
+      min-height: 80px;
     }
 
     .publication-content {
@@ -278,9 +281,29 @@
     .publication-meta {
       display: flex;
       gap: 15px;
-      margin-top: 10px;
       font-size: 0.9rem;
       color: #ccc;
+      align-items: center;
+    }
+
+    .publication-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: flex-start;
+      flex-shrink: 0;
+    }
+
+    .publication-doi {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .publication-doi:hover {
+      text-decoration: underline;
     }
 
     .publication-journal {
@@ -298,18 +321,12 @@
     .abstract {
       display: none;
       margin: 0;
-      padding: 20px;
+      padding: 10px 20px;
       background: rgba(0, 0, 0, 0.1);
       font-size: 0.95rem;
       color: #eee;
       line-height: 1.6;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .publication-actions {
-      display: flex;
-      gap: 10px;
-      margin-top: 10px;
     }
 
     .btn-abstract {
@@ -333,19 +350,9 @@
       color: #333;
     }
 
-    .publication-doi {
-      color: var(--accent);
-      text-decoration: none;
-      font-size: 0.8rem;
-    }
-
-    .publication-doi:hover {
-      text-decoration: underline;
-    }
-
     .publications-grid {
       display: grid;
-      gap: 25px;
+      gap: 15px;
       max-width: 1000px;
       margin: auto;
     }
@@ -369,7 +376,7 @@
       }
       
       .publications-grid {
-        gap: 20px;
+        gap: 3px;
         padding: 0 10px;
       }
     }
@@ -378,6 +385,7 @@
       .publication-title {
         font-size: 0.9rem;
         padding: 10px;
+        padding-left: 0;
       }
       
       .publication-meta {
@@ -520,6 +528,13 @@
       display: flex;
       align-items: center;
       gap: 30px;
+      transition: box-shadow 0.3s, transform 0.3s;
+      cursor: pointer;
+    }
+
+    .research-card:hover {
+      box-shadow: 0 8px 32px rgba(102,126,234,0.18);
+      transform: translateY(-6px) scale(1.02);
     }
 
     .research-text {
@@ -550,19 +565,12 @@
       border-radius: 12px;
       object-fit: cover;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
     }
 
-    @media (max-width: 768px) {
-      .research-card {
-        flex-direction: column;
-        text-align: center;
-        gap: 20px;
-      }
-      
-      .research-card img {
-        width: 100%;
-        max-width: 300px;
-      }
+    .research-card:hover img {
+      transform: scale(1.05);
+      box-shadow: 0 8px 24px rgba(102,126,234,0.18);
     }
 
     /* Specific styling for ORCA link only */
@@ -791,7 +799,7 @@
     <div class="publication">
       <div class="publication-header">
         <div class="publication-content">
-          <div class="publication-title" onclick="toggleAbstract(this)">
+          <div class="publication-title">
             <strong>A Quantum Chemical Method for Dissecting London Dispersion Energy into Atomic Building Blocks</strong>
           </div>
           <div class="publication-meta">
@@ -799,14 +807,14 @@
             <span class="publication-year">2025</span>
             <span>in press</span>
           </div>
-          <div class="publication-actions">
-            <button class="btn-abstract" onclick="toggleAbstract(this.closest('.publication').querySelector('.publication-title'))">
-              <i class="fas fa-eye"></i> View Abstract
-            </button>
-            <a href="https://doi.org/10.1021/acscentsci.5c00356" target="_blank" class="publication-doi">
-              <i class="fas fa-external-link-alt"></i> DOI
-            </a>
-          </div>
+        </div>
+        <div class="publication-actions">
+          <button class="btn-abstract" onclick="toggleAbstract(this)" tabindex="-1">
+            <i class="fas fa-eye"></i> View Abstract
+          </button>
+          <a href="https://doi.org/10.1021/acscentsci.5c00356" target="_blank" class="publication-doi">
+            <i class="fas fa-external-link-alt"></i> DOI
+          </a>
         </div>
       </div>
       <div class="abstract">
@@ -817,35 +825,7 @@
     <div class="publication">
       <div class="publication-header">
         <div class="publication-content">
-          <div class="publication-title" onclick="toggleAbstract(this)">
-            <strong>Local Energy Decomposition of London Dispersion Effects</strong>
-          </div>
-          <div class="publication-meta">
-            <span class="publication-journal">Acc. Chem. Res.</span>
-            <span class="publication-year">2024</span>
-            <span>57, 9, 1411–1420</span>
-          </div>
-          <div class="publication-actions">
-            <button class="btn-abstract" onclick="toggleAbstract(this.closest('.publication').querySelector('.publication-title'))">
-              <i class="fas fa-eye"></i> View Abstract
-            </button>
-            <a href="https://doi.org/10.1021/acs.accounts.4c00085" target="_blank" class="publication-doi">
-              <i class="fas fa-external-link-alt"></i> DOI
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="abstract">
-        London dispersion (LD) forces are ubiquitous in chemistry, playing a pivotal role in a wide range of chemical processes. For example, they influence the structure of molecular crystals, the selectivity of organocatalytic transformations, and the formation of biomolecular assemblies. Harnessing these forces for chemical applications requires consistent quantification of the LD energy across a broad and diverse spectrum of chemical scenarios. Despite the great progress made in recent years in the development of experimental strategies for LD quantification, quantum chemical methods remain one of the most useful tools in the hand of chemists for the study of these weak interactions. Unfortunately, the accurate quantification of LD effects in complex systems poses many challenges for electronic structure theories. One of the problems stems from the fact that LD forces originate from long-range electronic dynamic correlation, and hence, their rigorous description requires the use of complex, highly correlated wave function-based methods. These methods typically feature a steep scaling with the system size, limiting their applicability to small model systems. Another core challenge lies in disentangling short-range from long-range dynamic correlation, which from a rigorous quantum mechanical perspective is not possible.
-
-        In this Account, we describe our research endeavors in the development of broadly applicable computational methods for LD quantification in molecular chemistry as well as challenging applications of these schemes in various domains of chemical research. Our strategy lies in the use of local correlation theories to reduce the computational cost associated with complex electronic structure methods while providing at the same time a simple means of decomposition of dynamic correlation into its long-range and short-range components. In particular, the local energy decomposition (LED) scheme at the domain-based local pair natural orbital coupled cluster (DLPNO-CCSD(T)) level has emerged as a powerful tool in our research, offering a clear-cut quantitative definition of the LD energy that remains valid across a plethora of different chemical scenarios. Typical applications of this scheme are examined, encompassing protein–ligand interactions and reactivity studies involving many fragments and complex electronic structures. In addition, our research also involves the development of novel cost-effective methodologies, which exploit the LED definition of the LD energy, for LD energy quantification that are, in principle, applicable to systems with thousands of atoms. The Hartree–Fock plus London Dispersion (HFLD) scheme, correcting the HF interaction energy using an approximate CCSD(T)-based LD energy, is a useful, parameter-free electronic structure method for the study of LD effects in systems with hundreds of molecular fragments. However, the usefulness of the LED scheme reaches beyond providing an interpretation of the calculated DLPNO-CCSD(T) or DLPNO-MP2 interaction energies. For example, the dispersion energies obtained from the LED can be fruitfully used in order to parametrize semiempirical dispersion models. We will demonstrate this in the context of an emerging semiempirical method, namely, the Natural Orbital Tied Constructed Hamiltonian (NOTCH) method. NOTCH incorporates LED-derived LD energies and shows promising accuracy at a minimum amount of empiricism. Thus, it holds substantial promise for large and complex systems.
-      </div>
-    </div>
-
-    <div class="publication">
-      <div class="publication-header">
-        <div class="publication-content">
-          <div class="publication-title" onclick="toggleAbstract(this)">
+          <div class="publication-title">
             <strong>The Sugar Cube: Network Control and Emergence in Stereoediting Reactions</strong>
           </div>
           <div class="publication-meta">
@@ -853,14 +833,14 @@
             <span class="publication-year">2024</span>
             <span>385, 456–463</span>
           </div>
-          <div class="publication-actions">
-            <button class="btn-abstract" onclick="toggleAbstract(this.closest('.publication').querySelector('.publication-title'))">
-              <i class="fas fa-eye"></i> View Abstract
-            </button>
-            <a href="https://doi.org/10.1126/science.adp2447" target="_blank" class="publication-doi">
-              <i class="fas fa-external-link-alt"></i> DOI
-            </a>
-          </div>
+        </div>
+        <div class="publication-actions">
+          <button class="btn-abstract" onclick="toggleAbstract(this)" tabindex="-1">
+            <i class="fas fa-eye"></i> View Abstract
+          </button>
+          <a href="https://doi.org/10.1126/science.adp2447" target="_blank" class="publication-doi">
+            <i class="fas fa-external-link-alt"></i> DOI
+          </a>
         </div>
       </div>
       <div class="abstract">
@@ -871,7 +851,7 @@
     <div class="publication">
       <div class="publication-header">
         <div class="publication-content">
-          <div class="publication-title" onclick="toggleAbstract(this)">
+          <div class="publication-title">
             <strong>Taming Secondary Benzylic Cations in Catalytic Asymmetric SN1 Reactions</strong>
           </div>
           <div class="publication-meta">
@@ -879,14 +859,14 @@
             <span class="publication-year">2023</span>
             <span>382, 325–329</span>
           </div>
-          <div class="publication-actions">
-            <button class="btn-abstract" onclick="toggleAbstract(this.closest('.publication').querySelector('.publication-title'))">
-              <i class="fas fa-eye"></i> View Abstract
-            </button>
-            <a href="https://doi.org/10.1126/science.adj7007" target="_blank" class="publication-doi">
-              <i class="fas fa-external-link-alt"></i> DOI
-            </a>
-          </div>
+        </div>
+        <div class="publication-actions">
+          <button class="btn-abstract" onclick="toggleAbstract(this)" tabindex="-1">
+            <i class="fas fa-eye"></i> View Abstract
+          </button>
+          <a href="https://doi.org/10.1126/science.adj7007" target="_blank" class="publication-doi">
+            <i class="fas fa-external-link-alt"></i> DOI
+          </a>
         </div>
       </div>
       <div class="abstract">
@@ -897,7 +877,7 @@
     <div class="publication">
       <div class="publication-header">
         <div class="publication-content">
-          <div class="publication-title" onclick="toggleAbstract(this)">
+          <div class="publication-title">
             <strong>Catalytic Asymmetric Synthesis of Cannabinoids and Menthol from Neral</strong>
           </div>
           <div class="publication-meta">
@@ -905,14 +885,14 @@
             <span class="publication-year">2023</span>
             <span>615, 634–639</span>
           </div>
-          <div class="publication-actions">
-            <button class="btn-abstract" onclick="toggleAbstract(this.closest('.publication').querySelector('.publication-title'))">
-              <i class="fas fa-eye"></i> View Abstract
-            </button>
-            <a href="https://doi.org/10.1038/s41586-023-05747-9" target="_blank" class="publication-doi">
-              <i class="fas fa-external-link-alt"></i> DOI
-            </a>
-          </div>
+        </div>
+        <div class="publication-actions">
+          <button class="btn-abstract" onclick="toggleAbstract(this)" tabindex="-1">
+            <i class="fas fa-eye"></i> View Abstract
+          </button>
+          <a href="https://doi.org/10.1038/s41586-023-05747-9" target="_blank" class="publication-doi">
+            <i class="fas fa-external-link-alt"></i> DOI
+          </a>
         </div>
       </div>
       <div class="abstract">
@@ -923,7 +903,7 @@
     <div class="publication">
       <div class="publication-header">
         <div class="publication-content">
-          <div class="publication-title" onclick="toggleAbstract(this)">
+          <div class="publication-title">
             <strong>Unveiling the Delicate Balance of Steric and Dispersion Interactions in Organocatalysis</strong>
           </div>
           <div class="publication-meta">
@@ -931,14 +911,14 @@
             <span class="publication-year">2020</span>
             <span>142, 7, 3613–3625</span>
           </div>
-          <div class="publication-actions">
-            <button class="btn-abstract" onclick="toggleAbstract(this.closest('.publication').querySelector('.publication-title'))">
-              <i class="fas fa-eye"></i> View Abstract
-            </button>
-            <a href="https://doi.org/10.1021/jacs.9b13725" target="_blank" class="publication-doi">
-              <i class="fas fa-external-link-alt"></i> DOI
-            </a>
-          </div>
+        </div>
+        <div class="publication-actions">
+          <button class="btn-abstract" onclick="toggleAbstract(this)" tabindex="-1">
+            <i class="fas fa-eye"></i> View Abstract
+          </button>
+          <a href="https://doi.org/10.1021/jacs.9b13725" target="_blank" class="publication-doi">
+            <i class="fas fa-external-link-alt"></i> DOI
+          </a>
         </div>
       </div>
       <div class="abstract">
@@ -949,7 +929,7 @@
     <div class="publication">
       <div class="publication-header">
         <div class="publication-content">
-          <div class="publication-title" onclick="toggleAbstract(this)">
+          <div class="publication-title">
             <strong>Finding Chemical Concepts in the Hilbert Space: Coupled Cluster Analyses of Noncovalent Interactions</strong>
           </div>
           <div class="publication-meta">
@@ -957,18 +937,46 @@
             <span class="publication-year">2020</span>
             <span>10, e1442</span>
           </div>
-          <div class="publication-actions">
-            <button class="btn-abstract" onclick="toggleAbstract(this.closest('.publication').querySelector('.publication-title'))">
-              <i class="fas fa-eye"></i> View Abstract
-            </button>
-            <a href="https://doi.org/10.1002/wcms.1442" target="_blank" class="publication-doi">
-              <i class="fas fa-external-link-alt"></i> DOI
-            </a>
-          </div>
+        </div>
+        <div class="publication-actions">
+          <button class="btn-abstract" onclick="toggleAbstract(this)" tabindex="-1">
+            <i class="fas fa-eye"></i> View Abstract
+          </button>
+          <a href="https://doi.org/10.1002/wcms.1442" target="_blank" class="publication-doi">
+            <i class="fas fa-external-link-alt"></i> DOI
+          </a>
         </div>
       </div>
       <div class="abstract">
         Noncovalent interactions (NCIs) play a major role in essentially all fields of chemical research. Energy decomposition analysis (EDA) schemes provide in-depth insights into their nature by decomposing interaction energies into additive contributions, such as electrostatics, polarization, and London dispersion. Although modern local variants of the "gold standard" coupled-cluster singles and doubles method plus perturbative triples (CCSD(T)) have made it possible to accurately quantify NCIs for relatively large systems, extracting chemically meaningful energy terms from such high level electronic structure calculations has been a long lasting challenge in computational chemistry. This review describes basic principles, interpretative aspects and applications of recently developed coupled cluster-based EDAs for the analysis of NCIs. The focus is on computationally efficient methods for systems with a few hundred atoms, for example, the recently introduced local energy decomposition analysis. In order to draw connections between different interpretative frameworks, these schemes are compared with other popular approaches for the quantification and analysis of NCIs, such as Symmetry Adapted Perturbation Theory and supermolecular EDAs based on mean-field as well as correlated approaches. Strengths and limitations of the various techniques are discussed.
+      </div>
+    </div>
+
+    <div class="publication">
+      <div class="publication-header">
+        <div class="publication-content">
+          <div class="publication-title">
+            <strong>Local Energy Decomposition of London Dispersion Effects</strong>
+          </div>
+          <div class="publication-meta">
+            <span class="publication-journal">Acc. Chem. Res.</span>
+            <span class="publication-year">2024</span>
+            <span>57, 9, 1411–1420</span>
+          </div>
+        </div>
+        <div class="publication-actions">
+          <button class="btn-abstract" onclick="toggleAbstract(this)" tabindex="-1">
+            <i class="fas fa-eye"></i> View Abstract
+          </button>
+          <a href="https://doi.org/10.1021/acs.accounts.4c00085" target="_blank" class="publication-doi">
+            <i class="fas fa-external-link-alt"></i> DOI
+          </a>
+        </div>
+      </div>
+      <div class="abstract">
+        London dispersion (LD) forces are ubiquitous in chemistry, playing a pivotal role in a wide range of chemical processes. For example, they influence the structure of molecular crystals, the selectivity of organocatalytic transformations, and the formation of biomolecular assemblies. Harnessing these forces for chemical applications requires consistent quantification of the LD energy across a broad and diverse spectrum of chemical scenarios. Despite the great progress made in recent years in the development of experimental strategies for LD quantification, quantum chemical methods remain one of the most useful tools in the hand of chemists for the study of these weak interactions. Unfortunately, the accurate quantification of LD effects in complex systems poses many challenges for electronic structure theories. One of the problems stems from the fact that LD forces originate from long-range electronic dynamic correlation, and hence, their rigorous description requires the use of complex, highly correlated wave function-based methods. These methods typically feature a steep scaling with the system size, limiting their applicability to small model systems. Another core challenge lies in disentangling short-range from long-range dynamic correlation, which from a rigorous quantum mechanical perspective is not possible.
+
+        In this Account, we describe our research endeavors in the development of broadly applicable computational methods for LD quantification in molecular chemistry as well as challenging applications of these schemes in various domains of chemical research. Our strategy lies in the use of local correlation theories to reduce the computational cost associated with complex electronic structure methods while providing at the same time a simple means of decomposition of dynamic correlation into its long-range and short-range components. In particular, the local energy decomposition (LED) scheme at the domain-based local pair natural orbital coupled cluster (DLPNO-CCSD(T)) level has emerged as a powerful tool in our research, offering a clear-cut quantitative definition of the LD energy that remains valid across a plethora of different chemical scenarios. Typical applications of this scheme are examined, encompassing protein–ligand interactions and reactivity studies involving many fragments and complex electronic structures. In addition, our research also involves the development of novel cost-effective methodologies, which exploit the LED definition of the LD energy, for LD energy quantification that are, in principle, applicable to systems with thousands of atoms. The Hartree–Fock plus London Dispersion (HFLD) scheme, correcting the HF interaction energy using an approximate CCSD(T)-based LD energy, is a useful, parameter-free electronic structure method for the study of LD effects in systems with hundreds of molecular fragments. However, the usefulness of the LED scheme reaches beyond providing an interpretation of the calculated DLPNO-CCSD(T) or DLPNO-MP2 interaction energies. For example, the dispersion energies obtained from the LED can be fruitfully used in order to parametrize semiempirical dispersion models. We will demonstrate this in the context of an emerging semiempirical method, namely, the Natural Orbital Tied Constructed Hamiltonian (NOTCH) method. NOTCH incorporates LED-derived LD energies and shows promising accuracy at a minimum amount of empiricism. Thus, it holds substantial promise for large and complex systems.
       </div>
     </div>
 
@@ -1022,72 +1030,34 @@
     </div>
   </section>
   <script>
-    function toggleAbstract(el) {
-      // Find the abstract within the same publication container
-      const publication = el.closest('.publication');
+    function toggleAbstract(button) {
+      // Trova la pubblicazione che contiene questo bottone
+      const publication = button.closest('.publication');
       const abstract = publication.querySelector('.abstract');
-      const isVisible = abstract.style.display === 'block';
+      const icon = button.querySelector('i');
       
-      // Toggle abstract visibility with smooth animation
-      if (isVisible) {
+      // Toggle semplice
+      if (abstract.style.display === 'block') {
+        // Nascondi abstract
         abstract.style.display = 'none';
-        abstract.style.opacity = '0';
-        abstract.style.transform = 'translateY(-10px)';
+        icon.className = 'fas fa-eye';
+        button.textContent = ' View Abstract';
+        button.classList.remove('active');
       } else {
+        // Mostra abstract
         abstract.style.display = 'block';
-        abstract.style.opacity = '0';
-        abstract.style.transform = 'translateY(-10px)';
-        
-        // Animate in
-        setTimeout(() => {
-          abstract.style.transition = 'all 0.3s ease';
-          abstract.style.opacity = '1';
-          abstract.style.transform = 'translateY(0)';
-        }, 10);
+        icon.className = 'fas fa-eye-slash';
+        button.textContent = ' Hide Abstract';
+        button.classList.add('active');
       }
       
-      // Update button text and state
-      const button = publication.querySelector('.btn-abstract');
-      if (button) {
-        const icon = button.querySelector('i');
-        
-        if (isVisible) {
-          icon.className = 'fas fa-eye';
-          button.textContent = ' View Abstract';
-          button.classList.remove('active');
-        } else {
-          icon.className = 'fas fa-eye-slash';
-          button.textContent = ' Hide Abstract';
-          button.classList.add('active');
-        }
-        button.prepend(icon);
-      }
+      // Rimetti l'icona
+      button.prepend(icon);
     }
 
     // Enhanced GSAP animations
     gsap.registerPlugin(ScrollTrigger);
     
-    // Animate publications with staggered effect - but don't reverse on scroll
-    gsap.utils.toArray('.publication').forEach((item, index) => {
-      gsap.fromTo(item, { 
-        opacity: 0, 
-        y: 50,
-        scale: 0.95
-      }, {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 0.8,
-        delay: index * 0.1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: item,
-          start: 'top 85%',
-          toggleActions: 'play none none none' // Changed from 'reverse' to 'none'
-        }
-      });
-    });
-
     // Animate other elements
     gsap.utils.toArray('.card, .research-card').forEach(item => {
       gsap.fromTo(item, { opacity: 0, y: 40 }, {
@@ -1130,6 +1100,29 @@
           this.innerHTML = originalText;
         });
       }
+
+      // --- AGGIUNTA: click sul titolo pubblicazione ---
+      const publicationTitles = document.querySelectorAll('.publication-title');
+      publicationTitles.forEach(title => {
+        title.addEventListener('click', function() {
+          // Trova la pubblicazione che contiene questo titolo
+          const publication = this.closest('.publication');
+          // Trova il bottone View Abstract relativo (se esiste)
+          const btn = publication.querySelector('.btn-abstract');
+          if (btn) {
+            toggleAbstract(btn);
+          }
+        });
+        // Per accessibilità: anche con tastiera
+        title.setAttribute('tabindex', '0');
+        title.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            this.click();
+          }
+        });
+      });
+      // --- FINE AGGIUNTA ---
     });
 
     // Add CSS for ripple animation
@@ -1186,6 +1179,17 @@
         // Add hover sound effect (optional)
         card.addEventListener('mouseenter', function() {
           this.style.cursor = 'pointer';
+        });
+      });
+
+      // Add click feedback to research cards
+      const researchCards = document.querySelectorAll('.research-card');
+      researchCards.forEach(card => {
+        card.addEventListener('click', function() {
+          this.style.transform = 'scale(0.97)';
+          setTimeout(() => {
+            this.style.transform = '';
+          }, 150);
         });
       });
 
