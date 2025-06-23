@@ -81,28 +81,193 @@
     nav {
       position: sticky;
       top: 0;
-      background-color: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      padding: 10px 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 8px 20px;
       z-index: 10;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: top 0.3s ease;
+    }
+
+    nav.hidden {
+      top: -100px;
+    }
+
+    .nav-brand {
+      color: white;
+      font-weight: 800;
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .nav-brand:hover {
+      color: var(--accent);
+    }
+
+    .hamburger {
+      display: block;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.3rem;
+      cursor: pointer;
+      padding: 6px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+      z-index: 110;
+    }
+
+    .hamburger:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--accent);
+      transform: scale(1.05);
+    }
+
+    .hamburger.active {
+      background: var(--accent);
+      color: #333;
     }
 
     nav ul {
+      position: fixed;
+      top: 0;
+      right: -320px;
+      width: 300px;
+      height: 100vh;
+      background: rgba(30, 30, 60, 0.97);
       display: flex;
-      justify-content: center;
-      gap: 2rem;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 0;
       list-style: none;
+      margin: 0;
+      padding: 80px 0 0 0;
+      transition: right 0.25s ease;
+      z-index: 100;
+      border-left: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    nav ul.open {
+      right: 0;
+    }
+
+    nav li {
+      width: 100%;
+      position: relative;
     }
 
     nav a {
       color: white;
       text-decoration: none;
       font-weight: 600;
-      transition: color 0.3s;
+      font-size: 1rem;
+      padding: 12px 25px;
+      display: block;
+      transition: all 0.2s ease;
+      border-left: 3px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    nav a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transition: left 0.3s ease;
+    }
+
+    nav a:hover::before {
+      left: 100%;
     }
 
     nav a:hover {
       color: var(--accent);
+      background: rgba(255, 255, 255, 0.05);
+      border-left-color: var(--accent);
+      transform: translateX(5px);
+    }
+
+    nav a:active {
+      transform: translateX(5px) scale(0.98);
+    }
+
+    /* Overlay per chiudere il menu */
+    .nav-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.35);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.25s ease;
+      z-index: 90;
+    }
+
+    .nav-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 6px 15px;
+      }
+      
+      nav ul {
+        width: 280px;
+        right: -300px;
+      }
+      
+      nav a {
+        font-size: 0.95rem;
+        padding: 10px 20px;
+      }
+      
+      .nav-brand {
+        font-size: 1rem;
+      }
+      
+      .hamburger {
+        font-size: 1.2rem;
+        padding: 5px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      nav {
+        padding: 5px 12px;
+      }
+      
+      nav ul {
+        width: 260px;
+        right: -280px;
+      }
+      
+      nav a {
+        font-size: 0.9rem;
+        padding: 8px 18px;
+      }
+      
+      .nav-brand {
+        font-size: 0.95rem;
+      }
+      
+      .hamburger {
+        font-size: 1.1rem;
+        padding: 4px;
+      }
     }
 
     section {
@@ -117,6 +282,14 @@
       margin-bottom: 40px;
     }
 
+    /* Allinea a sinistra solo i titoli delle sezioni specifiche */
+    #about h2,
+    #background h2,
+    #research-areas h2 {
+      text-align: left;
+      margin-left: 20px;
+    }
+
     .members {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -125,13 +298,12 @@
     }
 
     .card {
-      background: var(--bg-card);
-      backdrop-filter: blur(10px);
+      background: rgba(255,255,255,0.08);
       border-radius: 16px;
       padding: 25px;
       text-align: center;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
@@ -140,7 +312,7 @@
 
     .card:hover {
       transform: translateY(-8px);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.13);
       border-color: var(--accent);
     }
 
@@ -251,18 +423,18 @@
     }
 
     .publication {
-      background: var(--bg-card);
-      backdrop-filter: blur(10px);
+      background: rgba(255,255,255,0.08);
       border-radius: 12px;
       padding: 20px;
       margin-bottom: 0;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
 
     .publication:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.13);
     }
 
     .publication-header {
@@ -357,7 +529,6 @@
       margin: auto;
     }
 
-    /* Responsive design for publications */
     @media (max-width: 768px) {
       .publication-header {
         flex-direction: column;
@@ -375,263 +546,6 @@
         flex-wrap: wrap;
       }
       
-      .publications-grid {
-        gap: 3px;
-        padding: 0 10px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .publication-title {
-        font-size: 0.9rem;
-        padding: 10px;
-        padding-left: 0;
-      }
-      
-      .publication-meta {
-        font-size: 0.8rem;
-      }
-      
-      .btn-abstract {
-        font-size: 0.7rem;
-        padding: 4px 8px;
-      }
-    }
-
-    .github-section {
-      text-align: center;
-      margin-top: 60px;
-      padding: 40px 20px;
-      background: var(--bg-card);
-      backdrop-filter: blur(10px);
-      border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    }
-
-    .github-section h2 {
-      margin-bottom: 20px;
-      font-size: 2.5rem;
-    }
-
-    .github-section p {
-      font-size: 1.1rem;
-      margin-bottom: 30px;
-      color: #e0f7ff;
-    }
-
-    .github-main-button {
-      color: white;
-      font-weight: bold;
-      font-size: 1.2rem;
-      text-decoration: none;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      padding: 15px 30px;
-      border-radius: 30px;
-      display: inline-block;
-      margin-bottom: 30px;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    .github-main-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-      background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
-    }
-
-    .github-repos {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-      margin-top: 30px;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .repo-card {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 20px;
-      border-radius: 12px;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.3s ease;
-      text-align: left;
-    }
-
-    .repo-card:hover {
-      transform: translateY(-3px);
-      background: rgba(255, 255, 255, 0.15);
-      border-color: var(--accent);
-    }
-
-    .repo-name {
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: white;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .repo-name i {
-      color: var(--accent);
-    }
-
-    .repo-description {
-      color: #ccc;
-      font-size: 0.9rem;
-      margin-bottom: 15px;
-      line-height: 1.5;
-    }
-
-    @media (max-width: 768px) {
-      .github-repos {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    footer {
-      background: rgba(0, 0, 0, 0.3);
-      color: white;
-      text-align: center;
-      padding: 40px 20px;
-    }
-
-    .social-buttons {
-      margin-top: 30px;
-      text-align: center;
-    }
-
-    .social-buttons a {
-      display: inline-block;
-      margin: 0 15px;
-      color: var(--color-text);
-      font-size: 2rem;
-      transition: color 0.3s;
-    }
-
-    .social-buttons a:hover {
-      color: var(--accent);
-    }
-
-    .research-areas {
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
-      max-width: 900px;
-      margin: auto;
-    }
-
-    .research-card {
-      display: flex;
-      align-items: center;
-      gap: 30px;
-      transition: box-shadow 0.3s, transform 0.3s;
-      cursor: pointer;
-    }
-
-    .research-card:hover {
-      box-shadow: 0 8px 32px rgba(102,126,234,0.18);
-      transform: translateY(-6px) scale(1.02);
-    }
-
-    .research-text {
-      flex: 1;
-      text-align: left;
-    }
-
-    .research-text h3 {
-      color: var(--accent);
-      font-size: 1.8rem;
-      margin-bottom: 15px;
-      transition: color 0.3s ease;
-    }
-
-    .research-card:hover .research-text h3 {
-      color: #fff;
-    }
-
-    .research-text p {
-      color: #e0f7ff;
-      line-height: 1.6;
-      font-size: 1rem;
-    }
-
-    .research-card img {
-      width: 300px;
-      height: auto;
-      border-radius: 12px;
-      object-fit: cover;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .research-card:hover img {
-      transform: scale(1.05);
-      box-shadow: 0 8px 24px rgba(102,126,234,0.18);
-    }
-
-    /* Specific styling for ORCA link only */
-    .orca-link {
-      color: var(--accent);
-      text-decoration: none;
-      border-bottom: 1px solid var(--accent);
-      transition: all 0.3s ease;
-    }
-
-    .orca-link:hover {
-      color: #fff;
-      border-bottom-color: #fff;
-      text-shadow: 0 0 8px var(--accent);
-    }
-
-    @media (max-width: 768px) {
-      nav ul {
-        flex-direction: column;
-        gap: 0;
-        background: rgba(30,30,60,0.98);
-        position: fixed;
-        top: 0;
-        left: -100vw;
-        width: 70vw;
-        height: 100vh;
-        padding-top: 60px;
-        z-index: 100;
-        transition: left 0.3s;
-      }
-      nav ul.open {
-        left: 0;
-      }
-      nav .hamburger {
-        display: block;
-        position: absolute;
-        top: 18px;
-        left: 20px;
-        z-index: 110;
-        background: none;
-        border: none;
-        color: #fff;
-        font-size: 2rem;
-        cursor: pointer;
-      }
-      nav {
-        min-height: 56px;
-      }
-      .publication-header {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
-      }
-      .publication-actions {
-        justify-content: center;
-        flex-wrap: wrap;
-      }
-      .publication-meta {
-        justify-content: center;
-        flex-wrap: wrap;
-      }
       .publications-grid {
         gap: 3px;
         padding: 0 10px;
@@ -695,10 +609,10 @@
         padding: 4px 8px;
       }
       header h1 {
-        font-size: 1.3rem;
+        font-size: 1.8rem;
       }
       section h2 {
-        font-size: 1.3rem;
+        font-size: 2rem;
       }
       .card h3, .research-text h3 {
         font-size: 1.1rem;
@@ -722,6 +636,332 @@
         font-size: 1.3rem;
       }
     }
+
+    .research-areas {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .research-card {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      transition: box-shadow 0.3s, transform 0.3s;
+      cursor: pointer;
+    }
+
+    .research-card:hover {
+      box-shadow: 0 8px 32px rgba(102,126,234,0.18);
+      transform: translateY(-6px) scale(1.02);
+    }
+
+    .research-text {
+      flex: 1;
+      text-align: left;
+    }
+
+    .research-text h3 {
+      color: var(--accent);
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      transition: color 0.3s ease;
+    }
+
+    .research-card:hover .research-text h3 {
+      color: #fff;
+    }
+
+    .research-text p {
+      color: #e0f7ff;
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+
+    .research-card img {
+      width: 300px;
+      height: auto;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .research-card:hover img {
+      transform: scale(1.05);
+      box-shadow: 0 8px 24px rgba(102,126,234,0.13);
+    }
+
+    .orca-link {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent);
+      transition: all 0.3s ease;
+    }
+
+    .orca-link:hover {
+      color: #fff;
+      border-bottom-color: #fff;
+      text-shadow: 0 0 8px var(--accent);
+    }
+
+    /* Add CSS for ripple animation */
+    @keyframes ripple {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+    
+    .repo-card {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+      text-align: left;
+    }
+
+    .repo-card:hover {
+      transform: translateY(-3px);
+      background: rgba(255, 255, 255, 0.15);
+      border-color: var(--accent);
+    }
+
+    .repo-name {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .repo-name i {
+      color: var(--accent);
+    }
+
+    .repo-description {
+      color: #ccc;
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 768px) {
+      .github-repos {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    footer {
+      background: rgba(0, 0, 0, 0.3);
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .social-buttons {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .social-buttons a {
+      display: inline-block;
+      margin: 0 15px;
+      color: var(--color-text);
+      font-size: 2rem;
+      transition: color 0.3s ease;
+    }
+
+    .social-buttons a:hover {
+      color: var(--accent);
+    }
+
+    .research-areas {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .research-card {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      transition: box-shadow 0.3s, transform 0.3s;
+      cursor: pointer;
+    }
+
+    .research-card:hover {
+      box-shadow: 0 8px 32px rgba(102,126,234,0.18);
+      transform: translateY(-6px) scale(1.02);
+    }
+
+    .research-text {
+      flex: 1;
+      text-align: left;
+    }
+
+    .research-text h3 {
+      color: var(--accent);
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      transition: color 0.3s ease;
+      padding-left: 20px;
+    }
+
+    .research-card:hover .research-text h3 {
+      color: #fff;
+    }
+
+    .research-text p {
+      color: #e0f7ff;
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+
+    .research-card img {
+      width: 300px;
+      height: auto;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .research-card:hover img {
+      transform: scale(1.05);
+      box-shadow: 0 8px 24px rgba(102,126,234,0.13);
+    }
+
+    .orca-link {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent);
+      transition: all 0.3s ease;
+    }
+
+    .orca-link:hover {
+      color: #fff;
+      border-bottom-color: #fff;
+      text-shadow: 0 0 8px var(--accent);
+    }
+
+    /* Add CSS for ripple animation */
+    @keyframes ripple {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+    
+    .repo-card {
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .github-repos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .github-main-button {
+      color: white;
+      font-weight: bold;
+      font-size: 1.2rem;
+      text-decoration: none;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 15px 30px;
+      border-radius: 30px;
+      display: inline-block;
+      margin-bottom: 30px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    .github-main-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    }
+
+    .github-section {
+      text-align: center;
+      margin-top: 60px;
+      padding: 40px 20px;
+      background: var(--bg-card);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .github-section p {
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+      color: #e0f7ff;
+    }
+
+    /* Giustifica il testo nei paragrafi delle sezioni principali */
+    #about p,
+    #background p,
+    #contact p {
+      text-align: left;
+      max-width: 800px;
+      margin: 0 auto 0 20px;
+      padding-right: 20px;
+    }
+
+    .research-text p {
+      text-align: left;
+      max-width: 800px;
+      margin: 0 auto 0 20px;
+      padding-right: 20px;
+    }
+
+    /* Easter egg styles */
+    .easter-egg-active {
+      animation: rainbow-bg 2s ease-in-out;
+    }
+
+    .easter-egg-active h1 {
+      animation: bounce 0.5s ease-in-out infinite;
+    }
+
+    .easter-egg-active p {
+      animation: wiggle 0.3s ease-in-out infinite;
+    }
+
+    @keyframes rainbow-bg {
+      0%, 100% { background: var(--bg-gradient); }
+      16% { background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%); }
+      33% { background: linear-gradient(135deg, #feca57 0%, #ff9ff3 100%); }
+      50% { background: linear-gradient(135deg, #48dbfb 0%, #0abde3 100%); }
+      66% { background: linear-gradient(135deg, #1dd1a1 0%, #10ac84 100%); }
+      83% { background: linear-gradient(135deg, #ff9ff3 0%, #f368e0 100%); }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(1deg); }
+      75% { transform: rotate(-1deg); }
+    }
   </style>
 </head>
 
@@ -732,23 +972,25 @@
   </header>
 
   <nav>
-    <button class="hamburger" aria-label="Open menu" onclick="document.querySelector('nav ul').classList.toggle('open')">
+    <a href="#" class="nav-brand">Bistoni Group</a>
+    <button class="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
       <i class="fas fa-bars"></i>
     </button>
+    <div class="nav-overlay" onclick="closeMenu()"></div>
     <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#background">Background</a></li>
-      <li><a href="#members">Team</a></li>
-      <li><a href="#research-areas">Research</a></li>
-      <li><a href="#publications">Publications</a></li>
-      <li><a href="#github">Code</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about" onclick="closeMenu()">About</a></li>
+      <li><a href="#background" onclick="closeMenu()">Background</a></li>
+      <li><a href="#members" onclick="closeMenu()">Team</a></li>
+      <li><a href="#research-areas" onclick="closeMenu()">Research</a></li>
+      <li><a href="#publications" onclick="closeMenu()">Publications</a></li>
+      <li><a href="#github" onclick="closeMenu()">Code</a></li>
+      <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
     </ul>
   </nav>
 
   <section id="about">
     <h2>About the Group</h2>
-    <p style="text-align:center; max-width:900px; margin:auto;">
+    <p>
       The Bistoni Group combines advanced quantum chemical methods with machine learning techniques to address complex challenges in theoretical chemistry. Our research spans homogeneous, heterogeneous, and biological catalysis, with particular emphasis on systems that push the limits of conventional computational approaches. Key areas of investigation include:
       (i) stereocontrol in enantioselective catalysis,
       (ii) mechanisms of electrocatalytic processes,
@@ -767,7 +1009,7 @@
 
   <section id="background">
     <h2>Background</h2>
-    <p style="text-align:center; max-width:900px; margin:auto;">
+    <p>
       Prof. Giovanni Bistoni completed his Ph. D. at the University of Perugia in 2015. He was Postdoctoral Fellow in Prof. Frank Neese's group at the Max Planck Institute for Chemical Energy Conversion and was promoted to Group Leader in 2017. He moved to the Max-Planck-Institut für Kohlenforschung in 2018, where he led the "Intermolecular Interactions and Homogeneous Catalysis" group. He got his Habilitation in Theoretical and Computational Chemistry from Universität Duisburg-Essen in 2021. His research group moved to the University of Perugia in January 2022.
     </p>
   </section>
@@ -776,7 +1018,7 @@
     <h2>Team</h2>
     <div class="members">
       <div class="card">
-        <img src="images/giovannibistoni.jpg" alt="Giovanni Bistoni">
+        <img src="images/webp/giovannibistoni.webp" alt="Giovanni Bistoni">
         <h3>Giovanni Bistoni</h3>
         <span class="member-role">Principal Investigator</span>
         <div class="social-icons">
@@ -787,7 +1029,7 @@
         </div>
       </div>
       <div class="card">
-        <img src="images/isaacfleach.jpg" alt="Isaac F. Leach">
+        <img src="images/webp/isaacfleach.webp" alt="Isaac F. Leach">
         <h3>Isaac F. Leach</h3>
         <span class="member-role">Postdoctoral Researcher</span>
         <div class="social-icons">
@@ -798,7 +1040,7 @@
         </div>
       </div>
       <div class="card">
-        <img src="images/lorenzobaldinelli.png" alt="Lorenzo Baldinelli">
+        <img src="images/webp/lorenzobaldinelli.webp" alt="Lorenzo Baldinelli">
         <h3>Lorenzo Baldinelli</h3>
         <span class="member-role">PhD Student</span>
         <div class="social-icons">
@@ -808,7 +1050,7 @@
         </div>
       </div>
       <div class="card">
-        <img src="images/martinacolucci.jpeg" alt="Martina Colucci">
+        <img src="images/webp/martinacolucci.webp" alt="Martina Colucci">
         <h3>Martina Colucci</h3>
         <span class="member-role">PhD Student</span>
         <div class="social-icons">
@@ -817,7 +1059,7 @@
         </div>
       </div>
       <div class="card">
-        <img src="images/carlosjacinto.jpg" alt="Carlos Jacinto">
+        <img src="images/webp/carlosjacinto.webp" alt="Carlos Jacinto">
         <h3>Carlos Jacinto</h3>
         <span class="member-role">PhD Student</span>
         <div class="social-icons">
@@ -826,7 +1068,7 @@
         </div>
       </div>
       <div class="card">
-        <img src="images/sofialerda.jpeg" alt="Sofia Lerda">
+        <img src="images/webp/sofialerda.webp" alt="Sofia Lerda">
         <h3>Sofia Lerda</h3>
         <span class="member-role">PhD Student</span>
         <div class="social-icons">
@@ -837,7 +1079,7 @@
         </div>
       </div>
       <div class="card">
-        <img src="images/gianlucaregni.jpg" alt="Gianluca Regni">
+        <img src="images/webp/gianlucaregni.webp" alt="Gianluca Regni">
         <h3>Gianluca Regni</h3>
         <span class="member-role">PhD Student</span>
         <div class="social-icons">
@@ -848,11 +1090,19 @@
         </div>
       </div>
       <div class="card">
-        <img src="images/moniazarhouni.jpg" alt="Monia Zarhouni">
+        <img src="images/webp/moniazarhouni.webp" alt="Monia Zarhouni">
         <h3>Monia Zarhouni</h3>
         <span class="member-role">MSc Student</span>
         <div class="social-icons">
           <a href="mailto:monia.zarhouni@studenti.unipg.it" title="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/webp/pietrobartolomei.webp" alt="Pietro Bartolomei">
+        <h3>Pietro Bartolomei</h3>
+        <span class="member-role">BSc Student</span>
+        <div class="social-icons">
+          <a href="mailto:pietro.bartolomei@studenti.unipg.it" title="Email"><i class="fas fa-envelope"></i></a>
         </div>
       </div>
     </div>
@@ -863,7 +1113,7 @@
   <div class="members">
 
     <div class="card">
-      <img src="images/ronaldcardenas.jpeg" alt="Ronald Cardenas">
+      <img src="images/webp/ronaldcardenas.webp" alt="Ronald Cardenas">
       <h3>Ronald Cardenas</h3>
       <span class="member-role">Former MSc Student</span>
       <p style="font-size: 0.8rem; color: #aaa; margin-bottom: 15px;">Now PhD Student at Max Planck Institute</p>
@@ -874,7 +1124,7 @@
     </div>
 
     <div class="card">
-      <img src="images/viniciusmartinelli.jpeg" alt="Vinicius Martinelli">
+      <img src="images/webp/viniciusmartinelli.webp" alt="Vinicius Martinelli">
       <h3>Vinicius Martinelli</h3>
       <span class="member-role">Visiting PhD Student</span>
       <p style="font-size: 0.8rem; color: #aaa; margin-bottom: 15px;">2024–2025</p>
@@ -903,7 +1153,7 @@
 
           This research is conducted in close collaboration with experimental groups, enabling a feedback loop between computation and synthesis.</p>
         </div>
-        <img src="images/computationalcatalysis.png" alt="Computational Catalysis" />
+        <img src="images/webp/computationalcatalysis.webp" alt="Computational Catalysis" />
       </div>
       
       <div class="research-card">
@@ -918,7 +1168,7 @@
 
           Beyond individual case studies, we aim to deliver general-purpose computational tools that help chemists quantify and understand NCIs across all areas of molecular science.</p>
         </div>
-        <img src="images/ADLD_ADEX-slides.png" alt="Noncovalent Interactions" />
+        <img src="images/webp/ADLD_ADEX-slides.webp" alt="Noncovalent Interactions" />
       </div>
       
       <div class="research-card">
@@ -926,7 +1176,7 @@
           <h3>Local Correlation Methods</h3>
           <p>By exploiting the "short-sighted" nature of electron correlation, local correlation approaches allow us to reduce the inherent steep scaling of highly correlated wavefunction-based methods. This has enabled highly accurate electronic structure calculations on systems with hundreds of atoms and thousands of basis functions. In our group, we develop computational methods and protocols which can be used to increase the efficiency and accuracy, and hence the range of applicability, of local correlation approaches. Special focus is on the local CCSD(T) approaches. Aside from our work on methods for noncovalent interactions (see above), we also develop extrapolation schemes, embedding approaches and other highly accurate computational protocols of broad applicability.</p>
         </div>
-        <img src="images/localcorrelationmethods.webp" alt="Local Correlation Methods" />
+        <img src="images/webp/localcorrelationmethods.webp" alt="Local Correlation Methods" />
       </div>
     </div>
   </section>
@@ -1126,7 +1376,7 @@
 
   <section id="github" class="github-section">
     <h2>Open Source & Code</h2>
-    <p>Explore our research code, tools, and open-source contributions on GitHub</p>
+    <p>The group maintains a GitHub page to share various scripts and programs.</p>
     
     <a href="https://github.com/bistonigroup" class="github-main-button" target="_blank">
       <i class="fab fa-github"></i> Visit Our GitHub
@@ -1163,107 +1413,12 @@
       Email: <a href="mailto:giovanni.bistoni@unipg.it" style="color: var(--accent);">giovanni.bistoni@unipg.it</a>
     </p>
     <div class="social-buttons">
-      <a href="https://x.com/BistoniGroup" target="_blank" aria-label="Twitter">
-        <i class="fab fa-twitter"></i>
+      <a href="https://x.com/BistoniGroup" target="_blank" aria-label="X (Twitter)">
+        <i class="fab fa-x-twitter"></i>
       </a>
     </div>
   </section>
   <script>
-    function toggleAbstract(button) {
-      // Trova la pubblicazione che contiene questo bottone
-      const publication = button.closest('.publication');
-      const abstract = publication.querySelector('.abstract');
-      const icon = button.querySelector('i');
-      
-      // Toggle semplice
-      if (abstract.style.display === 'block') {
-        // Nascondi abstract
-        abstract.style.display = 'none';
-        icon.className = 'fas fa-eye';
-        button.textContent = ' View Abstract';
-        button.classList.remove('active');
-      } else {
-        // Mostra abstract
-        abstract.style.display = 'block';
-        icon.className = 'fas fa-eye-slash';
-        button.textContent = ' Hide Abstract';
-        button.classList.add('active');
-      }
-      
-      // Rimetti l'icona
-      button.prepend(icon);
-    }
-
-    // Enhanced GSAP animations
-    gsap.registerPlugin(ScrollTrigger);
-    
-    // Animate other elements
-    gsap.utils.toArray('.card, .research-card').forEach(item => {
-      gsap.fromTo(item, { opacity: 0, y: 40 }, {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        scrollTrigger: {
-          trigger: item,
-          start: 'top 80%',
-          toggleActions: 'play none none none'
-        }
-      });
-    });
-
-    // GitHub section interactions
-    document.addEventListener('DOMContentLoaded', function() {
-      // Add click handlers to repo cards
-      const repoCards = document.querySelectorAll('.repo-card');
-      repoCards.forEach(card => {
-        card.addEventListener('click', function() {
-          // Get the repository name from the card
-          const repoName = this.querySelector('.repo-name span').textContent;
-          const username = 'bistonigroup';
-          const repoUrl = `https://github.com/${username}/${repoName}`;
-          
-          // Open repository in new tab
-          window.open(repoUrl, '_blank');
-        });
-      });
-
-      // Add typing effect to main button
-      const githubButton = document.querySelector('.github-main-button');
-      if (githubButton) {
-        const originalText = githubButton.innerHTML;
-        githubButton.addEventListener('mouseenter', function() {
-          this.innerHTML = '<i class="fas fa-external-link-alt"></i> Explore Now';
-        });
-        
-        githubButton.addEventListener('mouseleave', function() {
-          this.innerHTML = originalText;
-        });
-      }
-
-      // --- AGGIUNTA: click sul titolo pubblicazione ---
-      const publicationTitles = document.querySelectorAll('.publication-title');
-      publicationTitles.forEach(title => {
-        title.addEventListener('click', function() {
-          // Trova la pubblicazione che contiene questo titolo
-          const publication = this.closest('.publication');
-          // Trova il bottone View Abstract relativo (se esiste)
-          const btn = publication.querySelector('.btn-abstract');
-          if (btn) {
-            toggleAbstract(btn);
-          }
-        });
-        // Per accessibilità: anche con tastiera
-        title.setAttribute('tabindex', '0');
-        title.addEventListener('keydown', function(e) {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            this.click();
-          }
-        });
-      });
-      // --- FINE AGGIUNTA ---
-    });
-
     // Add CSS for ripple animation
     const style = document.createElement('style');
     style.textContent = `
@@ -1281,14 +1436,93 @@
     `;
     document.head.appendChild(style);
 
-    // Team section interactions
+    // Enhanced GSAP animations
+    gsap.registerPlugin(ScrollTrigger);
+    
+    gsap.utils.toArray('.card, .research-card').forEach(item => {
+      gsap.fromTo(item, { opacity: 0, y: 40 }, {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: item,
+          start: 'top 80%',
+          toggleActions: 'play none none none'
+        }
+      });
+    });
+
+    function toggleAbstract(button) {
+      const publication = button.closest('.publication');
+      const abstract = publication.querySelector('.abstract');
+      const icon = button.querySelector('i');
+      
+      if (abstract.style.display === 'block') {
+        abstract.style.display = 'none';
+        icon.className = 'fas fa-eye';
+        button.textContent = ' View Abstract';
+        button.classList.remove('active');
+      } else {
+        abstract.style.display = 'block';
+        icon.className = 'fas fa-eye-slash';
+        button.textContent = ' Hide Abstract';
+        button.classList.add('active');
+      }
+      
+      button.prepend(icon);
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
-      // Add click handlers to team cards
+      const repoCards = document.querySelectorAll('.repo-card');
+      repoCards.forEach(card => {
+        card.addEventListener('click', function() {
+          const repoName = this.querySelector('.repo-name span').textContent;
+          const username = 'bistonigroup';
+          const repoUrl = `https://github.com/${username}/${repoName}`;
+          
+          window.open(repoUrl, '_blank');
+        });
+      });
+
+      const githubButton = document.querySelector('.github-main-button');
+      if (githubButton) {
+        const originalText = githubButton.innerHTML;
+        githubButton.addEventListener('mouseenter', function() {
+          this.innerHTML = '<i class="fas fa-external-link-alt"></i> Explore Now';
+        });
+        
+        githubButton.addEventListener('mouseleave', function() {
+          this.innerHTML = originalText;
+        });
+      }
+
+      const publicationTitles = document.querySelectorAll('.publication-title');
+      publicationTitles.forEach(title => {
+        title.addEventListener('click', function() {
+          const publication = this.closest('.publication');
+          const btn = publication.querySelector('.btn-abstract');
+          if (btn) {
+            toggleAbstract(btn);
+          }
+        });
+        title.setAttribute('tabindex', '0');
+        title.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            this.click();
+          }
+        });
+      });
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
       const teamCards = document.querySelectorAll('.card');
       teamCards.forEach(card => {
         card.addEventListener('click', function() {
           // Add click animation
           this.style.transform = 'scale(0.98) translateY(-8px)';
+          
           setTimeout(() => {
             this.style.transform = 'translateY(-8px)';
           }, 150);
@@ -1299,7 +1533,7 @@
           ripple.style.borderRadius = '50%';
           ripple.style.background = 'rgba(255, 255, 255, 0.3)';
           ripple.style.transform = 'scale(0)';
-          ripple.style.animation = 'ripple 0.6s linear';
+          ripple.style.animation = 'ripple 0.6s ease';
           ripple.style.left = '50%';
           ripple.style.top = '50%';
           ripple.style.width = '20px';
@@ -1315,13 +1549,11 @@
           }, 600);
         });
         
-        // Add hover sound effect (optional)
         card.addEventListener('mouseenter', function() {
           this.style.cursor = 'pointer';
         });
       });
 
-      // Add click feedback to research cards
       const researchCards = document.querySelectorAll('.research-card');
       researchCards.forEach(card => {
         card.addEventListener('click', function() {
@@ -1345,7 +1577,6 @@
         }, index * 100);
       });
 
-      // Add keyboard navigation
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Tab') {
           teamCards.forEach(card => {
@@ -1354,11 +1585,199 @@
         }
       });
     });
+
+    // Navigation bar visibility on scroll
+    let lastScrollTop = 0;
+    let scrollThreshold = 100;
+    let isScrolling = false;
+    let menuOpen = false;
+
+    function handleScroll() {
+      if (isScrolling || menuOpen) return; // Don't hide nav when menu is open
+      
+      isScrolling = true;
+      requestAnimationFrame(() => {
+        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+        const nav = document.querySelector('nav');
+        const headerHeight = document.querySelector('header').offsetHeight;
+        
+        // Show nav when scrolling up or at top, hide when scrolling down
+        if (currentScroll > headerHeight + scrollThreshold) {
+          if (currentScroll > lastScrollTop) {
+            // Scrolling down - hide nav
+            nav.classList.add('hidden');
+          } else {
+            // Scrolling up - show nav
+            nav.classList.remove('hidden');
+          }
+        } else {
+          // At top or near header - show nav
+          nav.classList.remove('hidden');
+        }
+        
+        lastScrollTop = currentScroll;
+        isScrolling = false;
+      });
+    }
+
+    // Throttled scroll handler
+    let scrollTimeout;
+    function throttledScroll() {
+      if (scrollTimeout) return;
+      
+      scrollTimeout = setTimeout(() => {
+        handleScroll();
+        scrollTimeout = null;
+      }, 10);
+    }
+
+    // Event listeners
+    window.addEventListener('scroll', throttledScroll, { passive: true });
+
+    // Menu hamburger functions
+    function toggleMenu() {
+      const menu = document.querySelector('nav ul');
+      const overlay = document.querySelector('.nav-overlay');
+      const hamburger = document.querySelector('.hamburger');
+      const icon = hamburger.querySelector('i');
+      
+      requestAnimationFrame(() => {
+        menu.classList.toggle('open');
+        overlay.classList.toggle('open');
+        hamburger.classList.toggle('active');
+        
+        if (menu.classList.contains('open')) {
+          icon.className = 'fas fa-times';
+          menuOpen = true;
+          // Ensure nav is visible when menu is open
+          document.querySelector('nav').classList.remove('hidden');
+        } else {
+          icon.className = 'fas fa-bars';
+          menuOpen = false;
+        }
+      });
+    }
+
+    function closeMenu() {
+      const menu = document.querySelector('nav ul');
+      const overlay = document.querySelector('.nav-overlay');
+      const hamburger = document.querySelector('.hamburger');
+      const icon = hamburger.querySelector('i');
+      
+      requestAnimationFrame(() => {
+        menu.classList.remove('open');
+        overlay.classList.remove('open');
+        hamburger.classList.remove('active');
+        icon.className = 'fas fa-bars';
+        menuOpen = false;
+      });
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeMenu();
+      }
+    });
+
+    document.addEventListener('click', function(e) {
+      const nav = document.querySelector('nav');
+      const menu = document.querySelector('nav ul');
+      
+      if (menu.classList.contains('open') && 
+          !nav.contains(e.target) && 
+          !e.target.closest('.nav-overlay')) {
+        closeMenu();
+      }
+    });
+
+    // Easter egg functionality
+    let clickCount = 0;
+    let clickTimer;
+    const header = document.querySelector('header');
+
+    header.addEventListener('click', function() {
+      clickCount++;
+      
+      if (clickCount === 1) {
+        clickTimer = setTimeout(() => {
+          clickCount = 0;
+        }, 2000);
+      } else if (clickCount >= 5) {
+        // Trigger easter egg!
+        clearTimeout(clickTimer);
+        clickCount = 0;
+        
+        header.classList.add('easter-egg-active');
+        
+        // Play a fun sound effect (if supported)
+        try {
+          const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+          const oscillator = audioContext.createOscillator();
+          const gainNode = audioContext.createGain();
+          
+          oscillator.connect(gainNode);
+          gainNode.connect(audioContext.destination);
+          
+          oscillator.frequency.setValueAtTime(440, audioContext.currentTime);
+          oscillator.frequency.setValueAtTime(880, audioContext.currentTime + 0.1);
+          oscillator.frequency.setValueAtTime(660, audioContext.currentTime + 0.2);
+          
+          gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+          gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+          
+          oscillator.start(audioContext.currentTime);
+          oscillator.stop(audioContext.currentTime + 0.3);
+        } catch (e) {
+          // Audio not supported, continue silently
+        }
+        
+        // Remove easter egg after 3 seconds
+        setTimeout(() => {
+          header.classList.remove('easter-egg-active');
+        }, 3000);
+      }
+    });
+
+    document.addEventListener('click', function(e) {
+      const nav = document.querySelector('nav');
+      const menu = document.querySelector('nav ul');
+      
+      if (menu.classList.contains('open') && 
+          !nav.contains(e.target) && 
+          !e.target.closest('.nav-overlay')) {
+        closeMenu();
+      }
+    });
   </script>
 
   <footer>
     <p>&copy; 2025 Giovanni Bistoni Group. All rights reserved.</p>
   </footer>
-</body>
+</body>                                                                   
+                                                                        <!-- &       
+                                                       .              /  %      
+                                                    @  @            @     *     
+                                                  .    /          %       @     
+                               %.  @             (               %        (     
+                               ( @  &           .               (               
+                               @    //                  (      /                
+                               @       &       .        ,    %            .     
+                               (.@/      /    */&     @      .            /     
+                              %                %.   ..,     * @           (     
+                              ,            ,@.            %..@@      @#*        
+                              @.     @                       *%      % //       
+                             @@,%                                     #/        
+                           @                                               %    
+                         *                                                   @  
+                        @                                                    . #
+                       @          @**(                                          
+                      #  @.     ,,#    @                                        
+                 / (   #         @,    /                                        
+                 .               #   ,&.                                        
+              .@                                                                
+            %(@@                                                                
+              *@             (&*,#/          .(@#,(&                            
+                .                      .&%,&                                    
+             @                   (,@.           .%#&                             -->
 
 </html>
