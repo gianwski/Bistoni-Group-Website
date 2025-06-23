@@ -6,8 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Giovanni Bistoni Group</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.css" rel="stylesheet">
   <style>
   :root {
@@ -56,7 +54,6 @@
       opacity: 0.1;
       z-index: 0;
     }
-
 
     header h1,
     header p {
@@ -201,7 +198,6 @@
       transform: translateX(5px) scale(0.98);
     }
 
-    /* Overlay per chiudere il menu */
     .nav-overlay {
       position: fixed;
       top: 0;
@@ -280,14 +276,6 @@
       text-align: center;
       font-size: 2.8rem;
       margin-bottom: 40px;
-    }
-
-    /* Allinea a sinistra solo i titoli delle sezioni specifiche */
-    #about h2,
-    #background h2,
-    #research-areas h2 {
-      text-align: left;
-      margin-left: 20px;
     }
 
     .members {
@@ -678,6 +666,10 @@
       color: #e0f7ff;
       line-height: 1.6;
       font-size: 1rem;
+      text-align: left;
+      max-width: 800px;
+      margin: 0 auto 0 0;
+      padding-right: 20px;
     }
 
     .research-card img {
@@ -707,14 +699,6 @@
       text-shadow: 0 0 8px var(--accent);
     }
 
-    /* Add CSS for ripple animation */
-    @keyframes ripple {
-      to {
-        transform: scale(4);
-        opacity: 0;
-      }
-    }
-    
     .repo-card {
       background: rgba(255, 255, 255, 0.1);
       padding: 20px;
@@ -782,90 +766,6 @@
       color: var(--accent);
     }
 
-    .research-areas {
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
-      max-width: 900px;
-      margin: auto;
-    }
-
-    .research-card {
-      display: flex;
-      align-items: center;
-      gap: 30px;
-      transition: box-shadow 0.3s, transform 0.3s;
-      cursor: pointer;
-    }
-
-    .research-card:hover {
-      box-shadow: 0 8px 32px rgba(102,126,234,0.18);
-      transform: translateY(-6px) scale(1.02);
-    }
-
-    .research-text {
-      flex: 1;
-      text-align: left;
-    }
-
-    .research-text h3 {
-      color: var(--accent);
-      font-size: 1.8rem;
-      margin-bottom: 15px;
-      transition: color 0.3s ease;
-      padding-left: 20px;
-    }
-
-    .research-card:hover .research-text h3 {
-      color: #fff;
-    }
-
-    .research-text p {
-      color: #e0f7ff;
-      line-height: 1.6;
-      font-size: 1rem;
-    }
-
-    .research-card img {
-      width: 300px;
-      height: auto;
-      border-radius: 12px;
-      object-fit: cover;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .research-card:hover img {
-      transform: scale(1.05);
-      box-shadow: 0 8px 24px rgba(102,126,234,0.13);
-    }
-
-    .orca-link {
-      color: var(--accent);
-      text-decoration: none;
-      border-bottom: 1px solid var(--accent);
-      transition: all 0.3s ease;
-    }
-
-    .orca-link:hover {
-      color: #fff;
-      border-bottom-color: #fff;
-      text-shadow: 0 0 8px var(--accent);
-    }
-
-    /* Add CSS for ripple animation */
-    @keyframes ripple {
-      to {
-        transform: scale(4);
-        opacity: 0;
-      }
-    }
-    
-    .repo-card {
-      cursor: pointer;
-      overflow: hidden;
-    }
-
     .github-repos {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -926,8 +826,16 @@
     .research-text p {
       text-align: left;
       max-width: 800px;
-      margin: 0 auto 0 20px;
+      margin: 0 auto 0 0;
       padding-right: 20px;
+    }
+
+    /* Allinea a sinistra solo i titoli delle sezioni specifiche */
+    #about h2,
+    #background h2,
+    #research-areas h2 {
+      text-align: left;
+      margin-left: 20px;
     }
 
     /* Easter egg styles */
@@ -961,6 +869,11 @@
       0%, 100% { transform: rotate(0deg); }
       25% { transform: rotate(1deg); }
       75% { transform: rotate(-1deg); }
+    }
+
+    .repo-card {
+      cursor: pointer;
+      overflow: hidden;
     }
   </style>
 </head>
@@ -1419,277 +1332,6 @@
     </div>
   </section>
   <script>
-    // Add CSS for ripple animation
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes ripple {
-        to {
-          transform: scale(4);
-          opacity: 0;
-        }
-      }
-      
-      .repo-card {
-        cursor: pointer;
-        overflow: hidden;
-      }
-    `;
-    document.head.appendChild(style);
-
-    // Enhanced GSAP animations
-    gsap.registerPlugin(ScrollTrigger);
-    
-    gsap.utils.toArray('.card, .research-card').forEach(item => {
-      gsap.fromTo(item, { opacity: 0, y: 40 }, {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: item,
-          start: 'top 80%',
-          toggleActions: 'play none none none'
-        }
-      });
-    });
-
-    function toggleAbstract(button) {
-      const publication = button.closest('.publication');
-      const abstract = publication.querySelector('.abstract');
-      const icon = button.querySelector('i');
-      
-      if (abstract.style.display === 'block') {
-        abstract.style.display = 'none';
-        icon.className = 'fas fa-eye';
-        button.textContent = ' View Abstract';
-        button.classList.remove('active');
-      } else {
-        abstract.style.display = 'block';
-        icon.className = 'fas fa-eye-slash';
-        button.textContent = ' Hide Abstract';
-        button.classList.add('active');
-      }
-      
-      button.prepend(icon);
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-      const repoCards = document.querySelectorAll('.repo-card');
-      repoCards.forEach(card => {
-        card.addEventListener('click', function() {
-          const repoName = this.querySelector('.repo-name span').textContent;
-          const username = 'bistonigroup';
-          const repoUrl = `https://github.com/${username}/${repoName}`;
-          
-          window.open(repoUrl, '_blank');
-        });
-      });
-
-      const githubButton = document.querySelector('.github-main-button');
-      if (githubButton) {
-        const originalText = githubButton.innerHTML;
-        githubButton.addEventListener('mouseenter', function() {
-          this.innerHTML = '<i class="fas fa-external-link-alt"></i> Explore Now';
-        });
-        
-        githubButton.addEventListener('mouseleave', function() {
-          this.innerHTML = originalText;
-        });
-      }
-
-      const publicationTitles = document.querySelectorAll('.publication-title');
-      publicationTitles.forEach(title => {
-        title.addEventListener('click', function() {
-          const publication = this.closest('.publication');
-          const btn = publication.querySelector('.btn-abstract');
-          if (btn) {
-            toggleAbstract(btn);
-          }
-        });
-        title.setAttribute('tabindex', '0');
-        title.addEventListener('keydown', function(e) {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            this.click();
-          }
-        });
-      });
-    });
-
-    document.addEventListener('DOMContentLoaded', function() {
-      const teamCards = document.querySelectorAll('.card');
-      teamCards.forEach(card => {
-        card.addEventListener('click', function() {
-          // Add click animation
-          this.style.transform = 'scale(0.98) translateY(-8px)';
-          
-          setTimeout(() => {
-            this.style.transform = 'translateY(-8px)';
-          }, 150);
-          
-          // Add ripple effect
-          const ripple = document.createElement('div');
-          ripple.style.position = 'absolute';
-          ripple.style.borderRadius = '50%';
-          ripple.style.background = 'rgba(255, 255, 255, 0.3)';
-          ripple.style.transform = 'scale(0)';
-          ripple.style.animation = 'ripple 0.6s ease';
-          ripple.style.left = '50%';
-          ripple.style.top = '50%';
-          ripple.style.width = '20px';
-          ripple.style.height = '20px';
-          ripple.style.marginLeft = '-10px';
-          ripple.style.marginTop = '-10px';
-          ripple.style.zIndex = '1';
-          
-          this.appendChild(ripple);
-          
-          setTimeout(() => {
-            ripple.remove();
-          }, 600);
-        });
-        
-        card.addEventListener('mouseenter', function() {
-          this.style.cursor = 'pointer';
-        });
-      });
-
-      const researchCards = document.querySelectorAll('.research-card');
-      researchCards.forEach(card => {
-        card.addEventListener('click', function() {
-          this.style.transform = 'scale(0.97)';
-          setTimeout(() => {
-            this.style.transform = '';
-          }, 150);
-        });
-      });
-
-      // Add staggered animation for team cards
-      const cards = document.querySelectorAll('.card');
-      cards.forEach((card, index) => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(30px)';
-        card.style.transition = 'all 0.6s ease';
-        
-        setTimeout(() => {
-          card.style.opacity = '1';
-          card.style.transform = 'translateY(0)';
-        }, index * 100);
-      });
-
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Tab') {
-          teamCards.forEach(card => {
-            card.setAttribute('tabindex', '0');
-          });
-        }
-      });
-    });
-
-    // Navigation bar visibility on scroll
-    let lastScrollTop = 0;
-    let scrollThreshold = 100;
-    let isScrolling = false;
-    let menuOpen = false;
-
-    function handleScroll() {
-      if (isScrolling || menuOpen) return; // Don't hide nav when menu is open
-      
-      isScrolling = true;
-      requestAnimationFrame(() => {
-        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-        const nav = document.querySelector('nav');
-        const headerHeight = document.querySelector('header').offsetHeight;
-        
-        // Show nav when scrolling up or at top, hide when scrolling down
-        if (currentScroll > headerHeight + scrollThreshold) {
-          if (currentScroll > lastScrollTop) {
-            // Scrolling down - hide nav
-            nav.classList.add('hidden');
-          } else {
-            // Scrolling up - show nav
-            nav.classList.remove('hidden');
-          }
-        } else {
-          // At top or near header - show nav
-          nav.classList.remove('hidden');
-        }
-        
-        lastScrollTop = currentScroll;
-        isScrolling = false;
-      });
-    }
-
-    // Throttled scroll handler
-    let scrollTimeout;
-    function throttledScroll() {
-      if (scrollTimeout) return;
-      
-      scrollTimeout = setTimeout(() => {
-        handleScroll();
-        scrollTimeout = null;
-      }, 10);
-    }
-
-    // Event listeners
-    window.addEventListener('scroll', throttledScroll, { passive: true });
-
-    // Menu hamburger functions
-    function toggleMenu() {
-      const menu = document.querySelector('nav ul');
-      const overlay = document.querySelector('.nav-overlay');
-      const hamburger = document.querySelector('.hamburger');
-      const icon = hamburger.querySelector('i');
-      
-      requestAnimationFrame(() => {
-        menu.classList.toggle('open');
-        overlay.classList.toggle('open');
-        hamburger.classList.toggle('active');
-        
-        if (menu.classList.contains('open')) {
-          icon.className = 'fas fa-times';
-          menuOpen = true;
-          // Ensure nav is visible when menu is open
-          document.querySelector('nav').classList.remove('hidden');
-        } else {
-          icon.className = 'fas fa-bars';
-          menuOpen = false;
-        }
-      });
-    }
-
-    function closeMenu() {
-      const menu = document.querySelector('nav ul');
-      const overlay = document.querySelector('.nav-overlay');
-      const hamburger = document.querySelector('.hamburger');
-      const icon = hamburger.querySelector('i');
-      
-      requestAnimationFrame(() => {
-        menu.classList.remove('open');
-        overlay.classList.remove('open');
-        hamburger.classList.remove('active');
-        icon.className = 'fas fa-bars';
-        menuOpen = false;
-      });
-    }
-
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        closeMenu();
-      }
-    });
-
-    document.addEventListener('click', function(e) {
-      const nav = document.querySelector('nav');
-      const menu = document.querySelector('nav ul');
-      
-      if (menu.classList.contains('open') && 
-          !nav.contains(e.target) && 
-          !e.target.closest('.nav-overlay')) {
-        closeMenu();
-      }
-    });
-
     // Easter egg functionality
     let clickCount = 0;
     let clickTimer;
@@ -1738,6 +1380,112 @@
       }
     });
 
+    function toggleAbstract(button) {
+      const publication = button.closest('.publication');
+      const abstract = publication.querySelector('.abstract');
+      const icon = button.querySelector('i');
+      
+      if (abstract.style.display === 'block') {
+        abstract.style.display = 'none';
+        icon.className = 'fas fa-eye';
+        button.textContent = ' View Abstract';
+        button.classList.remove('active');
+      } else {
+        abstract.style.display = 'block';
+        icon.className = 'fas fa-eye-slash';
+        button.textContent = ' Hide Abstract';
+        button.classList.add('active');
+      }
+      
+      button.prepend(icon);
+    }
+
+    // Navigation bar visibility on scroll
+    let lastScrollTop = 0;
+    let scrollThreshold = 100;
+    let isScrolling = false;
+    let menuOpen = false;
+
+    function handleScroll() {
+      if (isScrolling || menuOpen) return;
+      
+      isScrolling = true;
+      requestAnimationFrame(() => {
+        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+        const nav = document.querySelector('nav');
+        const headerHeight = document.querySelector('header').offsetHeight;
+        
+        if (currentScroll > headerHeight + scrollThreshold) {
+          if (currentScroll > lastScrollTop) {
+            nav.classList.add('hidden');
+          } else {
+            nav.classList.remove('hidden');
+          }
+        } else {
+          nav.classList.remove('hidden');
+        }
+        
+        lastScrollTop = currentScroll;
+        isScrolling = false;
+      });
+    }
+
+    let scrollTimeout;
+    function throttledScroll() {
+      if (scrollTimeout) return;
+      
+      scrollTimeout = setTimeout(() => {
+        handleScroll();
+        scrollTimeout = null;
+      }, 10);
+    }
+
+    window.addEventListener('scroll', throttledScroll, { passive: true });
+
+    // Menu hamburger functions
+    function toggleMenu() {
+      const menu = document.querySelector('nav ul');
+      const overlay = document.querySelector('.nav-overlay');
+      const hamburger = document.querySelector('.hamburger');
+      const icon = hamburger.querySelector('i');
+      
+      requestAnimationFrame(() => {
+        menu.classList.toggle('open');
+        overlay.classList.toggle('open');
+        hamburger.classList.toggle('active');
+        
+        if (menu.classList.contains('open')) {
+          icon.className = 'fas fa-times';
+          menuOpen = true;
+          document.querySelector('nav').classList.remove('hidden');
+        } else {
+          icon.className = 'fas fa-bars';
+          menuOpen = false;
+        }
+      });
+    }
+
+    function closeMenu() {
+      const menu = document.querySelector('nav ul');
+      const overlay = document.querySelector('.nav-overlay');
+      const hamburger = document.querySelector('.hamburger');
+      const icon = hamburger.querySelector('i');
+      
+      requestAnimationFrame(() => {
+        menu.classList.remove('open');
+        overlay.classList.remove('open');
+        hamburger.classList.remove('active');
+        icon.className = 'fas fa-bars';
+        menuOpen = false;
+      });
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeMenu();
+      }
+    });
+
     document.addEventListener('click', function(e) {
       const nav = document.querySelector('nav');
       const menu = document.querySelector('nav ul');
@@ -1752,32 +1500,31 @@
 
   <footer>
     <p>&copy; 2025 Giovanni Bistoni Group. All rights reserved.</p>
+                                                                         <!-- &       
+                                                        .              /  %      
+                                                     @  @            @     *     
+                                                   .    /          %       @     
+                                %.  @             (               %        (     
+                                ( @  &           .               (               
+                                @    //                  (      /                
+                                @       &       .        ,    %            .     
+                                (.@/      /    */&     @      .            /     
+                               %                %.   ..,     * @           (     
+                               ,            ,@.            %..@@      @#*        
+                               @.     @                       *%      % //       
+                              @@,%                                     #/        
+                            @                                               %    
+                          *                                                   @  
+                         @                                                    . #
+                        @          @**(                                          
+                       #  @.     ,,#    @                                        
+                  / (   #         @,    /                                        
+                  .               #   ,&.                                        
+               .@                                                                
+             %(@@                                                                
+               *@             (&*,#/          .(@#,(&                            
+                 .                      .&%,&                                    
+              @                   (,@.           .%#&                             -->
   </footer>
-</body>                                                                   
-                                                                        <!-- &       
-                                                       .              /  %      
-                                                    @  @            @     *     
-                                                  .    /          %       @     
-                               %.  @             (               %        (     
-                               ( @  &           .               (               
-                               @    //                  (      /                
-                               @       &       .        ,    %            .     
-                               (.@/      /    */&     @      .            /     
-                              %                %.   ..,     * @           (     
-                              ,            ,@.            %..@@      @#*        
-                              @.     @                       *%      % //       
-                             @@,%                                     #/        
-                           @                                               %    
-                         *                                                   @  
-                        @                                                    . #
-                       @          @**(                                          
-                      #  @.     ,,#    @                                        
-                 / (   #         @,    /                                        
-                 .               #   ,&.                                        
-              .@                                                                
-            %(@@                                                                
-              *@             (&*,#/          .(@#,(&                            
-                .                      .&%,&                                    
-             @                   (,@.           .%#&                             -->
-
+</body>
 </html>
