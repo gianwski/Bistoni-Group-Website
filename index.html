@@ -13,868 +13,918 @@
     --bg-card: rgba(255, 255, 255, 0.1);
     --color-text: #ffffff;
     --accent: #64b5f6;
+    --flip-bg-front: rgba(255, 255, 255, 0.08);
+    --flip-bg-back: rgba(40, 40, 80, 0.95);
   }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', sans-serif;
-    }
+  .publication-title,
+  .publication-meta,
+  footer p {
+    word-break: break-word;
+  }
 
-    body {
-      background: var(--bg-gradient);
-      color: var(--color-text);
-      line-height: 1.6;
-    }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
 
-    header {
-      height: 100vh;
-      background: var(--bg-gradient);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 0 20px;
-      position: relative;
-    }
+  nav {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 
-    header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url('images/logo-cropped.png');
-      background-size: 80% auto;
-      background-position: center center;
-      background-repeat: no-repeat;
-      opacity: 0.1;
-      z-index: 0;
-    }
+  .card,
+  .repo-card {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
-    header h1,
-    header p {
-      position: relative;
-      z-index: 1;
-    }
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+  }
 
-    header h1 {
-      font-size: 4rem;
-      font-weight: 800;
-      background: linear-gradient(90deg, #fff, #ccc);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+  body {
+    background: var(--bg-gradient);
+    color: var(--color-text);
+    line-height: 1.6;
+  }
 
-    header p {
-      font-size: 1.3rem;
-      max-width: 700px;
-      color: #e0f7ff;
-    }
+  header {
+    height: 100vh;
+    background: var(--bg-gradient);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+    position: relative;
+    overflow: hidden; /* Added to contain header::before */
+  }
 
+  header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('images/logo3.svg');
+    background-size: 80% auto;
+    background-position: center center;
+    background-repeat: no-repeat;
+    opacity: 0.1;
+    z-index: 0;
+  }
+
+  header h1,
+  header p {
+    position: relative;
+    z-index: 1;
+  }
+
+  header h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, #fff, #ccc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  header p {
+    font-size: 1.3rem;
+    max-width: 700px;
+    color: #e0f7ff;
+  }
+
+  nav {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 8px 20px;
+    z-index: 10;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: top 0.3s ease;
+  }
+
+  nav.hidden {
+    top: -100px;
+  }
+
+  .nav-brand {
+    color: white;
+    font-weight: 800;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .nav-brand:hover {
+    color: white; /* o il colore originale del testo, ad es. #ffffff */
+    cursor: pointer;
+  }
+
+  .hamburger {
+    display: block;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.3rem;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    z-index: 110;
+  }
+
+  .hamburger:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--accent);
+    transform: scale(1.05);
+  }
+
+  .hamburger.active {
+    background: var(--accent);
+    color: #333;
+  }
+
+  nav ul {
+    position: fixed;
+    top: 0;
+    right: -320px;
+    width: 300px;
+    height: 100vh;
+    background: rgba(30, 30, 60, 0.97);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 0;
+    list-style: none;
+    margin: 0;
+    padding: 80px 0 0 0;
+    transition: right 0.25s ease;
+    z-index: 100;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  nav ul.open {
+    right: 0;
+  }
+
+  nav li {
+    width: 100%;
+    position: relative;
+  }
+
+  nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 12px 25px;
+    display: block;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+    position: relative;
+    overflow: hidden;
+  }
+
+  nav a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.3s ease;
+  }
+
+  nav a:hover::before {
+    left: 100%;
+  }
+
+  nav a:hover {
+    color: var(--accent);
+    background: rgba(255, 255, 255, 0.05);
+    border-left-color: var(--accent);
+    transform: translateX(5px);
+  }
+
+  .nav-brand:hover {
+    color: white; /* Reimposta il colore del testo */
+    background: transparent; /* Rimuove il riquadro */
+    border-left-color: transparent; /* Rimuove la linea a sinistra */
+    transform: translateX(0); /* Rimuove lo spostamento */
+    cursor: pointer;
+  }
+
+  nav a:active {
+    transform: translateX(5px) scale(0.98);
+  }
+
+  .nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.25s ease;
+    z-index: 90;
+  }
+
+  .nav-overlay.open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  @media (max-width: 768px) {
     nav {
-      position: sticky;
-      top: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      padding: 8px 20px;
-      z-index: 10;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: top 0.3s ease;
+      padding: 6px 15px;
     }
-
-    nav.hidden {
-      top: -100px;
-    }
-
-    .nav-brand {
-      color: white;
-      font-weight: 800;
-      font-size: 1.1rem;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    .nav-brand:hover {
-      color: var(--accent);
-    }
-
-    .hamburger {
-      display: block;
-      background: none;
-      border: none;
-      color: #fff;
-      font-size: 1.3rem;
-      cursor: pointer;
-      padding: 6px;
-      border-radius: 6px;
-      transition: all 0.2s ease;
-      z-index: 110;
-    }
-
-    .hamburger:hover {
-      background: rgba(255, 255, 255, 0.1);
-      color: var(--accent);
-      transform: scale(1.05);
-    }
-
-    .hamburger.active {
-      background: var(--accent);
-      color: #333;
-    }
-
+    
     nav ul {
-      position: fixed;
-      top: 0;
-      right: -320px;
-      width: 300px;
-      height: 100vh;
-      background: rgba(30, 30, 60, 0.97);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: flex-start;
-      gap: 0;
-      list-style: none;
-      margin: 0;
-      padding: 80px 0 0 0;
-      transition: right 0.25s ease;
-      z-index: 100;
-      border-left: 1px solid rgba(255, 255, 255, 0.1);
+      width: 280px;
+      right: -300px;
     }
-
-    nav ul.open {
-      right: 0;
-    }
-
-    nav li {
-      width: 100%;
-      position: relative;
-    }
-
+    
     nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 10px 20px;
+    }
+    
+    .nav-brand {
       font-size: 1rem;
-      padding: 12px 25px;
-      display: block;
-      transition: all 0.2s ease;
-      border-left: 3px solid transparent;
-      position: relative;
-      overflow: hidden;
     }
-
-    nav a::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-      transition: left 0.3s ease;
+    
+    .hamburger {
+      font-size: 1.2rem;
+      padding: 5px;
     }
+  }
 
-    nav a:hover::before {
-      left: 100%;
+  section {
+    padding: 80px 20px;
+    max-width: 1200px;
+    margin: auto;
+  }
+  
+  /* Increased margins for About and Background */
+  #about p, #background p {
+    margin-top: 40px; /* Adjust as needed */
+    margin-bottom: 40px; /* Adjust as needed */
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+
+  section h2 {
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 40px;
+  }
+
+  .members {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+  }
+
+  .card {
+    background: rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    max-width: 360px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.13);
+    border-color: var(--accent);
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.6s ease;
+  }
+
+  .card:hover::before {
+    left: 100%;
+  }
+
+  .card img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .card:hover img {
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  }
+
+  .card h3 {
+    color: white;
+    margin-bottom: 8px;
+    font-size: 1.3rem;
+    transition: color 0.3s ease;
+  }
+
+  .card:hover h3 {
+    color: var(--accent);
+  }
+
+  .card p {
+    color: #ccc;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+  }
+
+  .card:hover p {
+    color: #e0f7ff;
+  }
+
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+  }
+
+  .social-icons a {
+    color: #ccc;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+  }
+
+  .social-icons a:hover {
+    color: var(--accent);
+  }
+
+  .member-role {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.1);
+    color: #e0f7ff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .card:hover .member-role {
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .publication-title {
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    text-align: left;
+    padding-left: 0;
+  }
+
+  .publication-title:hover {
+    color: var(--accent);
+  }
+
+  .publication {
+    background: rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 0;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  .publication:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.13);
+  }
+
+  .publication-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 15px 20px;
+    min-height: 80px;
+  }
+
+  .publication-content {
+    flex: 1;
+  }
+
+  .publication-meta {
+    display: flex;
+    gap: 15px;
+    font-size: 0.9rem;
+    color: #ccc;
+    align-items: center;
+  }
+
+  .publication-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+
+  .publication-doi {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .publication-doi:hover {
+    text-decoration: underline;
+  }
+
+  .publication-journal {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+  }
+
+  .publication-year {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .abstract {
+    display: none;
+    margin: 0;
+    padding: 10px 20px;
+    background: rgba(0, 0, 0, 0.1);
+    font-size: 0.95rem;
+    color: #eee;
+    line-height: 1.6;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .btn-abstract {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+  }
+
+  .btn-abstract:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: var(--accent);
+  }
+
+  .btn-abstract.active {
+    background: var(--accent);
+    color: #333;
+  }
+
+  .publications-grid {
+    display: grid;
+    gap: 15px;
+    max-width: 1000px;
+    margin: auto;
+  }
+
+  @media (max-width: 768px) {
+    .publication-header {
+      flex-direction: column;
+      gap: 15px;
+      text-align: center;
     }
-
-    nav a:hover {
-      color: var(--accent);
-      background: rgba(255, 255, 255, 0.05);
-      border-left-color: var(--accent);
-      transform: translateX(5px);
+    
+    .publication-actions {
+      justify-content: center;
+      flex-wrap: wrap;
     }
-
-    nav a:active {
-      transform: translateX(5px) scale(0.98);
+    
+    .publication-meta {
+      justify-content: center;
+      flex-wrap: wrap;
     }
-
-    .nav-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.35);
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.25s ease;
-      z-index: 90;
-    }
-
-    .nav-overlay.open {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    @media (max-width: 768px) {
-      nav {
-        padding: 6px 15px;
-      }
-      
-      nav ul {
-        width: 280px;
-        right: -300px;
-      }
-      
-      nav a {
-        font-size: 0.95rem;
-        padding: 10px 20px;
-      }
-      
-      .nav-brand {
-        font-size: 1rem;
-      }
-      
-      .hamburger {
-        font-size: 1.2rem;
-        padding: 5px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      nav {
-        padding: 5px 12px;
-      }
-      
-      nav ul {
-        width: 260px;
-        right: -280px;
-      }
-      
-      nav a {
-        font-size: 0.9rem;
-        padding: 8px 18px;
-      }
-      
-      .nav-brand {
-        font-size: 0.95rem;
-      }
-      
-      .hamburger {
-        font-size: 1.1rem;
-        padding: 4px;
-      }
+    
+    .members {
+      grid-template-columns: 1fr;
+      gap: 15px;
     }
 
     section {
-      padding: 80px 20px;
-      max-width: 1200px;
-      margin: auto;
+      padding: 40px 5px;
     }
-
-    section h2 {
-      text-align: center;
-      font-size: 2.8rem;
-      margin-bottom: 40px;
+    header {
+      height: auto;
+      min-height: 320px;
+      padding: 30px 5px 10px 5px;
     }
-
-    .members {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      margin-top: 40px;
+    header h1 {
+      font-size: 2.2rem;
     }
-
-    .card {
-      background: rgba(255,255,255,0.08);
-      border-radius: 16px;
-      padding: 25px;
-      text-align: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
+    header p {
+      font-size: 1rem;
     }
-
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 6px 18px rgba(0,0,0,0.13);
-      border-color: var(--accent);
+    footer {
+      padding: 18px 5px;
+      font-size: 0.9rem;
     }
+  }
 
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-      transition: left 0.6s ease;
-    }
-
-    .card:hover::before {
-      left: 100%;
-    }
-
-    .card img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 15px;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    .card:hover img {
-      transform: scale(1.1);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-    }
-
-    .card h3 {
-      color: white;
-      margin-bottom: 8px;
-      font-size: 1.3rem;
-      transition: color 0.3s ease;
-    }
-
-    .card:hover h3 {
-      color: var(--accent);
-    }
-
-    .card p {
-      color: #ccc;
-      margin-bottom: 15px;
-      font-size: 0.95rem;
-      transition: color 0.3s ease;
-    }
-
-    .card:hover p {
-      color: #e0f7ff;
-    }
-
-    .social-icons {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 15px;
-    }
-
-    .social-icons a {
-      color: #ccc;
-      font-size: 1.2rem;
-      transition: color 0.3s ease;
-    }
-
-    .social-icons a:hover {
-      color: var(--accent);
-    }
-
-    .member-role {
-      display: inline-block;
-      background: rgba(255, 255, 255, 0.1);
-      color: #e0f7ff;
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      margin-bottom: 15px;
-      transition: all 0.3s ease;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .card:hover .member-role {
-      transform: scale(1.05);
-      background: rgba(255, 255, 255, 0.15);
-      border-color: rgba(255, 255, 255, 0.3);
-    }
-
+  @media (max-width: 480px) {
     .publication-title {
-      cursor: pointer;
-      font-weight: bold;
-      padding: 15px;
-      border-radius: 8px;
-      transition: all 0.3s ease;
-      border-left: 4px solid transparent;
-      font-size: 1.1rem;
-      margin-bottom: 8px;
-      text-align: left;
+      font-size: 0.9rem;
+      padding: 10px;
       padding-left: 0;
     }
-
-    .publication-title:hover {
-      color: var(--accent);
-      cursor: pointer;
-    }
-
-    .publication {
-      background: rgba(255,255,255,0.08);
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 0;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      transition: all 0.3s ease;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
-
-    .publication:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba(0,0,0,0.13);
-    }
-
-    .publication-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 15px 20px;
-      min-height: 80px;
-    }
-
-    .publication-content {
-      flex: 1;
-    }
-
     .publication-meta {
-      display: flex;
-      gap: 15px;
-      font-size: 0.9rem;
-      color: #ccc;
-      align-items: center;
-    }
-
-    .publication-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      align-items: flex-start;
-      flex-shrink: 0;
-    }
-
-    .publication-doi {
-      color: var(--accent);
-      text-decoration: none;
-      font-size: 0.8rem;
-      display: flex;
-      align-items: center;
-    }
-
-    .publication-doi:hover {
-      text-decoration: underline;
-    }
-
-    .publication-journal {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 4px 8px;
-      border-radius: 4px;
       font-size: 0.8rem;
     }
-
-    .publication-year {
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    .abstract {
-      display: none;
-      margin: 0;
-      padding: 10px 20px;
-      background: rgba(0, 0, 0, 0.1);
-      font-size: 0.95rem;
-      color: #eee;
-      line-height: 1.6;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
     .btn-abstract {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: white;
-      padding: 6px 12px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 0.8rem;
-      transition: all 0.3s ease;
+      font-size: 0.7rem;
+      padding: 4px 8px;
     }
-
-    .btn-abstract:hover {
-      background: rgba(255, 255, 255, 0.2);
-      border-color: var(--accent);
-    }
-
-    .btn-abstract.active {
-      background: var(--accent);
-      color: #333;
-    }
-
-    .publications-grid {
-      display: grid;
-      gap: 15px;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    @media (max-width: 768px) {
-      .publication-header {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
-      }
-      
-      .publication-actions {
-        justify-content: center;
-        flex-wrap: wrap;
-      }
-      
-      .publication-meta {
-        justify-content: center;
-        flex-wrap: wrap;
-      }
-      
-      .publications-grid {
-        gap: 3px;
-        padding: 0 10px;
-      }
-      .members {
-        grid-template-columns: 1fr;
-        gap: 15px;
-      }
-      .research-areas {
-        gap: 20px;
-        padding: 20px 5px;
-      }
-      .research-card {
-        flex-direction: column;
-        text-align: center;
-        gap: 12px;
-        padding: 12px 4px;
-      }
-      .research-card img {
-        width: 90vw;
-        max-width: 320px;
-      }
-      .github-repos {
-        grid-template-columns: 1fr;
-        gap: 10px;
-      }
-      section {
-        padding: 40px 5px;
-      }
-      header {
-        height: auto;
-        min-height: 320px;
-        padding: 30px 5px 10px 5px;
-      }
-      header h1 {
-        font-size: 2.2rem;
-      }
-      header p {
-        font-size: 1rem;
-      }
-      .github-section {
-        padding: 20px 5px;
-      }
-      footer {
-        padding: 18px 5px;
-        font-size: 0.9rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .publication-title {
-        font-size: 0.9rem;
-        padding: 10px;
-        padding-left: 0;
-      }
-      .publication-meta {
-        font-size: 0.8rem;
-      }
-      .btn-abstract {
-        font-size: 0.7rem;
-        padding: 4px 8px;
-      }
-      header h1 {
-        font-size: 1.8rem;
-      }
-      section h2 {
-        font-size: 2rem;
-      }
-      .card h3, .research-text h3 {
-        font-size: 1.1rem;
-      }
-      .card img, .members .card img {
-        width: 80px;
-        height: 80px;
-      }
-      .research-card img {
-        width: 98vw;
-        max-width: 220px;
-      }
-      .github-main-button {
-        font-size: 1rem;
-        padding: 10px 12px;
-      }
-      .repo-card {
-        padding: 10px;
-      }
-      .social-buttons a {
-        font-size: 1.3rem;
-      }
-    }
-
-    .research-areas {
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
-      max-width: 900px;
-      margin: auto;
-    }
-
-    .research-card {
-      display: flex;
-      align-items: center;
-      gap: 30px;
-      transition: box-shadow 0.3s, transform 0.3s;
-      cursor: pointer;
-    }
-
-    .research-card:hover {
-      box-shadow: 0 8px 32px rgba(102,126,234,0.18);
-      transform: translateY(-6px) scale(1.02);
-    }
-
-    .research-text {
-      flex: 1;
-      text-align: left;
-    }
-
-    .research-text h3 {
-      color: var(--accent);
+    header h1 {
       font-size: 1.8rem;
-      margin-bottom: 15px;
-      transition: color 0.3s ease;
     }
-
-    .research-card:hover .research-text h3 {
-      color: #fff;
-    }
-
-    .research-text p {
-      color: #e0f7ff;
-      line-height: 1.6;
-      font-size: 1rem;
-      text-align: left;
-      max-width: 800px;
-      margin: 0 auto 0 0;
-      padding-right: 20px;
-    }
-
-    .research-card img {
-      width: 300px;
-      height: auto;
-      border-radius: 12px;
-      object-fit: cover;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .research-card:hover img {
-      transform: scale(1.05);
-      box-shadow: 0 8px 24px rgba(102,126,234,0.13);
-    }
-
-    .orca-link {
-      color: var(--accent);
-      text-decoration: none;
-      border-bottom: 1px solid var(--accent);
-      transition: all 0.3s ease;
-    }
-
-    .orca-link:hover {
-      color: #fff;
-      border-bottom-color: #fff;
-      text-shadow: 0 0 8px var(--accent);
-    }
-
-    .repo-card {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 20px;
-      border-radius: 12px;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.3s ease;
-      text-align: left;
-    }
-
-    .repo-card:hover {
-      transform: translateY(-3px);
-      background: rgba(255, 255, 255, 0.15);
-      border-color: var(--accent);
-    }
-
-    .repo-name {
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: white;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .repo-name i {
-      color: var(--accent);
-    }
-
-    .repo-description {
-      color: #ccc;
-      font-size: 0.9rem;
-      margin-bottom: 15px;
-      line-height: 1.5;
-    }
-
-    @media (max-width: 768px) {
-      .github-repos {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    footer {
-      background: rgba(0, 0, 0, 0.3);
-      color: white;
-      text-align: center;
-      padding: 40px 20px;
-    }
-
-    .social-buttons {
-      margin-top: 30px;
-      text-align: center;
-    }
-
-    .social-buttons a {
-      display: inline-block;
-      margin: 0 15px;
-      color: var(--color-text);
+    section h2 {
       font-size: 2rem;
-      transition: color 0.3s ease;
     }
-
-    .social-buttons a:hover {
-      color: var(--accent);
-    }
-
-    .github-repos {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-      margin-top: 30px;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .github-main-button {
-      color: white;
-      font-weight: bold;
-      font-size: 1.2rem;
-      text-decoration: none;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      padding: 15px 30px;
-      border-radius: 30px;
-      display: inline-block;
-      margin-bottom: 30px;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-      text-align: center;
-    }
-
-    .github-main-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-      background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
-    }
-
-    .github-section {
-      text-align: center;
-      margin-top: 60px;
-      padding: 40px 20px;
-      background: var(--bg-card);
-      backdrop-filter: blur(10px);
-      border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    }
-
-    .github-section p {
-      margin-bottom: 30px;
+    .card h3 {
       font-size: 1.1rem;
-      color: #e0f7ff;
     }
+    .card img, .members .card img {
+      width: 80px;
+      height: 80px;
+    }
+    .github-main-button {
+      font-size: 1rem;
+      padding: 10px 12px;
+    }
+    .social-buttons a {
+      font-size: 1.3rem;
+    }
+  }
 
-    /* Giustifica il testo nei paragrafi delle sezioni principali */
-    #about p,
-    #background p,
-    #contact p {
-      text-align: left;
-      max-width: 800px;
-      margin: 0 auto 0 20px;
-      padding-right: 20px;
-    }
+  .orca-link {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    transition: all 0.3s ease;
+  }
 
-    .research-text p {
-      text-align: left;
-      max-width: 800px;
-      margin: 0 auto 0 0;
-      padding-right: 20px;
-    }
+  .orca-link:hover {
+    color: #fff;
+    border-bottom-color: #fff;
+    text-shadow: 0 0 8px var(--accent);
+  }
 
-    /* Allinea a sinistra solo i titoli delle sezioni specifiche */
-    #about h2,
-    #background h2,
-    #research-areas h2 {
-      text-align: left;
-      margin-left: 20px;
-    }
+  .repo-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    text-align: left;
+    max-width: 250px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+  }
 
-    /* Easter egg styles */
-    .easter-egg-active {
-      animation: rainbow-bg 2s ease-in-out;
-    }
+  .repo-card:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--accent);
+  }
 
-    .easter-egg-active h1 {
-      animation: bounce 0.5s ease-in-out infinite;
-    }
+  .repo-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
 
-    .easter-egg-active p {
-      animation: wiggle 0.3s ease-in-out infinite;
-    }
+  .repo-name i {
+    color: var(--accent);
+  }
 
-    @keyframes rainbow-bg {
-      0%, 100% { background: var(--bg-gradient); }
-      16% { background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%); }
-      33% { background: linear-gradient(135deg, #feca57 0%, #ff9ff3 100%); }
-      50% { background: linear-gradient(135deg, #48dbfb 0%, #0abde3 100%); }
-      66% { background: linear-gradient(135deg, #1dd1a1 0%, #10ac84 100%); }
-      83% { background: linear-gradient(135deg, #ff9ff3 0%, #f368e0 100%); }
-    }
+  .repo-description {
+    color: #ccc;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    line-height: 1.5;
+  }
 
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
+  footer {
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+  }
 
-    @keyframes wiggle {
-      0%, 100% { transform: rotate(0deg); }
-      25% { transform: rotate(1deg); }
-      75% { transform: rotate(-1deg); }
-    }
+  .social-buttons {
+    margin-top: 30px;
+    text-align: center;
+  }
 
-    .repo-card {
-      cursor: pointer;
-      overflow: hidden;
+  .social-buttons a {
+    display: inline-block;
+    margin: 0 15px;
+    color: var(--color-text);
+    font-size: 2rem;
+    transition: color 0.3s ease;
+  }
+
+  .social-buttons a:hover {
+    color: var(--accent);
+  }
+
+  .github-repos {
+    display: grid;
+    gap: 20px;
+    max-width: 800px;
+    margin: 30px auto 0;
+    grid-template-columns: 1fr; /* Default to one column for mobile */
+  }
+
+  @media (min-width: 600px) {
+    .github-repos {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
+  }
+
+  .github-main-button {
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-decoration: none;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 15px 30px;
+    border-radius: 30px;
+    display: inline-block;
+    margin-bottom: 30px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+
+  .github-main-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+  }
+
+  /* Removed box for github section, kept only for repos */
+  .github-section {
+    text-align: center;
+    margin-top: 60px;
+    padding: 50px 20px; /* Reduced padding as no background box */
+  }
+
+  .github-section p {
+    margin-bottom: 60px;
+    font-size: 1.1rem;
+    color: #e0f7ff;
+  }
+  
+  @media (max-width: 768px) {
+    section,
+    .publication {
+      padding: 40px 20px;
+      margin: 0 auto;
+    }
+    .github-section {
+      padding: 30px 20px;
+    }
+  }
+
+  /* Research Areas - FLIP CARD STYLES */
+  .research-grid {
+    display: grid;
+    gap: 2.5rem;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 0 1.25rem;
+  }
+
+  .research-card {
+    perspective: 1000px; /* For 3D flip effect */
+    height: 480px; /* Fixed height for consistent cards */
+    cursor: pointer;
+  }
+
+  .research-card__inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .research-card.is-flipped .research-card__inner {
+    transform: rotateY(180deg);
+  }
+
+  .research-card__front,
+  .research-card__back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .research-card__front {
+    background: var(--flip-bg-front);
+  }
+
+  .research-card__back {
+    background: var(--flip-bg-back);
+    transform: rotateY(180deg);
+    padding: 1.5rem;
+    text-align: justify;
+    justify-content: center; /* Center content vertically */
+    box-sizing: border-box; /* Include padding in height */
+  }
+  
+  .research-card__front img {
+    width: 100%;
+    height: 80%; /* Fixed height for image */
+    object-fit: cover;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+  }
+
+  .research-card__body-front {
+    padding: 1.5rem;
+    width: 100%; /* Ensure text takes full width */
+    flex-grow: 1; /* Allow text to grow and take available space */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center text vertically if space allows */
+  }
+
+  .research-card__front h3,
+  .research-card__back h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+    text-align: center; /* Center title */
+  }
+
+  .research-card__front p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #e0f7ff;
+    text-align: center; /* Center short description */
+  }
+
+  .research-card__back p {
+    font-size: 0.95rem; /* Slightly smaller font for detailed text */
+    line-height: 1.6;
+    color: #e0f7ff;
+    text-align: justify;
+    overflow-y: auto; /* Enable scrolling for long text */
+    max-height: calc(100% - 70px); /* Adjust based on h3 height and padding */
+    padding-right: 10px; /* Space for scrollbar */
+  }
+  
+  /* Scrollbar styles for research-card__back p */
+  .research-card__back p::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .research-card__back p::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+  }
+
+  .research-card__back p::-webkit-scrollbar-thumb {
+    background-color: var(--accent);
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+  }
+
+
+  @media (min-width: 768px) {
+    .research-grid {
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+  }
+
+  /* Stili specifici per la scheda principale */
+  .main-card {
+    grid-column: 1 / -1; /* Fa in modo che la scheda occupi tutte le colonne del grid */
+    max-width: 800px; /* Imposta una larghezza massima per la scheda */
+    margin: 0 auto 30px auto; /* Centra la scheda orizzontalmente e aggiunge un margine in basso */
+    display: center; /* Utilizza flexbox per allineare il contenuto */
+    flex-direction: column; /* Imposta l'orientamento dei figli in colonna */
+  }
+
+  /* Modifica la dimensione dell'immagine per la scheda principale */
+  .main-card img {
+    width: 180px;
+    height: 180px;
+  }
+
+  /* Easter egg styles */
+  .easter-egg-active {
+    animation: rainbow-bg 2s ease-in-out;
+  }
+
+  .easter-egg-active h1 {
+    animation: bounce 0.5s ease-in-out infinite;
+  }
+
+  .easter-egg-active p {
+    animation: wiggle 0.3s ease-in-out infinite;
+  }
+
+  @keyframes rainbow-bg {
+    0%, 100% { background: var(--bg-gradient); }
+    16% { background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%); }
+    33% { background: linear-gradient(135deg, #feca57 0%, #ff9ff3 100%); }
+    50% { background: linear-gradient(135deg, #48dbfb 0%, #0abde3 100%); }
+    66% { background: linear-gradient(135deg, #1dd1a1 0%, #10ac84 100%); }
+    83% { background: linear-gradient(135deg, #ff9ff3 0%, #f368e0 100%); }
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(1deg); }
+    75% { transform: rotate(-1deg); }
+  }
   </style>
 </head>
 
@@ -885,7 +935,7 @@
   </header>
 
   <nav>
-    <a href="#" class="nav-brand">Bistoni Group</a>
+    <a href="#" class="nav-brand">Home</a>
     <button class="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
       <i class="fas fa-bars"></i>
     </button>
@@ -896,14 +946,14 @@
       <li><a href="#members" onclick="closeMenu()">Team</a></li>
       <li><a href="#research-areas" onclick="closeMenu()">Research</a></li>
       <li><a href="#publications" onclick="closeMenu()">Publications</a></li>
-      <li><a href="#github" onclick="closeMenu()">Code</a></li>
+      <li><a href="#github" onclick="closeMenu()">GitHub</a></li>
       <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
     </ul>
   </nav>
 
   <section id="about">
-    <h2>About the Group</h2>
-    <p>
+    <h2>About</h2>
+    <p style="text-align: justify;">
       The Bistoni Group combines advanced quantum chemical methods with machine learning techniques to address complex challenges in theoretical chemistry. Our research spans homogeneous, heterogeneous, and biological catalysis, with particular emphasis on systems that push the limits of conventional computational approaches. Key areas of investigation include:
       (i) stereocontrol in enantioselective catalysis,
       (ii) mechanisms of electrocatalytic processes,
@@ -922,7 +972,7 @@
 
   <section id="background">
     <h2>Background</h2>
-    <p>
+    <p style="text-align: justify;">
       Prof. Giovanni Bistoni completed his Ph. D. at the University of Perugia in 2015. He was Postdoctoral Fellow in Prof. Frank Neese's group at the Max Planck Institute for Chemical Energy Conversion and was promoted to Group Leader in 2017. He moved to the Max-Planck-Institut für Kohlenforschung in 2018, where he led the "Intermolecular Interactions and Homogeneous Catalysis" group. He got his Habilitation in Theoretical and Computational Chemistry from Universität Duisburg-Essen in 2021. His research group moved to the University of Perugia in January 2022.
     </p>
   </section>
@@ -930,7 +980,7 @@
   <section id="members">
     <h2>Team</h2>
     <div class="members">
-      <div class="card">
+      <div class="card main-card">
         <img src="images/webp/giovannibistoni.webp" alt="Giovanni Bistoni">
         <h3>Giovanni Bistoni</h3>
         <span class="member-role">Principal Investigator</span>
@@ -991,6 +1041,15 @@
           <a href="https://scholar.google.com/citations?user=aPp5ErgAAAAJ" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
         </div>
       </div>
+    <div class="card">
+      <img src="images/webp/viniciusmartinelli.webp" alt="Vinicius Martinelli">
+      <h3>Vinicius Martinelli</h3>
+      <span class="member-role">Visiting PhD Student</span>
+      <p style="font-size: 0.8rem; color: #aaa; margin-bottom: 15px;">2024–2025</p>
+      <div class="social-icons">
+        <a href="mailto:martinelli001@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
       <div class="card">
         <img src="images/webp/gianlucaregni.webp" alt="Gianluca Regni">
         <h3>Gianluca Regni</h3>
@@ -1000,6 +1059,14 @@
           <a href="https://www.linkedin.com/in/gianluca-regni/" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
           <a href="https://orcid.org/0009-0006-9459-519X" title="ORCID"><i class="fab fa-orcid"></i></a>
           <a href="https://scholar.google.com/citations?user=oHEU9VYAAAAJ" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/webp/marioperez.webp" alt="Mario E. Perez">
+        <h3>Mario E. Perez</h3>
+        <span class="member-role">MSc Student</span>
+        <div class="social-icons">
+          <a href="mailto:marioezequiel.perez@studenti.unipg.it" title="Email"><i class="fas fa-envelope"></i></a>
         </div>
       </div>
       <div class="card">
@@ -1036,63 +1103,86 @@
       </div>
     </div>
 
-    <div class="card">
-      <img src="images/webp/viniciusmartinelli.webp" alt="Vinicius Martinelli">
-      <h3>Vinicius Martinelli</h3>
-      <span class="member-role">Visiting PhD Student</span>
-      <p style="font-size: 0.8rem; color: #aaa; margin-bottom: 15px;">2024–2025</p>
-      <div class="social-icons">
-        <a href="mailto:martinelli001@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-      </div>
-    </div>
-
   </div>
 </section>
 
-  <section id="research-areas">
-    <h2>Research Areas</h2>
-    <div class="research-areas">
-      <div class="research-card">
-        <div class="research-text">
+<section id="research-areas">
+  <h2>Research Areas</h2>
+  <div class="research-grid">
+    <article class="research-card">
+      <div class="research-card__inner">
+        <div class="research-card__front">
+          <img src="images/webp/computationalcatalysis.webp" alt="Computational Catalysis" loading="lazy">
+          <div class="research-card__body-front">
+            <h1>Computational Catalysis</h1>
+          </div>
+        </div>
+        <div class="research-card__back">
           <h3>Computational Catalysis</h3>
-          <p>Catalysis is a cornerstone of modern chemical research, playing a role in the production of over 80% of all manufactured goods. Yet, despite advances in theory and computation, the number of catalyst predictions that successfully translate into experimental discovery remains limited. In our group, we aim to bridge this gap by combining state-of-the-art computational tools to elucidate the mechanisms of complex catalytic reactions and the electronic structure of key intermediates.
-          
-          Our approach integrates advanced methodologies, including novel local coupled cluster techniques, enhanced conformational sampling algorithms, modern exchange–correlation functionals, machine learning techniques, energy decomposition and bond analysis schemes, quantum embedding frameworks, and both implicit and explicit solvation models. These tools allow us to deliver detailed, predictive insights into catalysis at the atomic level.
-
-          Our work targets the development of new synthetic processes with industrial relevance, with applications in:
-          (i) asymmetric organo- and transition metal catalysis,
-          (ii) electrocatalytic hydrogen and oxygen evolution reactions, and
-          (iii) biocatalysis.
-
-          This research is conducted in close collaboration with experimental groups, enabling a feedback loop between computation and synthesis.</p>
+          <p style="font-size: 13px; word-break: break-word;">
+            Catalysis is a cornerstone of modern chemical research, playing a role in the production of over 80% of all manufactured goods. Yet, despite advances in theory and computation, the number of catalyst predictions that successfully translate into experimental discovery remains limited. In our group, we aim to bridge this gap by combining state-of-the-art computational tools to elucidate the mechanisms of complex catalytic reactions and the electronic structure of key intermediates.
+            <br><br>
+            Our approach integrates advanced methodologies, including novel local coupled cluster techniques, enhanced conformational sampling algorithms, modern exchange–correlation functionals, machine learning techniques, energy decomposition and bond analysis schemes, quantum embedding frameworks, and both implicit and explicit solvation models. These tools allow us to deliver detailed, predictive insights into catalysis at the atomic level.
+            <br><br>
+            Our work targets the development of new synthetic processes with industrial relevance, with applications in:
+            <br>
+            (i) asymmetric organo- and transition metal catalysis,
+            <br>
+            (ii) electrocatalytic hydrogen and oxygen evolution reactions, and
+            <br>
+            (iii) biocatalysis.
+            <br><br>
+            This research is conducted in close collaboration with experimental groups, enabling a feedback loop between computation and synthesis.
+          </p>
         </div>
-        <img src="images/webp/computationalcatalysis.webp" alt="Computational Catalysis" />
       </div>
-      
-      <div class="research-card">
-        <div class="research-text">
+    </article>
+
+    <article class="research-card">
+      <div class="research-card__inner">
+        <div class="research-card__front">
+          <img src="images/webp/ADLD_ADEX-slides.webp" alt="Noncovalent Interactions" loading="lazy">
+          <div class="research-card__body-front">
+            <h1>Noncovalent Interactions</h1>
+          </div>
+        </div>
+        <div class="research-card__back">
           <h3>Noncovalent Interactions</h3>
-          <p>Noncovalent interactions (NCIs) are fundamental to the structure and function of molecules in chemistry, biology, and materials science. In our group, we develop and apply advanced electronic structure methods to gain quantitative and chemically intuitive insights into the strength and nature of NCIs across diverse systems. Many of these methods are developed in-house or in collaboration with the ORCA team, with a focus on combining high accuracy with broad applicability.
-
-          Our work covers a wide range of applications, including:
-          (i) protein–ligand and DNA/RNA–ligand recognition,
-          (ii) catalyst–substrate interactions in homogeneous and heterogeneous catalysis (both organic and organometallic), and
-          (iii) intermolecular interactions in functional solids, such as pharmaceuticals and energy-relevant materials.
-
-          Beyond individual case studies, we aim to deliver general-purpose computational tools that help chemists quantify and understand NCIs across all areas of molecular science.</p>
+          <p style="font-size: 13px; word-break: break-word;">
+            Noncovalent interactions (NCIs) are fundamental to the structure and function of molecules in chemistry, biology, and materials science. In our group, we develop and apply advanced electronic structure methods to gain quantitative and chemically intuitive insights into the strength and nature of NCIs across diverse systems. Many of these methods are developed in-house or in collaboration with the ORCA team, with a focus on combining high accuracy with broad applicability.
+            <br><br>
+            Our work covers a wide range of applications, including:
+            <br>
+            (i) protein–ligand and DNA/RNA–ligand recognition,
+            <br>
+            (ii) catalyst–substrate interactions in homogeneous and heterogeneous catalysis (both organic and organometallic), and
+            <br>
+            (iii) intermolecular interactions in functional solids, such as pharmaceuticals and energy-relevant materials.
+            <br><br>
+            Beyond individual case studies, we aim to deliver general-purpose computational tools that help chemists quantify and understand NCIs across all areas of molecular science.
+          </p>
         </div>
-        <img src="images/webp/ADLD_ADEX-slides.webp" alt="Noncovalent Interactions" />
       </div>
-      
-      <div class="research-card">
-        <div class="research-text">
+    </article>
+
+    <article class="research-card">
+      <div class="research-card__inner">
+        <div class="research-card__front">
+          <img src="images/webp/localcorrelationmethods.webp" alt="Local Correlation Methods" loading="lazy">
+          <div class="research-card__body-front">
+            <h1>Local Correlation Methods</h1>
+          </div>
+        </div>
+        <div class="research-card__back">
           <h3>Local Correlation Methods</h3>
-          <p>By exploiting the "short-sighted" nature of electron correlation, local correlation approaches allow us to reduce the inherent steep scaling of highly correlated wavefunction-based methods. This has enabled highly accurate electronic structure calculations on systems with hundreds of atoms and thousands of basis functions. In our group, we develop computational methods and protocols which can be used to increase the efficiency and accuracy, and hence the range of applicability, of local correlation approaches. Special focus is on the local CCSD(T) approaches. Aside from our work on methods for noncovalent interactions (see above), we also develop extrapolation schemes, embedding approaches and other highly accurate computational protocols of broad applicability.</p>
+          <p style="font-size: 13px; word-break: break-word;">
+            By exploiting the "short-sighted" nature of electron correlation, local correlation approaches allow us to reduce the inherent steep scaling of highly correlated wavefunction-based methods. This has enabled highly accurate electronic structure calculations on systems with hundreds of atoms and thousands of basis functions. In our group, we develop computational methods and protocols which can be used to increase the efficiency and accuracy, and hence the range of applicability, of local correlation approaches. Special focus is on the local CCSD(T) approaches. Aside from our work on methods for noncovalent interactions (see above), we also develop extrapolation schemes, embedding approaches and other highly accurate computational protocols of broad applicability.
+          </p>
         </div>
-        <img src="images/webp/localcorrelationmethods.webp" alt="Local Correlation Methods" />
       </div>
-    </div>
-  </section>
+    </article>
+  </div>
+</section>
 
 <section id="publications">
   <h2>Selected Publications</h2>
@@ -1107,7 +1197,7 @@
           <div class="publication-meta">
             <span class="publication-journal">ACS Central Science</span>
             <span class="publication-year">2025</span>
-            <span>in press</span>
+            <span>11, 6, 890–898</span>
           </div>
         </div>
         <div class="publication-actions">
@@ -1288,24 +1378,14 @@
 
 
   <section id="github" class="github-section">
-    <h2>Open Source & Code</h2>
-    <p>The group maintains a GitHub page to share various scripts and programs.</p>
+    <h2>GitHub</h2>
+    <p>The group maintains a repository to share various scripts and programs.</p>
     
     <a href="https://github.com/bistonigroup" class="github-main-button" target="_blank">
       <i class="fab fa-github"></i> Visit Our GitHub
     </a>
 
     <div class="github-repos">
-      <div class="repo-card">
-        <div class="repo-name">
-          <i class="fas fa-code"></i>
-          <span>LDdecomposition</span>
-        </div>
-        <div class="repo-description">
-          Codes for the atomic decomposition of the London dispersion energy.
-        </div>
-      </div>
-
       <div class="repo-card">
         <div class="repo-name">
           <i class="fas fa-code"></i>
@@ -1332,6 +1412,17 @@
     </div>
   </section>
   <script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const researchCards = document.querySelectorAll('.research-card');
+
+      researchCards.forEach(card => {
+        card.addEventListener('click', () => {
+          card.classList.toggle('is-flipped');
+        });
+      });
+    });
+
     // Easter egg functionality
     let clickCount = 0;
     let clickTimer;
@@ -1499,32 +1590,7 @@
   </script>
 
   <footer>
-    <p>&copy; 2025 Giovanni Bistoni Group. All rights reserved.</p>
-                                                                         <!-- &       
-                                                        .              /  %      
-                                                     @  @            @     *     
-                                                   .    /          %       @     
-                                %.  @             (               %        (     
-                                ( @  &           .               (               
-                                @    //                  (      /                
-                                @       &       .        ,    %            .     
-                                (.@/      /    */&     @      .            /     
-                               %                %.   ..,     * @           (     
-                               ,            ,@.            %..@@      @#*        
-                               @.     @                       *%      % //       
-                              @@,%                                     #/        
-                            @                                               %    
-                          *                                                   @  
-                         @                                                    . #
-                        @          @**(                                          
-                       #  @.     ,,#    @                                        
-                  / (   #         @,    /                                        
-                  .               #   ,&.                                        
-               .@                                                                
-             %(@@                                                                
-               *@             (&*,#/          .(@#,(&                            
-                 .                      .&%,&                                    
-              @                   (,@.           .%#&                             -->
+    <p>&copy; 2025 Giovanni Bistoni Group | Design and development by Gianluca Regni. All rights reserved.</p>
   </footer>
 </body>
 </html>
