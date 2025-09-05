@@ -4,9 +4,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Giovanni Bistoni Group</title>
+  <title>The Bistoni Group</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
   :root {
     --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -45,6 +47,10 @@
     margin: 0;
     padding: 0;
     font-family: 'Inter', sans-serif;
+  }
+
+  p, span, button {
+    font-family: 'Quicksand', sans-serif;
   }
 
   body {
@@ -141,7 +147,6 @@
     font-size: 1.3rem;
     cursor: pointer;
     padding: 6px;
-    border-radius: 6px;
     transition: all 0.2s ease;
     z-index: 110;
   }
@@ -277,18 +282,11 @@
   }
 
   section {
-    padding: 80px 20px;
+    padding: 50px 24px;
     max-width: 1200px;
     margin: auto;
   }
   
-  /* Increased margins for About and Background */
-  #about p, #background p {
-    margin-top: 40px; /* Adjust as needed */
-    margin-bottom: 40px; /* Adjust as needed */
-    padding-left: 20px;
-    padding-right: 20px;
-  }
 
 
   section h2 {
@@ -306,7 +304,7 @@
 
   .card {
     background: rgba(255,255,255,0.08);
-    border-radius: 16px;
+    border-radius: 12px;
     padding: 25px;
     text-align: center;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
@@ -417,7 +415,6 @@
   .publication-title {
     font-weight: bold;
     padding: 15px;
-    border-radius: 8px;
     transition: all 0.3s ease;
     border-left: 4px solid transparent;
     font-size: 1.1rem;
@@ -514,7 +511,7 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: white;
     padding: 6px 12px;
-    border-radius: 4px;
+    border-radius: 20px;
     cursor: pointer;
     font-size: 0.8rem;
     transition: all 0.3s ease;
@@ -774,7 +771,7 @@
     text-align: center;
     transition: transform 0.8s;
     transform-style: preserve-3d;
-    border-radius: 16px;
+    border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
@@ -790,7 +787,7 @@
     height: 100%;
     -webkit-backface-visibility: hidden; /* Safari */
     backface-visibility: hidden;
-    border-radius: 16px;
+    border-radius: 12px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -815,8 +812,8 @@
     width: 100%;
     height: 80%; /* Fixed height for image */
     object-fit: cover;
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
   }
 
   .research-card__body-front {
@@ -861,7 +858,7 @@
 
   .research-card__back p::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
+    border-radius: 12px;
   }
 
   .research-card__back p::-webkit-scrollbar-thumb {
@@ -930,7 +927,7 @@
 
 <body>
   <header>
-    <h1>Giovanni Bistoni Group</h1>
+    <h1>The Bistoni Group</h1>
     <p>Development and Application of Quantum Chemistry Methods at the University of Perugia</p>
   </header>
 
@@ -944,10 +941,10 @@
       <li><a href="#about" onclick="closeMenu()">About</a></li>
       <li><a href="#background" onclick="closeMenu()">Background</a></li>
       <li><a href="#members" onclick="closeMenu()">Team</a></li>
-      <li><a href="#research-areas" onclick="closeMenu()">Research</a></li>
-      <li><a href="#publications" onclick="closeMenu()">Publications</a></li>
+      <li><a href="#research-areas" onclick="closeMenu()">Research Areas</a></li>
+      <li><a href="#publications" onclick="closeMenu()">Selected Publications</a></li>
       <li><a href="#github" onclick="closeMenu()">GitHub</a></li>
-      <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+      <li><a href="#contacts" onclick="closeMenu()">Contacts</a></li>
     </ul>
   </nav>
 
@@ -1398,8 +1395,8 @@
     </div>
   </section>
 
-  <section id="contact">
-    <h2>Contact</h2>
+  <section id="contacts">
+    <h2>Contacts</h2>
     <p style="text-align:center; font-size:1.1rem; max-width:650px; margin:auto;">
       Department of Chemistry, Biology and Biotechnology, University of Perugia
       Via Elce di Sotto, 8 06123 – Perugia, Italy<br />
