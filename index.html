@@ -10,14 +10,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-  :root {
-    --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --bg-card: rgba(255, 255, 255, 0.1);
-    --color-text: #ffffff;
-    --accent: #64b5f6;
-    --flip-bg-front: rgba(255, 255, 255, 0.08);
-    --flip-bg-back: rgba(40, 40, 80, 0.95);
-  }
+:root {
+  --bg-gradient:rgba(2, 62, 138, 0.92);
+  --nav-gradient: #0096c7;
+
+  --accent: rgba(120, 210, 255, 1); /* rgba(220, 255, 255, 1) rgba(50, 200, 255, 1) rgba(100, 200, 255, 1)*/
+
+  --bg-card: rgba(255, 255, 255, 0.08);
+  --flip-bg-front: rgba(255, 255, 255, 0.06);
+  --flip-bg-back: rgba(2, 62, 138, 0.92); /* steel-blue glass */
+
+  --color-text: #ffffff;
+}
 
   .publication-title,
   .publication-meta,
@@ -135,8 +139,11 @@
   }
 
   .nav-brand:hover {
-    color: white; /* o il colore originale del testo, ad es. #ffffff */
+    border-left-color: transparent;
     cursor: pointer;
+    color: white;
+    cursor: pointer;
+    transform: scale(1.05);
   }
 
   .hamburger {
@@ -153,7 +160,6 @@
 
   .hamburger:hover {
     background: rgba(255, 255, 255, 0.1);
-    color: var(--accent);
     transform: scale(1.05);
   }
 
@@ -220,22 +226,8 @@
   }
 
   nav a:hover {
-    color: var(--accent);
     background: rgba(255, 255, 255, 0.05);
     border-left-color: var(--accent);
-    transform: translateX(5px);
-  }
-
-  .nav-brand:hover {
-    color: white; /* Reimposta il colore del testo */
-    background: transparent; /* Rimuove il riquadro */
-    border-left-color: transparent; /* Rimuove la linea a sinistra */
-    transform: translateX(0); /* Rimuove lo spostamento */
-    cursor: pointer;
-  }
-
-  nav a:active {
-    transform: translateX(5px) scale(0.98);
   }
 
   .nav-overlay {
@@ -254,31 +246,6 @@
   .nav-overlay.open {
     opacity: 1;
     visibility: visible;
-  }
-
-  @media (max-width: 768px) {
-    nav {
-      padding: 6px 15px;
-    }
-    
-    nav ul {
-      width: 280px;
-      right: -300px;
-    }
-    
-    nav a {
-      font-size: 0.95rem;
-      padding: 10px 20px;
-    }
-    
-    .nav-brand {
-      font-size: 1rem;
-    }
-    
-    .hamburger {
-      font-size: 1.2rem;
-      padding: 5px;
-    }
   }
 
   section {
@@ -361,10 +328,6 @@
     transition: color 0.3s ease;
   }
 
-  .card:hover h3 {
-    color: var(--accent);
-  }
-
   .card p {
     color: #ccc;
     margin-bottom: 15px;
@@ -421,10 +384,6 @@
     margin-bottom: 8px;
     text-align: left;
     padding-left: 0;
-  }
-
-  .publication-title:hover {
-    color: var(--accent);
   }
 
   .publication {
@@ -500,7 +459,7 @@
     margin: 0;
     padding: 10px 20px;
     background: rgba(0, 0, 0, 0.1);
-    font-size: 0.95rem;
+    font-size: 0.8rem;
     color: #eee;
     line-height: 1.6;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -532,83 +491,6 @@
     gap: 15px;
     max-width: 1000px;
     margin: auto;
-  }
-
-  @media (max-width: 768px) {
-    .publication-header {
-      flex-direction: column;
-      gap: 15px;
-      text-align: center;
-    }
-    
-    .publication-actions {
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    
-    .publication-meta {
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    
-    .members {
-      grid-template-columns: 1fr;
-      gap: 15px;
-    }
-
-    section {
-      padding: 40px 5px;
-    }
-    header {
-      height: auto;
-      min-height: 320px;
-      padding: 30px 5px 10px 5px;
-    }
-    header h1 {
-      font-size: 2.2rem;
-    }
-    header p {
-      font-size: 1rem;
-    }
-    footer {
-      padding: 18px 5px;
-      font-size: 0.9rem;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .publication-title {
-      font-size: 0.9rem;
-      padding: 10px;
-      padding-left: 0;
-    }
-    .publication-meta {
-      font-size: 0.8rem;
-    }
-    .btn-abstract {
-      font-size: 0.7rem;
-      padding: 4px 8px;
-    }
-    header h1 {
-      font-size: 1.8rem;
-    }
-    section h2 {
-      font-size: 2rem;
-    }
-    .card h3 {
-      font-size: 1.1rem;
-    }
-    .card img, .members .card img {
-      width: 80px;
-      height: 80px;
-    }
-    .github-main-button {
-      font-size: 1rem;
-      padding: 10px 12px;
-    }
-    .social-buttons a {
-      font-size: 1.3rem;
-    }
   }
 
   .orca-link {
@@ -655,15 +537,12 @@
     gap: 10px;
   }
 
-  .repo-name i {
-    color: var(--accent);
-  }
-
   .repo-description {
     color: #ccc;
     font-size: 0.9rem;
     margin-bottom: 15px;
     line-height: 1.5;
+    font-family: 'Quicksand', sans-serif;
   }
 
   footer {
@@ -698,12 +577,6 @@
     grid-template-columns: 1fr; /* Default to one column for mobile */
   }
 
-  @media (min-width: 600px) {
-    .github-repos {
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    }
-  }
-
   .github-main-button {
     color: white;
     font-weight: bold;
@@ -725,43 +598,36 @@
     background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
   }
 
-  /* Removed box for github section, kept only for repos */
   .github-section {
     text-align: center;
     margin-top: 60px;
-    padding: 50px 20px; /* Reduced padding as no background box */
+    padding: 50px 20px;
   }
 
   .github-section p {
     margin-bottom: 60px;
-    font-size: 1.1rem;
-    color: #e0f7ff;
-  }
-  
-  @media (max-width: 768px) {
-    section,
-    .publication {
-      padding: 40px 20px;
-      margin: 0 auto;
-    }
-    .github-section {
-      padding: 30px 20px;
-    }
+    font-size: 0.9rem;
   }
 
-  /* Research Areas - FLIP CARD STYLES */
   .research-grid {
     display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2.5rem;
     margin: 0 auto;
     max-width: 1200px;
-    padding: 0 1.25rem;
+    padding: 10px 10px;
   }
 
   .research-card {
-    perspective: 1000px; /* For 3D flip effect */
-    height: 480px; /* Fixed height for consistent cards */
+    perspective: 1000px;
+    height: 480px;
     cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+  }
+
+  .research-card:hover {
+    transform: translateY(-8px);
   }
 
   .research-card__inner {
@@ -829,26 +695,24 @@
   .research-card__back h3 {
     font-size: 1.5rem;
     font-weight: 600;
-    color: var(--accent);
     margin-bottom: 0.75rem;
-    text-align: center; /* Center title */
+    text-align: center;
   }
 
   .research-card__front p {
     font-size: 1rem;
     line-height: 1.6;
     color: #e0f7ff;
-    text-align: center; /* Center short description */
+    text-align: center;
   }
 
   .research-card__back p {
-    font-size: 0.95rem; /* Slightly smaller font for detailed text */
+    font-size: 0.95rem;
     line-height: 1.6;
-    color: #e0f7ff;
     text-align: justify;
-    overflow-y: auto; /* Enable scrolling for long text */
-    max-height: calc(100% - 70px); /* Adjust based on h3 height and padding */
-    padding-right: 10px; /* Space for scrollbar */
+    overflow-y: auto;
+    max-height: calc(100% - 70px);
+    padding-right: 10px;
   }
   
   /* Scrollbar styles for research-card__back p */
@@ -867,12 +731,9 @@
     border: 2px solid rgba(255, 255, 255, 0.1);
   }
 
-
-  @media (min-width: 768px) {
-    .research-grid {
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-    }
+  .research-card__body-front h1 {
+    font-family: "Quicksand", sans-serif;
+    font-weight: normal;
   }
 
   /* Stili specifici per la scheda principale */
@@ -922,6 +783,171 @@
     25% { transform: rotate(1deg); }
     75% { transform: rotate(-1deg); }
   }
+
+  /* ---- MEDIA ---- */
+  @media (max-width: 768px) {
+
+    p {
+      font-size: 0.8rem;
+    }
+
+    nav {
+      padding: 6px 15px;
+    }
+    
+    nav ul {
+      width: 280px;
+      right: -300px;
+    }
+    
+    nav a {
+      font-size: 0.95rem;
+      padding: 10px 20px;
+    }
+
+    header {
+      height: auto;
+      min-height: 320px;
+      padding: 30px 5px 10px 5px;
+    }
+
+    header p {
+      font-size: 0.9rem;
+      padding: 20px;
+    }
+    
+    header h1 {
+      font-size: 2.0rem;
+      padding: 20px;
+    }
+
+    section {
+      padding: 20px 20px;
+      margin: 0 auto;
+    }
+
+    section p {
+      padding: 10px 10px;
+      margin: 0 auto;
+    }
+
+    section h2 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      padding: 18px 5px;
+      font-size: 0.9rem;
+    }
+
+    .nav-brand {
+      font-size: 1rem;
+    }
+    
+    .hamburger {
+      font-size: 1.2rem;
+      padding: 5px;
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+    }
+
+    .card img, .members .card img {
+      width: 80px;
+      height: 80px;
+    }
+
+    .card.main-card {
+      margin-bottom: 0px;
+    }
+
+    .members {
+      grid-template-columns: 1fr;
+      gap: 15px;
+      padding: 10px;
+      margin-top: 10px;
+    }
+
+    .social-buttons a {
+      font-size: 1.3rem;
+    }
+
+    .research-grid {
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 0.5rem;
+    }
+
+    .publication {
+      padding: 40px 20px;
+      margin: 0 auto;
+    }
+
+    .publication-header {
+      flex-direction: column;
+      gap: 15px;
+      text-align: center;
+    }
+
+    .publication-title {
+      font-size: 0.9rem;
+      padding: 10px;
+      padding-left: 0;
+    }
+
+    .publications-grid {
+      margin-top: 20px;
+    }
+
+    .publication {
+      padding: 20px 10px;
+      margin: 0 auto;
+    }
+
+    .publication-meta {
+      font-size: 0.8rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .publication-actions {
+      justify-content: center;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .publication-doi{
+      display: center;
+    }
+
+    .btn-abstract {
+      font-size: 0.7rem;
+      padding: 4px 8px;
+    }
+
+    .github-section {
+      padding: 30px 20px;
+    }
+
+    .github-repos {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .github-main-button {
+      font-size: 1rem;
+      padding: 10px 12px;
+    }
+
+  .repo-description {
+    font-family: 'Quicksand', sans-serif;
+  }
+
+  .abstract {
+    font-family: 'Quicksand', sans-serif;
+  }
+
+  }
   </style>
 </head>
 
@@ -970,7 +996,7 @@
   <section id="background">
     <h2>Background</h2>
     <p style="text-align: justify;">
-      Prof. Giovanni Bistoni completed his Ph. D. at the University of Perugia in 2015. He was Postdoctoral Fellow in Prof. Frank Neese's group at the Max Planck Institute for Chemical Energy Conversion and was promoted to Group Leader in 2017. He moved to the Max-Planck-Institut für Kohlenforschung in 2018, where he led the "Intermolecular Interactions and Homogeneous Catalysis" group. He got his Habilitation in Theoretical and Computational Chemistry from Universität Duisburg-Essen in 2021. His research group moved to the University of Perugia in January 2022.
+      Prof. Giovanni Bistoni completed his Ph.D. at the University of Perugia in 2015. He was Postdoctoral Fellow in Prof. Frank Neese's group at the Max Planck Institute for Chemical Energy Conversion and was promoted to Group Leader in 2017. He moved to the Max-Planck-Institut für Kohlenforschung in 2018, where he led the "Intermolecular Interactions and Homogeneous Catalysis" group. He got his Habilitation in Theoretical and Computational Chemistry from Universität Duisburg-Essen in 2021. His research group moved to the University of Perugia in January 2022.
     </p>
   </section>
 
@@ -1397,7 +1423,7 @@
 
   <section id="contacts">
     <h2>Contacts</h2>
-    <p style="text-align:center; font-size:1.1rem; max-width:650px; margin:auto;">
+    <p style="text-align:center;">
       Department of Chemistry, Biology and Biotechnology, University of Perugia
       Via Elce di Sotto, 8 06123 – Perugia, Italy<br />
       Email: <a href="mailto:giovanni.bistoni@unipg.it" style="color: var(--accent);">giovanni.bistoni@unipg.it</a>
