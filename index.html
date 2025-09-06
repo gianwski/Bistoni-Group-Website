@@ -116,7 +116,7 @@
     top: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #285b9b;
     padding: 8px 20px;
     z-index: 10;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -254,8 +254,6 @@
     margin: auto;
   }
   
-
-
   section h2 {
     text-align: center;
     font-size: 2.8rem;
@@ -582,7 +580,7 @@
     font-weight: bold;
     font-size: 1.2rem;
     text-decoration: none;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
     padding: 15px 30px;
     border-radius: 30px;
     display: inline-block;
@@ -745,7 +743,6 @@
     flex-direction: column; /* Imposta l'orientamento dei figli in colonna */
   }
 
-  /* Modifica la dimensione dell'immagine per la scheda principale */
   .main-card img {
     width: 180px;
     height: 180px;
@@ -788,7 +785,7 @@
   @media (max-width: 768px) {
 
     p {
-      font-size: 0.8rem;
+      font-size: 0.9rem;
     }
 
     nav {
@@ -822,18 +819,19 @@
     }
 
     section {
-      padding: 20px 20px;
-      margin: 0 auto;
+      padding: 10px 20px;
+      margin-top: 20px;
+      margin-bottom: 0px;
     }
 
     section p {
-      padding: 10px 10px;
       margin: 0 auto;
     }
 
     section h2 {
-      font-size: 1.5rem;
-      margin-bottom: 10px;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      margin-top: 10px;
     }
 
     footer {
@@ -850,6 +848,10 @@
       padding: 5px;
     }
 
+    .card {
+      padding: 15px;
+    }
+
     .card h3 {
       font-size: 1.1rem;
     }
@@ -857,6 +859,10 @@
     .card img, .members .card img {
       width: 80px;
       height: 80px;
+    }
+
+    .card img {
+      margin: 0 0 0;
     }
 
     .card.main-card {
@@ -868,6 +874,10 @@
       gap: 15px;
       padding: 10px;
       margin-top: 10px;
+    }
+
+    .member-role {
+      margin: 0 0 15px;
     }
 
     .social-buttons a {
@@ -927,7 +937,16 @@
     }
 
     .github-section {
-      padding: 30px 20px;
+      padding: 0px 20px;
+      margin-top: 30px;
+    }
+
+    .github-section p {
+      margin: 0px 0px 20px;
+    }
+
+    .github-section a {
+      margin: 0px 0px 0px;
     }
 
     .github-repos {
@@ -935,17 +954,41 @@
     }
 
     .github-main-button {
-      font-size: 1rem;
-      padding: 10px 12px;
+      font-size: 1.2rem;
+      padding: 10px 14px;
+      border-radius: 60px;
     }
 
-  .repo-description {
-    font-family: 'Quicksand', sans-serif;
+    .repo-description {
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    .abstract {
+      font-family: 'Quicksand', sans-serif;
+    }
+
+  .social-icons {
+    margin: 0px 0px 0px;
   }
 
-  .abstract {
-    font-family: 'Quicksand', sans-serif;
+  .social-icons a {
+    width: 15px;
+    margin: 0 8px;
   }
+
+  .social-icons a i {
+    font-size: 21px;
+  }
+
+  .social-buttons {
+    margin: 10px 10px 0px;
+  }
+
+  .social-buttons a {
+    font-size: 35px;
+  }
+
+
 
   }
   </style>
@@ -1613,7 +1656,7 @@
   </script>
 
   <footer>
-    <p>&copy; 2025 Giovanni Bistoni Group | Design and development by Gianluca Regni. All rights reserved.</p>
+    <p>All rights reserved. Design and development by Gianluca Regni. </p>
   </footer>
 </body>
 </html>
