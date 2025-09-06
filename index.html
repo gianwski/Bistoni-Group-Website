@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Bistoni Group</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="The official website of The Bistoni Group. Learn about our team, publications research areas and more.">
+  <meta name="author" content="Gianluca Regni">
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:description" content="The official website of The Bistoni Group. We are a research team at the University of Perugia, focused on developing and applying advanced quantum chemistry methods. Learn about our team, publications and more." />
+  <meta property="og:image"  content="images/logo3.svg">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Home Page - The Bistoni Group" />
+  <meta property="og:site_name" content="The Bistoni Group" />
+  <title>The Bistoni Group Website</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -18,7 +28,7 @@
 
   --bg-card: rgba(255, 255, 255, 0.08);
   --flip-bg-front: rgba(255, 255, 255, 0.06);
-  --flip-bg-back: rgba(2, 62, 138, 0.92); /* steel-blue glass */
+  --flip-bg-back: rgba(2, 62, 138, 0.92);
 
   --color-text: #ffffff;
 }
@@ -73,7 +83,7 @@
     text-align: center;
     padding: 0 20px;
     position: relative;
-    overflow: hidden; /* Added to contain header::before */
+    overflow: hidden;
   }
 
   header::before {
@@ -572,7 +582,7 @@
     gap: 20px;
     max-width: 800px;
     margin: 30px auto 0;
-    grid-template-columns: 1fr; /* Default to one column for mobile */
+    grid-template-columns: 1fr;
   }
 
   .github-main-button {
@@ -598,13 +608,12 @@
 
   .github-section {
     text-align: center;
-    margin-top: 60px;
+    margin-top: 20px;
     padding: 50px 20px;
   }
 
   .github-section p {
     margin-bottom: 60px;
-    font-size: 0.9rem;
   }
 
   .research-grid {
@@ -649,7 +658,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    -webkit-backface-visibility: hidden; /* Safari */
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     border-radius: 12px;
     overflow: hidden;
@@ -668,13 +677,13 @@
     transform: rotateY(180deg);
     padding: 1.5rem;
     text-align: justify;
-    justify-content: center; /* Center content vertically */
-    box-sizing: border-box; /* Include padding in height */
+    justify-content: center;
+    box-sizing: border-box;
   }
   
   .research-card__front img {
     width: 100%;
-    height: 80%; /* Fixed height for image */
+    height: 80%;
     object-fit: cover;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
@@ -682,11 +691,11 @@
 
   .research-card__body-front {
     padding: 1.5rem;
-    width: 100%; /* Ensure text takes full width */
-    flex-grow: 1; /* Allow text to grow and take available space */
+    width: 100%;
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center text vertically if space allows */
+    justify-content: center;
   }
 
   .research-card__front h3,
@@ -713,7 +722,6 @@
     padding-right: 10px;
   }
   
-  /* Scrollbar styles for research-card__back p */
   .research-card__back p::-webkit-scrollbar {
     width: 8px;
   }
@@ -734,13 +742,12 @@
     font-weight: normal;
   }
 
-  /* Stili specifici per la scheda principale */
   .main-card {
-    grid-column: 1 / -1; /* Fa in modo che la scheda occupi tutte le colonne del grid */
-    max-width: 800px; /* Imposta una larghezza massima per la scheda */
-    margin: 0 auto 30px auto; /* Centra la scheda orizzontalmente e aggiunge un margine in basso */
-    display: center; /* Utilizza flexbox per allineare il contenuto */
-    flex-direction: column; /* Imposta l'orientamento dei figli in colonna */
+    grid-column: 1 / -1;
+    max-width: 800px;
+    margin: 0 auto 30px auto;
+    display: center;
+    flex-direction: column;
   }
 
   .main-card img {
@@ -748,7 +755,6 @@
     height: 180px;
   }
 
-  /* Easter egg styles */
   .easter-egg-active {
     animation: rainbow-bg 2s ease-in-out;
   }
