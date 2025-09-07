@@ -114,7 +114,7 @@
   }
 
   header h1 {
-    font-size: 4rem;
+    font-size: 6rem;
     font-weight: 800;
     background: linear-gradient(90deg, #fff, #ccc);
     -webkit-background-clip: text;
@@ -447,6 +447,7 @@
     font-size: 0.8rem;
     display: flex;
     align-items: center;
+    padding: 6px 12px;
   }
 
   .publication-doi:hover {
@@ -740,9 +741,11 @@
     border: 2px solid rgba(255, 255, 255, 0.1);
   }
 
-  .research-card__body-front h1 {
+  .research-card__body-front h3 {
     font-family: "Inter", sans-serif;
     font-weight: bold;
+    font-size: 1.2rem;
+    margin: 0 0 0;
   }
 
   .main-card {
@@ -790,26 +793,30 @@
     75% { transform: rotate(-1deg); }
   }
 
-.research-card__body-front{
-  text-align: center;
-  padding: 0.6rem 0.5rem 1rem;
-}
-.front-icons{
-  margin-top: 0.6rem;
-  font-size: 0.9rem;      /* dimensione icone */
-  color: #E0F7FF;         /* tinta brand */
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-}
-.front-icons i{
-  opacity: 0.85;
-  transition: transform 0.2s;
-}
-.front-icons i:hover{
-  opacity: 1;
-  transform: scale(1.15);
-}
+  .research-card__body-front{
+    text-align: center;
+    padding: 0.6rem 0.5rem 1rem;
+  }
+
+  .front-icons{
+    margin-top: 0.6rem;
+    font-size: 0.9rem;
+    color: #E0F7FF;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .front-icons i{
+    opacity: 0.85;
+    transition: transform 0.2s;
+  }
+
+  .front-icons i:hover{
+    opacity: 1;
+    transform: scale(1.15);
+    color: white;
+  }
 
   /* ---- MEDIA ---- */
   @media (max-width: 768px) {
@@ -840,12 +847,12 @@
 
     header p {
       font-size: 0.9rem;
-      padding: 20px;
+      padding: 10px 20px;
     }
     
     header h1 {
-      font-size: 2.0rem;
-      padding: 20px;
+      font-size: 2.2rem;
+      padding: 10px 20px;
     }
 
     section {
@@ -858,7 +865,19 @@
       margin: 0 auto;
     }
 
+    section h1 {
+      font-size: 2.0rem;
+      margin-bottom: 20px;
+      margin-top: 10px;
+    }
+
     section h2 {
+      font-size: 2.0rem;
+      margin-bottom: 20px;
+      margin-top: 10px;
+    }
+
+    section h3 {
       font-size: 1.8rem;
       margin-bottom: 20px;
       margin-top: 10px;
@@ -919,6 +938,17 @@
       gap: 0.5rem;
     }
 
+    .research-card__body-front h3 {
+      font-family: "Inter", sans-serif;
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin: 10px 0 0;
+    }
+
+    .front-icons{
+      padding: 0px 10px;
+    }
+
     .publication {
       padding: 40px 20px;
       margin: 0 auto;
@@ -959,6 +989,7 @@
 
     .publication-doi{
       display: center;
+      padding: 4px 8px;
     }
 
     .btn-abstract {
@@ -1211,7 +1242,7 @@
         <div class="research-card__front">
           <img src="images/webp/computationalcatalysis.webp" alt="Computational Catalysis" loading="lazy">
           <div class="research-card__body-front">
-            <h1>Computational Catalysis</h1>
+            <h3>Computational Catalysis</h3>
             <div class="front-icons">
               <i class="fa-solid fa-bolt"  title="Kinetic"></i>
               <i class="fa-solid fa-cogs"  title="Mechanism"></i>
@@ -1244,7 +1275,7 @@
         <div class="research-card__front">
           <img src="images/webp/ADLD_ADEX-slides.webp" alt="Noncovalent Interactions" loading="lazy">
           <div class="research-card__body-front">
-            <h1>Noncovalent Interactions</h1>
+            <h3>Noncovalent Interactions</h3>
             <div class="front-icons">
              <i class="fa-solid fa-link-slash"  title="Noncovalent bonds"></i>
              <i class="fa-solid fa-atom"  title="Atomic resolution"></i>
@@ -1275,7 +1306,7 @@
         <div class="research-card__front">
           <img src="images/webp/localcorrelationmethods.webp" alt="Local Correlation Methods" loading="lazy">
           <div class="research-card__body-front">
-            <h1>Local Correlation Methods</h1>
+            <h3>Local Correlation Methods</h3>
             <div class="front-icons">
              <i class="fa-solid fa-location-crosshairs"  title="Locality"></i>
              <i class="fa-solid fa-magnifying-glass"  title="Precision"></i>
@@ -1314,7 +1345,7 @@
             <i class="fas fa-eye"></i> View Abstract
           </button>
           <a href="https://doi.org/10.1021/acscentsci.5c00356" target="_blank" class="publication-doi">
-            <i class="fa-solid fa-file-lines" style="margin: 0.45em 0.35em;"></i>
+            <i class="fa-solid fa-file-lines" style="margin: 0 0.1em;"  ></i>
               Read more
           </a>
         </div>
@@ -1341,7 +1372,7 @@
             <i class="fas fa-eye"></i> View Abstract
           </button>
           <a href="https://doi.org/10.1126/science.adp2447" target="_blank" class="publication-doi">
-            <i class="fa-solid fa-file-lines" style="margin: 0.45em 0.35em;"></i>
+            <i class="fa-solid fa-file-lines" style="margin: 0 0.1em;"></i>
               Read more
           </a>
         </div>
@@ -1368,7 +1399,7 @@
             <i class="fas fa-eye"></i> View Abstract
           </button>
           <a href="https://doi.org/10.1126/science.adj7007" target="_blank" class="publication-doi">
-            <i class="fa-solid fa-file-lines" style="margin: 0.45em 0.35em;"></i>
+            <i class="fa-solid fa-file-lines" style="margin: 0 0.1em;"></i>
               Read more
           </a>
         </div>
@@ -1395,7 +1426,7 @@
             <i class="fas fa-eye"></i> View Abstract
           </button>
           <a href="https://doi.org/10.1038/s41586-023-05747-9" target="_blank" class="publication-doi">
-            <i class="fa-solid fa-file-lines" style="margin: 0.45em 0.35em;"></i>
+            <i class="fa-solid fa-file-lines" style="margin: 0 0.1em;"></i>
               Read more
           </a>
         </div>
@@ -1422,7 +1453,7 @@
             <i class="fas fa-eye"></i> View Abstract
           </button>
           <a href="https://doi.org/10.1021/jacs.9b13725" target="_blank" class="publication-doi">
-            <i class="fa-solid fa-file-lines" style="margin: 0.45em 0.35em;"></i>
+            <i class="fa-solid fa-file-lines" style="margin: 0 0.1em;"></i>
               Read more
           </a>
         </div>
@@ -1449,7 +1480,7 @@
             <i class="fas fa-eye"></i> View Abstract
           </button>
           <a href="https://doi.org/10.1002/wcms.1442" target="_blank" class="publication-doi">
-            <i class="fa-solid fa-file-lines" style="margin: 0.45em 0.35em;"></i>
+            <i class="fa-solid fa-file-lines" style="margin: 0 0.1em;"></i>
               Read more
           </a>
         </div>
@@ -1476,7 +1507,7 @@
             <i class="fas fa-eye"></i> View Abstract
           </button>
           <a href="https://doi.org/10.1021/acs.accounts.4c00085" target="_blank" class="publication-doi">
-             <i class="fa-solid fa-file-lines" style="margin: 0.45em 0.35em;"></i>
+             <i class="fa-solid fa-file-lines" style="margin: 0 0.1em;"></i>
               Read more
           </a>
         </div>
