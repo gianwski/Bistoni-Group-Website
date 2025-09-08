@@ -77,6 +77,7 @@
     margin: 0;
     padding: 0;
     font-family: 'Inter', sans-serif;
+    font-size: 18px;
   }
 
   p, span, button {
@@ -113,7 +114,7 @@
     background-size: 80% auto;
     background-position: center center;
     background-repeat: no-repeat;
-    opacity: 0.1;
+    opacity: 0.3;
     z-index: 0;
   }
 
@@ -126,7 +127,7 @@
   header h1 {
     font-size: 6rem;
     font-weight: 800;
-    background: linear-gradient(90deg, #fff, #ccc);
+    background: #ffff;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
@@ -371,6 +372,10 @@
     transition: color 0.3s ease;
   }
 
+  .social-icons i {
+    font-size: 1.2rem;
+  }
+
   .social-icons a:hover {
     color: var(--accent);
     transform: scale(1.15);
@@ -383,7 +388,7 @@
     color: #e0f7ff;
     padding: 4px 12px;
     border-radius: 20px;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     font-weight: 500;
     margin-bottom: 15px;
     transition: all 0.3s ease;
@@ -579,6 +584,10 @@
     text-align: center;
   }
 
+  .social-buttons i {
+    font-size: 40px;
+  }
+
   .social-buttons a {
     display: inline-block;
     margin: 0 15px;
@@ -728,7 +737,7 @@
   }
 
   .research-card__back p {
-    font-size: 0.95rem;
+    font-size: 15px;
     line-height: 1.6;
     text-align: justify;
     overflow-y: auto;
@@ -1261,7 +1270,7 @@
         </div>
         <div class="research-card__back">
           <h3>Computational Catalysis</h3>
-          <p style="font-size: 13px; word-break: break-word;">
+          <p style="word-break: break-word;">
             Catalysis is a cornerstone of modern chemical research, playing a role in the production of over 80% of all manufactured goods. Yet, despite advances in theory and computation, the number of catalyst predictions that successfully translate into experimental discovery remains limited. In our group, we aim to bridge this gap by combining state-of-the-art computational tools to elucidate the mechanisms of complex catalytic reactions and the electronic structure of key intermediates.
             <br><br>
             Our approach integrates advanced methodologies, including novel local coupled cluster techniques, enhanced conformational sampling algorithms, modern exchange–correlation functionals, machine learning techniques, energy decomposition and bond analysis schemes, quantum embedding frameworks, and both implicit and explicit solvation models. These tools allow us to deliver detailed, predictive insights into catalysis at the atomic level.
@@ -1294,7 +1303,7 @@
         </div>
         <div class="research-card__back">
           <h3>Noncovalent Interactions</h3>
-          <p style="font-size: 13px; word-break: break-word;">
+          <p style="word-break: break-word;">
             Noncovalent interactions (NCIs) are fundamental to the structure and function of molecules in chemistry, biology, and materials science. In our group, we develop and apply advanced electronic structure methods to gain quantitative and chemically intuitive insights into the strength and nature of NCIs across diverse systems. Many of these methods are developed in-house or in collaboration with the ORCA team, with a focus on combining high accuracy with broad applicability.
             <br><br>
             Our work covers a wide range of applications, including:
@@ -1325,7 +1334,7 @@
         </div>
         <div class="research-card__back">
           <h3>Local Correlation Methods</h3>
-          <p style="font-size: 13px; word-break: break-word;">
+          <p style="word-break: break-word;">
             By exploiting the "short-sighted" nature of electron correlation, local correlation approaches allow us to reduce the inherent steep scaling of highly correlated wavefunction-based methods. This has enabled highly accurate electronic structure calculations on systems with hundreds of atoms and thousands of basis functions. In our group, we develop computational methods and protocols which can be used to increase the efficiency and accuracy, and hence the range of applicability, of local correlation approaches. Special focus is on the local CCSD(T) approaches. Aside from our work on methods for noncovalent interactions (see above), we also develop extrapolation schemes, embedding approaches and other highly accurate computational protocols of broad applicability.
           </p>
         </div>
@@ -1542,7 +1551,7 @@
       <i class="fab fa-github"></i> Visit Our GitHub
     </a>
 
-    <div class="github-repos">
+    <!-- <div class="github-repos">
       <div class="repo-card">
         <div class="repo-name">
           <i class="fas fa-code"></i>
@@ -1552,7 +1561,7 @@
           London Dispersion Density (LDD) Suite for computing atomic contributions to London dispersion energy.
         </div>
       </div>
-    </div>
+    </div> -->
   </section>
 
   <section id="contacts">
