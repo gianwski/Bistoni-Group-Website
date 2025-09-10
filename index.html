@@ -305,6 +305,8 @@
     padding: 20px;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    will-change: transform, scroll-position;
+    transform: translateZ(0);
   }
 
   .news-track::-webkit-scrollbar {
@@ -324,15 +326,15 @@
   .news-content {
     display: flex;
     flex-direction: column;
-    flex-grow: 1; /* occupa tutto lo spazio disponibile */
-    white-space: normal; /* permette al testo e al link di andare a capo */
+    flex-grow: 1;
+    white-space: normal;
   }
 
   .news-footer {
-    margin-top: auto; /* spinge il footer in basso */
+    margin-top: auto;
     display: flex;
     flex-direction: column;
-    gap: 5px; /* spazio tra autore e link */
+    gap: 5px;
   }
 
   .news-card:hover {
@@ -766,7 +768,7 @@
   .github-main-button {
     color: white;
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: clamp(0.8rem, 1.2vw, 1.8rem);
     text-decoration: none;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
     padding: 15px 30px;
@@ -776,6 +778,10 @@
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     text-align: center;
+  }
+
+  .github-main-button i {
+    font-size: clamp(0.9rem, 1.5vw, 2.1rem);
   }
 
   .github-main-button:hover {
@@ -820,11 +826,17 @@
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: transform 0.8s;
+    transition: transform 0.6s;
     transform-style: preserve-3d;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .research-card:hover .research-card__inner {
+      transform: rotateY(180deg);
+    }
   }
 
   .research-card.is-flipped .research-card__inner {
@@ -874,6 +886,9 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background-color: #fff;
+    color: #000;
+    font-weight: bold;
   }
 
   .research-card__front h3,
@@ -973,6 +988,17 @@
   .main-card img {
     width: 180px;
     height: 180px;
+  }
+
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .easter-egg-active {
@@ -1084,8 +1110,6 @@
     .news-date {
     font-size: clamp(0.9rem, 1.8vw, 1.1rem);
     }
-
-
 
     .nav-brand {
       font-size: 1rem;
@@ -1288,7 +1312,7 @@
     
     <div class="carousel-wrapper">
       <div class="news-track">
-        <div class="news-card">
+        <div class="news-card animate-on-scroll">
           <div class="news-date"><i class="fas fa-calendar-alt"></i> 26 Aug 2025</div>
           <div class="news-content">
             <h3 class="news-headline">We Just Published!</h3>
@@ -1301,7 +1325,7 @@
             </div>
           </div>
         </div>
-        <div class="news-card">
+        <div class="news-card animate-on-scroll">
           <div class="news-date"><i class="fas fa-calendar-alt"></i> 31 Jul 2025</div>
           <div class="news-content">
             <h3 class="news-headline">We Just Published!</h3>
@@ -1311,7 +1335,7 @@
             <a href="https://link.springer.com/chapter/10.1007/430_2025_103" class="news-link">Read More</a>
           </div>
         </div>
-        <div class="news-card">
+        <div class="news-card animate-on-scroll">
           <div class="news-date"><i class="fas fa-calendar-alt"></i> 21 Jul 2025</div>
           <div class="news-content">
             <h3 class="news-headline">We Just Published!</h3>
@@ -1321,7 +1345,7 @@
             <a href="https://chemrxiv.org/engage/chemrxiv/article-details/687a04a123be8e43d6dd9354" class="news-link">Read More</a>
           </div>
         </div>
-        <div class="news-card">
+        <div class="news-card animate-on-scroll">
           <div class="news-date"><i class="fas fa-calendar-alt"></i> 19 Jun 2025</div>
           <div class="news-content">
             <h3 class="news-headline">We Just Published!</h3>
@@ -1331,7 +1355,7 @@
             <a href="https://pubs.acs.org/doi/full/10.1021/acs.jctc.5c01003" class="news-link">Read More</a>
           </div>
         </div>
-        <div class="news-card">
+        <div class="news-card animate-on-scroll">
           <div class="news-date"><i class="fas fa-calendar-alt"></i> 8 May 2025</div>
           <div class="news-content">
             <h3 class="news-headline">We Just Published!</h3>
@@ -1379,7 +1403,7 @@
   <section id="members">
     <h2>Team</h2>
     <div class="members">
-      <div class="card main-card">
+      <div class="card main-card animate-on-scroll">
         <img src="images/webp/giovannibistoni.webp" alt="Giovanni Bistoni">
         <h3>Giovanni Bistoni</h3>
         <span class="member-role">Principal Investigator</span>
@@ -1390,7 +1414,7 @@
           <a href="https://scholar.google.com/citations?user=OfDkyicAAAAJ" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
         </div>
       </div>
-      <div class="card">
+      <div class="card animate-on-scroll">
         <img src="images/webp/isaacfleach.webp" alt="Isaac F. Leach">
         <h3>Isaac F. Leach</h3>
         <span class="member-role">Postdoctoral Researcher</span>
@@ -1401,7 +1425,7 @@
           <a href="https://scholar.google.com/citations?user=ah7wOzEAAAAJ" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
         </div>
       </div>
-      <div class="card">
+      <div class="card animate-on-scroll">
         <img src="images/webp/lorenzobaldinelli.webp" alt="Lorenzo Baldinelli">
         <h3>Lorenzo Baldinelli</h3>
         <span class="member-role">PhD Student</span>
@@ -1411,7 +1435,7 @@
           <a href="https://scholar.google.com/citations?user=gsbh6tMAAAAJ" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
         </div>
       </div>
-      <div class="card">
+      <div class="card animate-on-scroll">
         <img src="images/webp/martinacolucci.webp" alt="Martina Colucci">
         <h3>Martina Colucci</h3>
         <span class="member-role">PhD Student</span>
@@ -1420,7 +1444,7 @@
           <a href="https://www.linkedin.com/in/martina-colucci-0668192b4/" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
         </div>
       </div>
-      <div class="card">
+      <div class="card animate-on-scroll">
         <img src="images/webp/carlosjacinto.webp" alt="Carlos Jacinto">
         <h3>Carlos Jacinto</h3>
         <span class="member-role">PhD Student</span>
@@ -1431,7 +1455,7 @@
           <a href="https://scholar.google.com/citations?user=_pxVHmIAAAAJ&hl=en" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
         </div>
       </div>
-      <div class="card">
+      <div class="card animate-on-scroll">
         <img src="images/webp/sofialerda.webp" alt="Sofia Lerda">
         <h3>Sofia Lerda</h3>
         <span class="member-role">PhD Student</span>
@@ -1442,7 +1466,7 @@
           <a href="https://scholar.google.com/citations?user=aPp5ErgAAAAJ" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
         </div>
       </div>
-    <div class="card">
+    <div class="card animate-on-scroll">
       <img src="images/webp/viniciusmartinelli.webp" alt="Vinicius Martinelli">
       <h3>Vinicius Martinelli</h3>
       <span class="member-role">Visiting PhD Student</span>
@@ -1451,7 +1475,7 @@
         <a href="mailto:martinelli001@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
       </div>
     </div>
-      <div class="card">
+      <div class="card animate-on-scroll">
         <img src="images/webp/gianlucaregni.webp" alt="Gianluca Regni">
         <h3>Gianluca Regni</h3>
         <span class="member-role">PhD Student</span>
@@ -1463,7 +1487,7 @@
           <a href="https://github.com/gianwski" title="GitHub"><i class="fab fa-github"></i></a>
         </div>
       </div>
-      <div class="card">
+      <div class="card animate-on-scroll">
         <img src="images/webp/marioperez.webp" alt="Mario E. Perez">
         <h3>Mario E. Perez</h3>
         <span class="member-role">MSc Student</span>
@@ -1471,7 +1495,7 @@
           <a href="mailto:marioezequiel.perez@studenti.unipg.it" title="Email"><i class="fas fa-envelope"></i></a>
         </div>
       </div>
-      <div class="card">
+      <div class="card animate-on-scroll">
         <img src="images/webp/moniazarhouni.webp" alt="Monia Zarhouni">
         <h3>Monia Zarhouni</h3>
         <span class="member-role">MSc Student</span>
@@ -1479,7 +1503,7 @@
           <a href="mailto:monia.zarhouni@studenti.unipg.it" title="Email"><i class="fas fa-envelope"></i></a>
         </div>
       </div>
-      <div class="card">
+      <div class="card animate-on-scroll">
         <img src="images/webp/pietrobartolomei.webp" alt="Pietro Bartolomei">
         <h3>Pietro Bartolomei</h3>
         <span class="member-role">BSc Student</span>
@@ -1494,7 +1518,7 @@
   <h2>Former Members</h2>
   <div class="members">
 
-    <div class="card">
+    <div class="card animate-on-scroll">
       <img src="images/webp/ronaldcardenas.webp" alt="Ronald Cardenas">
       <h3>Ronald Cardenas</h3>
       <span class="member-role">Former MSc Student</span>
@@ -1517,13 +1541,6 @@
           <img src="images/photoredox.png" alt="Computational Catalysis" loading="lazy">
           <div class="research-card__body-front">
             <h3>Computational Catalysis</h3>
-            <div class="front-icons">
-              <i class="fa-solid fa-bolt"  title="Kinetic"></i>
-              <i class="fa-solid fa-cogs"  title="Mechanism"></i>
-            </div>
-          </div>
-          <div class="flip-hint">
-            <i class="fa-solid fa-rotate-right" title="Click to rotate the card"></i>
           </div>
         </div>
         <div class="research-card__back">
@@ -1553,13 +1570,6 @@
            <img src="images/adld.png" alt="Noncovalent Interactions" loading="lazy">
           <div class="research-card__body-front">
             <h3>Noncovalent Interactions</h3>
-            <div class="front-icons">
-             <i class="fa-solid fa-link-slash"  title="Noncovalent bonds"></i>
-             <i class="fa-solid fa-atom"  title="Atomic resolution"></i>
-            </div>
-          </div>
-          <div class="flip-hint">
-            <i class="fa-solid fa-rotate-right" title="Click to rotate the card"></i>
           </div>
         </div>
         <div class="research-card__back">
@@ -1587,13 +1597,6 @@
           <img src="images/covaled.png" alt="Local Correlation Methods" loading="lazy">
           <div class="research-card__body-front">
             <h3>Local Correlation Methods</h3>
-            <div class="front-icons">
-             <i class="fa-solid fa-location-crosshairs"  title="Locality"></i>
-             <i class="fa-solid fa-magnifying-glass"  title="Precision"></i>
-            </div>
-          </div>
-          <div class="flip-hint">
-            <i class="fa-solid fa-rotate-right" title="Click to rotate the card"></i>
           </div>
         </div>
         <div class="research-card__back">
@@ -1611,7 +1614,7 @@
   <h2>Selected Publications</h2>
   <div class="publications-grid">
 
-    <div class="publication">
+    <div class="publication animate-on-scroll">
       <div class="publication-header">
         <div class="publication-content">
           <div class="publication-title">
@@ -1638,7 +1641,7 @@
       </div>
     </div>
 
-    <div class="publication">
+    <div class="publication animate-on-scroll">
       <div class="publication-header">
         <div class="publication-content">
           <div class="publication-title">
@@ -1665,7 +1668,7 @@
       </div>
     </div>
 
-    <div class="publication">
+    <div class="publication animate-on-scroll">
       <div class="publication-header">
         <div class="publication-content">
           <div class="publication-title">
@@ -1692,7 +1695,7 @@
       </div>
     </div>
 
-    <div class="publication">
+    <div class="publication animate-on-scroll">
       <div class="publication-header">
         <div class="publication-content">
           <div class="publication-title">
@@ -1719,7 +1722,7 @@
       </div>
     </div>
 
-    <div class="publication">
+    <div class="publication animate-on-scroll">
       <div class="publication-header">
         <div class="publication-content">
           <div class="publication-title">
@@ -1746,7 +1749,7 @@
       </div>
     </div>
 
-    <div class="publication">
+    <div class="publication animate-on-scroll">
       <div class="publication-header">
         <div class="publication-content">
           <div class="publication-title">
@@ -1773,7 +1776,7 @@
       </div>
     </div>
 
-    <div class="publication">
+    <div class="publication animate-on-scroll">
       <div class="publication-header">
         <div class="publication-content">
           <div class="publication-title">
@@ -1933,16 +1936,6 @@
 
 
     // ---------------------
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const researchCards = document.querySelectorAll('.research-card');
-
-      researchCards.forEach(card => {
-        card.addEventListener('click', () => {
-          card.classList.toggle('is-flipped');
-        });
-      });
-    });
 
     // Easter egg functionality
     let clickCount = 0;
@@ -2108,7 +2101,56 @@
         closeMenu();
       }
     });
+
+    // --- scrolling interaction ---
+    document.addEventListener('DOMContentLoaded', () => {
+      const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
+
+      const options = {
+        root: null,
+        threshold: 0.2,
+        rootMargin: "0px"
+      };
+
+      const callback = (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      };
+
+      const observer = new IntersectionObserver(callback, options);
+
+      elementsToAnimate.forEach(element => {
+        observer.observe(element);
+      });
+    });
+
+  // -- horizontal scrolling ---
+
+document.addEventListener('DOMContentLoaded', () => {
+    const researchCards = document.querySelectorAll('.research-card');
+
+    researchCards.forEach(card => {
+      // Toggla la classe 'is-flipped' quando si fa clic sulla card
+      card.addEventListener('click', (e) => {
+        // Impedisci l'azione predefinita se necessario
+        e.preventDefault(); 
+        
+        // Controlla se il target dell'evento è già la card o un suo figlio
+        if (e.currentTarget.contains(e.target)) {
+          card.classList.toggle('is-flipped');
+        }
+      });
+    });
+});
+
+
+
   </script>
+
 
   <footer>
     <p>All rights reserved. Design and development by Gianluca Regni. </p>
