@@ -77,7 +77,7 @@
     margin: 0;
     padding: 0;
     font-family: 'Inter', sans-serif;
-    font-size: 18px;
+    font-size: clamp(14px, 1.3vw, 16px);
   }
 
   p, span, button {
@@ -125,7 +125,7 @@
   }
 
   header h1 {
-    font-size: 6rem;
+    font-size: clamp(2rem, 8vw, 6rem);
     font-weight: 800;
     background: #ffff;
     -webkit-background-clip: text;
@@ -136,6 +136,18 @@
     font-size: 1.3rem;
     max-width: 700px;
     color: #e0f7ff;
+  }
+
+  section {
+    padding: 50px 24px;
+    max-width: 2000px;
+    margin: auto;
+  }
+  
+  section h2 {
+    text-align: center;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    margin-bottom: 40px;
   }
 
   nav {
@@ -159,7 +171,7 @@
 
   .nav-brand {
     font-weight: 800;
-    font-size: 1.1rem;
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
   }
 
   .nav-brand:hover {
@@ -173,7 +185,7 @@
     background: none;
     border: none;
     color: #fff;
-    font-size: 1.3rem;
+    font-size: clamp(1rem, 2.2vw, 1.3rem);
     cursor: pointer;
     padding: 6px;
     transition: all 0.2s ease;
@@ -270,18 +282,6 @@
     visibility: visible;
   }
 
-  section {
-    padding: 50px 24px;
-    max-width: 1200px;
-    margin: auto;
-  }
-  
-  section h2 {
-    text-align: center;
-    font-size: 2.8rem;
-    margin-bottom: 40px;
-  }
-
   .members {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -300,6 +300,7 @@
     position: relative;
     overflow: hidden;
     max-width: 360px;
+    min-width: 150px;
     width: 100%;
     margin-left: auto;
     margin-right: auto;
@@ -344,14 +345,14 @@
   .card h3 {
     color: white;
     margin-bottom: 8px;
-    font-size: 1.3rem;
+    font-size: clamp(1rem, 2.2vw, 1.3rem);
     transition: color 0.3s ease;
   }
 
   .card p {
     color: #ccc;
     margin-bottom: 15px;
-    font-size: 0.95rem;
+    font-size: clamp(0.85rem, 1.8vw, 0.95rem);
     transition: color 0.3s ease;
   }
 
@@ -368,12 +369,12 @@
 
   .social-icons a {
     color: #ccc;
-    font-size: 1.2rem;
+    font-size: clamp(0.9rem, 1.8vw, 1.3rem);
     transition: color 0.3s ease;
   }
 
   .social-icons i {
-    font-size: 1.2rem;
+    font-size: clamp(0.9rem, 1.8vw, 1.3rem);
   }
 
   .social-icons a:hover {
@@ -388,7 +389,7 @@
     color: #e0f7ff;
     padding: 4px 12px;
     border-radius: 20px;
-    font-size: 0.85rem;
+    font-size: clamp(0.75rem, 1.5vw, 0.85rem);
     font-weight: 500;
     margin-bottom: 15px;
     transition: all 0.3s ease;
@@ -406,10 +407,15 @@
     padding: 15px;
     transition: all 0.3s ease;
     border-left: 4px solid transparent;
-    font-size: 1.1rem;
+    font-size: clamp(1.0rem, 2.2vw, 1.2rem);
     margin-bottom: 8px;
     text-align: left;
     padding-left: 0;
+  }
+
+  .publication-title strong {
+    font-size: clamp(1rem, 2.1vw, 1.1rem);
+    font-weight: bold;
   }
 
   .publication {
@@ -433,7 +439,6 @@
     justify-content: space-between;
     gap: 20px;
     padding: 15px 20px;
-    min-height: 80px;
   }
 
   .publication-content {
@@ -443,7 +448,7 @@
   .publication-meta {
     display: flex;
     gap: 15px;
-    font-size: 0.9rem;
+    font-size: clamp(0.75rem, 1.8vw, 0.9rem);
     color: #ccc;
     align-items: center;
   }
@@ -459,7 +464,7 @@
   .publication-doi {
     color: var(--accent);
     text-decoration: none;
-    font-size: 0.8rem;
+    font-size: clamp(0.7rem, 1.5vw, 0.8rem);
     display: flex;
     align-items: center;
     padding: 6px 12px;
@@ -473,7 +478,7 @@
     background: rgba(255, 255, 255, 0.1);
     padding: 4px 8px;
     border-radius: 4px;
-    font-size: 0.8rem;
+    font-size: clamp(0.7rem, 1.5vw, 0.8rem);
   }
 
   .publication-year {
@@ -486,7 +491,8 @@
     margin: 0;
     padding: 10px 20px;
     background: rgba(0, 0, 0, 0.1);
-    font-size: 0.8rem;
+    font-size: clamp(14px, 1.2vw, 15px);
+    font-family: 'Quicksand', sans-serif;
     color: #eee;
     line-height: 1.6;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -499,7 +505,7 @@
     padding: 6px 12px;
     border-radius: 20px;
     cursor: pointer;
-    font-size: 0.8rem;
+    font-size: clamp(0.7rem, 1.5vw, 0.8rem);
     transition: all 0.3s ease;
   }
 
@@ -516,7 +522,7 @@
   .publications-grid {
     display: grid;
     gap: 15px;
-    max-width: 1000px;
+    max-width: 2000px;
     margin: auto;
   }
 
@@ -566,7 +572,7 @@
 
   .repo-description {
     color: #ccc;
-    font-size: 0.9rem;
+    font-size: clamp(0.75rem, 1.8vw, 0.9rem);
     margin-bottom: 15px;
     line-height: 1.5;
     font-family: 'Quicksand', sans-serif;
@@ -774,7 +780,7 @@
 
   .front-icons{
     margin-top: 0.6rem;
-    font-size: 0.9rem;
+    font-size: clamp(0.75rem, 1.8vw, 0.9rem);
     color: #E0F7FF;
     display: flex;
     justify-content: center;
@@ -841,7 +847,7 @@
   @media (max-width: 768px) {
 
     p {
-      font-size: 0.9rem;
+      font-size: clamp(0.75rem, 1.8vw, 0.9rem);
     }
 
     nav {
@@ -854,7 +860,7 @@
     }
     
     nav a {
-      font-size: 0.95rem;
+      font-size: clamp(0.85rem, 1.8vw, 0.95rem);
       padding: 10px 20px;
     }
 
@@ -865,7 +871,7 @@
     }
 
     header p {
-      font-size: 0.9rem;
+      font-size: clamp(0.75rem, 1.8vw, 0.9rem);
       padding: 10px 20px;
     }
     
@@ -904,7 +910,7 @@
 
     footer {
       padding: 18px 5px;
-      font-size: 0.9rem;
+      font-size: clamp(0.75rem, 1.8vw, 0.9rem);
     }
 
     .nav-brand {
@@ -921,7 +927,7 @@
     }
 
     .card h3 {
-      font-size: 1.1rem;
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
     }
 
     .card img, .members .card img {
@@ -945,11 +951,11 @@
     }
 
     .member-role {
-      margin: 0 0 15px;
+      margin: 0 0 20px;
     }
 
     .social-buttons a {
-      font-size: 1.3rem;
+      font-size: clamp(1rem, 2.2vw, 1.3rem);
     }
 
     .research-grid {
@@ -980,7 +986,7 @@
     }
 
     .publication-title {
-      font-size: 0.9rem;
+      font-size: clamp(0.9rem, 1.9vw, 1.1rem);
       padding: 10px;
       padding-left: 0;
     }
@@ -995,7 +1001,7 @@
     }
 
     .publication-meta {
-      font-size: 0.8rem;
+      font-size: clamp(0.7rem, 1.5vw, 0.8rem);
       justify-content: center;
       flex-wrap: wrap;
     }
@@ -1057,7 +1063,7 @@
   }
 
   .social-icons a i {
-    font-size: 21px;
+    font-size: 19px;
   }
 
   .social-buttons {
@@ -1067,8 +1073,6 @@
   .social-buttons a {
     font-size: 35px;
   }
-
-
 
   }
   </style>
@@ -1174,6 +1178,7 @@
         <div class="social-icons">
           <a href="mailto:carlosroberto.jacintomejia@dottorandi.unipg.it" title="Email"><i class="fas fa-envelope"></i></a>
           <a href="https://www.linkedin.com/in/crjacinto/" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://scholar.google.com/citations?user=aPp5ErgAAAAJ" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
         </div>
       </div>
       <div class="card">
@@ -1191,7 +1196,7 @@
       <img src="images/webp/viniciusmartinelli.webp" alt="Vinicius Martinelli">
       <h3>Vinicius Martinelli</h3>
       <span class="member-role">Visiting PhD Student</span>
-      <p style="font-size: 0.8rem; color: #aaa; margin-bottom: 15px;">2024–2025</p>
+      <p style="color: #aaa; margin-bottom: 15px;">2024–2025</p>
       <div class="social-icons">
         <a href="mailto:martinelli001@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
       </div>
@@ -1243,7 +1248,7 @@
       <img src="images/webp/ronaldcardenas.webp" alt="Ronald Cardenas">
       <h3>Ronald Cardenas</h3>
       <span class="member-role">Former MSc Student</span>
-      <p style="font-size: 0.8rem; color: #aaa; margin-bottom: 15px;">Now PhD Student at Max Planck Institute</p>
+      <p style="color: #aaa; margin-bottom: 15px;">Now PhD Student at Max Planck Institute</p>
       <div class="social-icons">
         <a href="mailto:ronaldcs@pks.mpg.de" title="Email"><i class="fas fa-envelope"></i></a>
         <a href="https://www.linkedin.com/in/ronald-cardenas/" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
