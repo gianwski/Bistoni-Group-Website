@@ -156,7 +156,7 @@
     left: 0;
     right: 0;
     background: #285b9b;
-    padding: 8px 20px;
+    padding: 3px 20px;
     z-index: 10;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
@@ -768,7 +768,7 @@
   .github-main-button {
     color: white;
     font-weight: bold;
-    font-size: clamp(0.8rem, 1.2vw, 1.8rem);
+    font-size: clamp(0.8rem, 1.3vw, 2.1rem);
     text-decoration: none;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
     padding: 15px 30px;
@@ -940,6 +940,18 @@
     font-weight: bold;
     font-size: 1.2rem;
     margin: 0 0 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .research-card__body-front h3 span {
+    display: inline-block;
+    transform: translateY(100%);
+    transition: transform 0.6s ease-out;
+  }
+
+  .reveal span {
+    transform: translateY(0);
   }
 
   .flip-hint {
@@ -1000,6 +1012,28 @@
     opacity: 1;
     transform: translateY(0);
   }
+
+  .reveal-title.slide-up-scale span {
+    text-align: center;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-family: "Inter", sans-serif;
+  }
+
+  .reveal-title {
+    overflow: hidden;
+    margin: 40px 0;
+  }
+
+  .reveal-title span {
+    display: inline-block;
+    transform: translateY(100%) scale(1.2); 
+    transition: transform 0.7s ease-out;
+  }
+
+  .reveal-title.revealed span {
+    transform: translateY(0) scale(1);
+  }
+
 
   .easter-egg-active {
     animation: rainbow-bg 2s ease-in-out;
@@ -1090,6 +1124,17 @@
       font-size: 2.0rem;
       margin-bottom: 20px;
       margin-top: 10px;
+    }
+
+    .reveal-title.slide-up-scale span {
+      text-align: center;
+      font-size: 2.0rem;
+      font-family: "Inter", sans-serif;
+    }
+
+    .reveal-title {
+      overflow: hidden;
+      margin: 10px 0 20px;
     }
 
     section h3 {
@@ -1250,6 +1295,10 @@
       border-radius: 60px;
     }
 
+    .github-main-button i {
+      font-size: 1.2rem;
+    }
+
     .repo-description {
       font-family: 'Quicksand', sans-serif;
     }
@@ -1308,7 +1357,7 @@
   </nav>
 
   <section id="news">
-    <h2 class="news-title">News</h2>
+    <h2 class="news-title reveal-title slide-up-scale"><span>News</span></h2>
     
     <div class="carousel-wrapper">
       <div class="news-track">
@@ -1375,8 +1424,8 @@
 
 
   <section id="about">
-    <h2>About</h2>
-    <p style="text-align: justify;">
+    <h2 class="reveal-title slide-up-scale"><span>About</span></h2>
+    <p class="animate-on-scroll" style="text-align: justify;">
       The Bistoni Group combines advanced quantum chemical methods with machine learning techniques to address complex challenges in theoretical chemistry. Our research spans homogeneous, heterogeneous, and biological catalysis, with particular emphasis on systems that push the limits of conventional computational approaches. Key areas of investigation include:
       (i) stereocontrol in enantioselective catalysis,
       (ii) mechanisms of electrocatalytic processes,
@@ -1394,14 +1443,14 @@
   </section>
 
   <section id="background">
-    <h2>Background</h2>
-    <p style="text-align: justify;">
+    <h2 class="reveal-title slide-up-scale"><span>Background</span></h2>
+    <p class="animate-on-scroll" style="text-align: justify;">
       Prof. Giovanni Bistoni completed his Ph.D. at the University of Perugia in 2015. He was Postdoctoral Fellow in Prof. Frank Neese's group at the Max Planck Institute for Chemical Energy Conversion and was promoted to Group Leader in 2017. He moved to the Max-Planck-Institut für Kohlenforschung in 2018, where he led the "Intermolecular Interactions and Homogeneous Catalysis" group. He got his habilitation in Theoretical and Computational Chemistry from Universität Duisburg-Essen in 2021. His research group moved to the University of Perugia in January 2022.
     </p>
   </section>
 
   <section id="members">
-    <h2>Team</h2>
+    <h2 class="reveal-title slide-up-scale"><span>Team</span></h2>
     <div class="members">
       <div class="card main-card animate-on-scroll">
         <img src="images/webp/giovannibistoni.webp" alt="Giovanni Bistoni">
@@ -1515,7 +1564,7 @@
   </section>
 
   <section id="former-members">
-  <h2>Former Members</h2>
+  <h2 class="reveal-title slide-up-scale"><span>Former Memebers</span></h2>
   <div class="members">
 
     <div class="card animate-on-scroll">
@@ -1533,8 +1582,8 @@
 </section>
 
 <section id="research-areas">
-  <h2>Research Areas</h2>
-  <div class="research-grid">
+  <h2 class="reveal-title slide-up-scale"><span>Research Areas</span></h2>
+  <div class="research-grid animate-on-scroll">
     <article class="research-card">
       <div class="research-card__inner">
         <div class="research-card__front">
@@ -1611,7 +1660,7 @@
 </section>
 
 <section id="publications">
-  <h2>Selected Publications</h2>
+  <h2 class="reveal-title slide-up-scale"><span>Selected Publications</span></h2>
   <div class="publications-grid">
 
     <div class="publication animate-on-scroll">
@@ -1811,7 +1860,7 @@
 
 
   <section id="github" class="github-section">
-    <h2>GitHub</h2>
+    <h2 class="reveal-title slide-up-scale"><span>GitHub</span></h2>
     <p>The group maintains a repository to share various scripts and programs.</p>
     
     <a href="https://github.com/bistonigroup" class="github-main-button" target="_blank">
@@ -1832,7 +1881,7 @@
   </section>
 
   <section id="contacts">
-    <h2>Contacts</h2>
+    <h2 class="reveal-title slide-up-scale"><span>Contacts</span></h2>
     <p style="text-align:center;">
       Department of Chemistry, Biology and Biotechnology, University of Perugia
       Via Elce di Sotto, 8 06123 – Perugia, Italy<br />
@@ -2128,26 +2177,39 @@
       });
     });
 
-  // -- horizontal scrolling ---
+  // -- card flipping interaction ---
+  document.addEventListener('DOMContentLoaded', () => {
+      const researchCards = document.querySelectorAll('.research-card');
 
-document.addEventListener('DOMContentLoaded', () => {
-    const researchCards = document.querySelectorAll('.research-card');
+      researchCards.forEach(card => {
+        card.addEventListener('click', (e) => {
+          e.preventDefault(); 
+          
+          if (e.currentTarget.contains(e.target)) {
+            card.classList.toggle('is-flipped');
+          }
+        });
+      });
+  });
 
-    researchCards.forEach(card => {
-      // Toggla la classe 'is-flipped' quando si fa clic sulla card
-      card.addEventListener('click', (e) => {
-        // Impedisci l'azione predefinita se necessario
-        e.preventDefault(); 
-        
-        // Controlla se il target dell'evento è già la card o un suo figlio
-        if (e.currentTarget.contains(e.target)) {
-          card.classList.toggle('is-flipped');
+  // --- side-up + scale animation ---
+  document.addEventListener("DOMContentLoaded", () => {
+    const titles = document.querySelectorAll(".reveal-title.slide-up-scale");
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("revealed");
+          observer.unobserve(entry.target);
         }
       });
+    }, {
+      root: null,
+      threshold: 0.5
     });
-});
 
-
+    titles.forEach(title => observer.observe(title));
+  });
 
   </script>
 
