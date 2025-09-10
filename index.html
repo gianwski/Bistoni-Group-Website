@@ -282,6 +282,155 @@
     visibility: visible;
   }
 
+  #news {
+    padding: 60px 20px;
+  }
+
+  .news-title {
+    text-align: center;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin-bottom: 40px;
+  }
+
+  .carousel-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .news-track {
+    display: flex;
+    gap: 20px;
+    scroll-behavior: smooth;
+    overflow-x: auto;
+    padding: 20px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .news-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .news-card {
+    flex: 0 0 400px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex-direction: column;
+  }
+
+  .news-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* occupa tutto lo spazio disponibile */
+    white-space: normal; /* permette al testo e al link di andare a capo */
+  }
+
+  .news-footer {
+    margin-top: auto; /* spinge il footer in basso */
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* spazio tra autore e link */
+  }
+
+  .news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    border-color: var(--accent);
+  }
+
+
+  .news-date {
+    font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  .news-headline {
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: white;
+  }
+
+  .news-badge {
+    display: inline-block; 
+    background: #ff6b6b;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+    max-width: max-content;
+  }
+
+
+  .news-text {
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    color: #fff;
+    margin-bottom: 15px;
+    min-height: 60px;
+  }
+
+  .news-author {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.1);
+    color: #e0f7ff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: clamp(0.75rem, 1.5vw, 0.85rem);
+    font-weight: 500;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    max-width: max-content;
+  }
+
+  .news-link {
+    display: inline-block;
+    font-size: clamp(0.85rem, 1.8vw, 0.95rem);
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .news-link:hover {
+    text-decoration: underline;
+  }
+
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    gap: 10px;
+  }
+
+  .carousel-dots button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.3);
+    cursor: pointer;
+    transition: background 0.3s;
+    padding: 0;
+  }
+
+  .carousel-dots button.active {
+    background: var(--accent);
+  }
+
+  /* blank space for last card */
+  .news-track::after {
+    content: '';
+    flex: 0 0 50px;
+  }
+
+
+
   .members {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -1091,6 +1240,7 @@
     </button>
     <div class="nav-overlay" onclick="closeMenu()"></div>
     <ul>
+      <li><a href="#news" onclick="closeMenu()">News</a></li>
       <li><a href="#about" onclick="closeMenu()">About</a></li>
       <li><a href="#background" onclick="closeMenu()">Background</a></li>
       <li><a href="#members" onclick="closeMenu()">Team</a></li>
@@ -1100,6 +1250,73 @@
       <li><a href="#contacts" onclick="closeMenu()">Contacts</a></li>
     </ul>
   </nav>
+
+  <section id="news">
+    <h2 class="news-title">News</h2>
+    
+    <div class="carousel-wrapper">
+      <div class="news-track">
+        <div class="news-card">
+          <div class="news-date"><i class="fas fa-calendar-alt"></i> 26 Aug 2025</div>
+          <div class="news-content">
+            <h3 class="news-headline">We Just Published!</h3>
+            <span class="news-badge" style="background: #eba315">Preprint</span>
+            <p class="news-text">Deciphering Asymmetric Induction in Photoredox Catalysis by Chiral Counteranions</p>
+            
+            <div class="news-footer">
+              <span class="news-author">ChemRxiv</span>
+              <a href="https://chemrxiv.org/engage/chemrxiv/article-details/68a8143c23be8e43d674074f" class="news-link">Read More</a>
+            </div>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="news-date"><i class="fas fa-calendar-alt"></i> 31 Jul 2025</div>
+          <div class="news-content">
+            <h3 class="news-headline">We Just Published!</h3>
+            <span class="news-badge" style="background:#1580eb">Book chapter</span>
+            <p class="news-text">Local Energy Decomposition of Coupled Cluster Energies: Principles and Applications</p>
+            <p class="news-author">Springer 2025, 1–24</p>
+            <a href="https://link.springer.com/chapter/10.1007/430_2025_103" class="news-link">Read More</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="news-date"><i class="fas fa-calendar-alt"></i> 21 Jul 2025</div>
+          <div class="news-content">
+            <h3 class="news-headline">We Just Published!</h3>
+            <span class="news-badge" style="background: #eba315">Preprint</span>
+            <p class="news-text">Transferable and Transparent Energy Decomposition-based Machine Learning Models for Computing Accurate Reaction Energetics</p>
+            <p class="news-author">ChemRxiv</p>
+            <a href="https://chemrxiv.org/engage/chemrxiv/article-details/687a04a123be8e43d6dd9354" class="news-link">Read More</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="news-date"><i class="fas fa-calendar-alt"></i> 19 Jun 2025</div>
+          <div class="news-content">
+            <h3 class="news-headline">We Just Published!</h3>
+            <span class="news-badge" style="background: #10ac84">Article</span>
+            <p class="news-text">Broadening the Scope of the ETS-NOCV scheme: A Versatile Implementation in ORCA</p>
+            <p class="news-author">J. Chem. Theory Comput. 2025, 21, 16, 7920–7934</p>
+            <a href="https://pubs.acs.org/doi/full/10.1021/acs.jctc.5c01003" class="news-link">Read More</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="news-date"><i class="fas fa-calendar-alt"></i> 19 Jun 2025</div>
+          <div class="news-content">
+            <h3 class="news-headline">We Just Published!</h3>
+            <span class="news-badge" style="background: #10ac84">Article</span>
+            <p class="news-text">A Quantum Chemical Method for Dissecting London Dispersion Energy into Atomic Building Blocks</p>
+            <p class="news-author">ACS Cent. Sci. 2025, 11, 6, 890–898</p>
+            <a href="https://pubs.acs.org/doi/full/10.1021/acscentsci.5c00356" class="news-link">Read More</a>
+          </div>
+        </div>
+      </div>
+      <!-- Pallini indicatori -->
+      <div class="carousel-dots"></div>
+    
+  </section>
+
+
+
 
   <section id="about">
     <h2>About</h2>
@@ -1583,6 +1800,97 @@
     </div>
   </section>
   <script>
+
+    // --- carousel dots ---
+    const newsTrack = document.querySelector('.news-track');
+    const carouselDotsContainer = document.querySelector('.carousel-dots');
+    const newsCards = document.querySelectorAll('.news-card');
+
+    const cardWidth = newsCards[0].offsetWidth;
+    const gap = 20;
+    const totalCards = newsCards.length;
+
+    function createDots() {
+      for (let i = 0; i < totalCards; i++) {
+        const dot = document.createElement('button');
+        dot.classList.add('dot');
+        if (i === 0) {
+          dot.classList.add('active');
+        }
+        dot.addEventListener('click', () => {
+          scrollToCard(i);
+        });
+        carouselDotsContainer.appendChild(dot);
+      }
+    }
+
+    function scrollToCard(index) {
+      const scrollPosition = index * (cardWidth + gap);
+      newsTrack.scrollTo({
+        left: scrollPosition,
+        behavior: 'smooth'
+      });
+      updateDots(index);
+    }
+
+    function updateDots(index) {
+      const dots = document.querySelectorAll('.carousel-dots .dot');
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+    }
+
+    createDots();
+
+    let lastScrollPosition = newsTrack.scrollLeft;
+    newsTrack.addEventListener('scroll', () => {
+      clearTimeout(newsTrack.scrollTimeout);
+      newsTrack.scrollTimeout = setTimeout(() => {
+        const currentScrollPosition = newsTrack.scrollLeft;
+        const currentCardIndex = Math.round(currentScrollPosition / (cardWidth + gap));
+        updateDots(currentCardIndex);
+      }, 150);
+    });
+
+    let isDragging = false;
+    let startX;
+    let scrollLeft;
+
+    function dragStart(e) {
+      isDragging = true;
+      startX = e.pageX || e.touches[0].pageX;
+      scrollLeft = newsTrack.scrollLeft;
+      newsTrack.classList.add('dragging');
+    }
+
+    function drag(e) {
+      if (!isDragging) return;
+      e.preventDefault();
+
+      const x = e.pageX || e.touches[0].pageX;
+      const walk = (x - startX) * 1.5;
+
+      newsTrack.scrollLeft = scrollLeft - walk;
+    }
+
+    function dragEnd() {
+      isDragging = false;
+      newsTrack.classList.remove('dragging');
+    }
+
+    // Mouse Events
+    newsTrack.addEventListener('mousedown', dragStart);
+    newsTrack.addEventListener('mousemove', drag);
+    newsTrack.addEventListener('mouseup', dragEnd);
+    newsTrack.addEventListener('mouseleave', dragEnd);
+
+    // Touch Events (for mobile)
+    newsTrack.addEventListener('touchstart', dragStart);
+    newsTrack.addEventListener('touchmove', drag);
+    newsTrack.addEventListener('touchend', dragEnd);
+
+
+    // ---------------------
 
     document.addEventListener('DOMContentLoaded', () => {
       const researchCards = document.querySelectorAll('.research-card');
