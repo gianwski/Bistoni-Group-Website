@@ -927,6 +927,21 @@
     margin: 0 0 0;
   }
 
+  .flip-hint {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    font-size: 1.2rem;
+    color: #fff;
+    transition: transform 0.3s ease, color 0.3s ease;
+    pointer-events: none;
+  }
+
+  .research-card__front:hover .flip-hint {
+    color: #E0F7FF;
+    transform: rotate(20deg);
+  }
+
   .front-icons{
     margin-top: 0.6rem;
     font-size: clamp(0.75rem, 1.8vw, 0.9rem);
@@ -996,7 +1011,7 @@
   @media (max-width: 768px) {
 
     p {
-      font-size: clamp(0.75rem, 1.8vw, 0.9rem);
+      font-size: clamp(1.0rem, 2.0vw, 1.2rem);
     }
 
     nav {
@@ -1009,7 +1024,7 @@
     }
     
     nav a {
-      font-size: clamp(0.85rem, 1.8vw, 0.95rem);
+      font-size: clamp(1.0rem, 2.0vw, 1.2rem);
       padding: 10px 20px;
     }
 
@@ -1020,12 +1035,12 @@
     }
 
     header p {
-      font-size: clamp(0.75rem, 1.8vw, 0.9rem);
+      font-size: clamp(0.9rem, 1.9vw, 1.1rem);
       padding: 10px 20px;
     }
     
     header h1 {
-      font-size: 2.2rem;
+      font-size: 2.4rem;
       padding: 10px 20px;
     }
 
@@ -1062,6 +1077,16 @@
       font-size: clamp(0.75rem, 1.8vw, 0.9rem);
     }
 
+    .news-card {
+      flex: 0 0 300px;
+    }
+
+    .news-date {
+    font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+    }
+
+
+
     .nav-brand {
       font-size: 1rem;
     }
@@ -1075,8 +1100,12 @@
       padding: 15px;
     }
 
+    .card p {
+      font-size: clamp(1.0rem, 2.0vw, 1.2rem);
+    }
+
     .card h3 {
-      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      font-size: clamp(1.2rem, 2.2vw, 1.4rem);
     }
 
     .card img, .members .card img {
@@ -1101,6 +1130,7 @@
 
     .member-role {
       margin: 0 0 20px;
+      font-size: clamp(1.0rem, 2.0vw, 1.2rem);
     }
 
     .social-buttons a {
@@ -1164,11 +1194,13 @@
     .publication-doi{
       display: center;
       padding: 4px 8px;
+      font-size: clamp(1.0rem, 2.0vw, 1.2rem);
     }
 
     .btn-abstract {
       font-size: 0.7rem;
       padding: 4px 8px;
+      font-size: clamp(1.0rem, 2.0vw, 1.2rem);
     }
 
     .github-section {
@@ -1202,26 +1234,26 @@
       font-family: 'Quicksand', sans-serif;
     }
 
-  .social-icons {
-    margin: 0px 0px 0px;
-  }
+    .social-icons {
+      margin: 0px 0px 0px;
+    }
 
-  .social-icons a {
-    width: 15px;
-    margin: 0 8px;
-  }
+    .social-icons a {
+      width: 15px;
+      margin: 0 8px;
+    }
 
-  .social-icons a i {
-    font-size: 19px;
-  }
+    .social-icons a i {
+      font-size: 19px;
+    }
 
-  .social-buttons {
-    margin: 10px 10px 0px;
-  }
+    .social-buttons {
+      margin: 10px 10px 0px;
+    }
 
-  .social-buttons a {
-    font-size: 35px;
-  }
+    .social-buttons a {
+      font-size: 35px;
+    }
 
   }
   </style>
@@ -1275,7 +1307,7 @@
             <h3 class="news-headline">We Just Published!</h3>
             <span class="news-badge" style="background:#1580eb">Book chapter</span>
             <p class="news-text">Local Energy Decomposition of Coupled Cluster Energies: Principles and Applications</p>
-            <p class="news-author">Springer 2025, 1–24</p>
+            <span  class="news-author">Springer 2025, 1–24</span>
             <a href="https://link.springer.com/chapter/10.1007/430_2025_103" class="news-link">Read More</a>
           </div>
         </div>
@@ -1285,7 +1317,7 @@
             <h3 class="news-headline">We Just Published!</h3>
             <span class="news-badge" style="background: #eba315">Preprint</span>
             <p class="news-text">Transferable and Transparent Energy Decomposition-based Machine Learning Models for Computing Accurate Reaction Energetics</p>
-            <p class="news-author">ChemRxiv</p>
+            <span  class="news-author">ChemRxiv</span>
             <a href="https://chemrxiv.org/engage/chemrxiv/article-details/687a04a123be8e43d6dd9354" class="news-link">Read More</a>
           </div>
         </div>
@@ -1295,7 +1327,7 @@
             <h3 class="news-headline">We Just Published!</h3>
             <span class="news-badge" style="background: #10ac84">Article</span>
             <p class="news-text">Broadening the Scope of the ETS-NOCV scheme: A Versatile Implementation in ORCA</p>
-            <p class="news-author">J. Chem. Theory Comput. 2025, 21, 16, 7920–7934</p>
+            <span class="news-author">J. Chem. Theory Comput. 2025, 21, 16, 7920–7934</span>
             <a href="https://pubs.acs.org/doi/full/10.1021/acs.jctc.5c01003" class="news-link">Read More</a>
           </div>
         </div>
@@ -1305,7 +1337,7 @@
             <h3 class="news-headline">We Just Published!</h3>
             <span class="news-badge" style="background: #10ac84">Article</span>
             <p class="news-text">A Quantum Chemical Method for Dissecting London Dispersion Energy into Atomic Building Blocks</p>
-            <p class="news-author">ACS Cent. Sci. 2025, 11, 6, 890–898</p>
+            <span class="news-author">ACS Cent. Sci. 2025, 11, 6, 890–898</span>
             <a href="https://pubs.acs.org/doi/full/10.1021/acscentsci.5c00356" class="news-link">Read More</a>
           </div>
         </div>
@@ -1340,7 +1372,7 @@
   <section id="background">
     <h2>Background</h2>
     <p style="text-align: justify;">
-      Prof. Giovanni Bistoni completed his Ph.D. at the University of Perugia in 2015. He was Postdoctoral Fellow in Prof. Frank Neese's group at the Max Planck Institute for Chemical Energy Conversion and was promoted to Group Leader in 2017. He moved to the Max-Planck-Institut für Kohlenforschung in 2018, where he led the "Intermolecular Interactions and Homogeneous Catalysis" group. He got his Habilitation in Theoretical and Computational Chemistry from Universität Duisburg-Essen in 2021. His research group moved to the University of Perugia in January 2022.
+      Prof. Giovanni Bistoni completed his Ph.D. at the University of Perugia in 2015. He was Postdoctoral Fellow in Prof. Frank Neese's group at the Max Planck Institute for Chemical Energy Conversion and was promoted to Group Leader in 2017. He moved to the Max-Planck-Institut für Kohlenforschung in 2018, where he led the "Intermolecular Interactions and Homogeneous Catalysis" group. He got his habilitation in Theoretical and Computational Chemistry from Universität Duisburg-Essen in 2021. His research group moved to the University of Perugia in January 2022.
     </p>
   </section>
 
@@ -1395,7 +1427,8 @@
         <div class="social-icons">
           <a href="mailto:carlosroberto.jacintomejia@dottorandi.unipg.it" title="Email"><i class="fas fa-envelope"></i></a>
           <a href="https://www.linkedin.com/in/crjacinto/" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-          <a href="https://scholar.google.com/citations?user=aPp5ErgAAAAJ" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+          <a href="https://orcid.org/0000-0002-3554-9699" title="ORCID"><i class="fab fa-orcid"></i></a>
+          <a href="https://scholar.google.com/citations?user=_pxVHmIAAAAJ&hl=en" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
         </div>
       </div>
       <div class="card">
@@ -1481,13 +1514,16 @@
     <article class="research-card">
       <div class="research-card__inner">
         <div class="research-card__front">
-          <img src="images/webp/computationalcatalysis.webp" alt="Computational Catalysis" loading="lazy">
+          <img src="images/photoredox.png" alt="Computational Catalysis" loading="lazy">
           <div class="research-card__body-front">
             <h3>Computational Catalysis</h3>
             <div class="front-icons">
               <i class="fa-solid fa-bolt"  title="Kinetic"></i>
               <i class="fa-solid fa-cogs"  title="Mechanism"></i>
             </div>
+          </div>
+          <div class="flip-hint">
+            <i class="fa-solid fa-rotate-right" title="Click to rotate the card"></i>
           </div>
         </div>
         <div class="research-card__back">
@@ -1514,13 +1550,16 @@
     <article class="research-card">
       <div class="research-card__inner">
         <div class="research-card__front">
-          <img src="images/webp/ADLD_ADEX-slides.webp" alt="Noncovalent Interactions" loading="lazy">
+           <img src="images/adld.png" alt="Noncovalent Interactions" loading="lazy">
           <div class="research-card__body-front">
             <h3>Noncovalent Interactions</h3>
             <div class="front-icons">
              <i class="fa-solid fa-link-slash"  title="Noncovalent bonds"></i>
              <i class="fa-solid fa-atom"  title="Atomic resolution"></i>
             </div>
+          </div>
+          <div class="flip-hint">
+            <i class="fa-solid fa-rotate-right" title="Click to rotate the card"></i>
           </div>
         </div>
         <div class="research-card__back">
@@ -1545,13 +1584,16 @@
     <article class="research-card">
       <div class="research-card__inner">
         <div class="research-card__front">
-          <img src="images/webp/localcorrelationmethods.webp" alt="Local Correlation Methods" loading="lazy">
+          <img src="images/covaled.png" alt="Local Correlation Methods" loading="lazy">
           <div class="research-card__body-front">
             <h3>Local Correlation Methods</h3>
             <div class="front-icons">
              <i class="fa-solid fa-location-crosshairs"  title="Locality"></i>
              <i class="fa-solid fa-magnifying-glass"  title="Precision"></i>
             </div>
+          </div>
+          <div class="flip-hint">
+            <i class="fa-solid fa-rotate-right" title="Click to rotate the card"></i>
           </div>
         </div>
         <div class="research-card__back">
