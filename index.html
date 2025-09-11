@@ -41,7 +41,7 @@
     --nav-gradient: #0096c7;
 
     --accent: rgba(120, 210, 255, 1); /* rgba(220, 255, 255, 1) rgba(50, 200, 255, 1) rgba(100, 200, 255, 1)*/
-
+    --accent2:rgb(120, 188, 255);
     --bg-card: rgba(255, 255, 255, 0.08);
     --flip-bg-front: rgba(255, 255, 255, 0.06);
     --flip-bg-back: rgba(2, 62, 138, 0.92);
@@ -70,6 +70,7 @@
     max-width: 100%;
     margin-left: auto;
     margin-right: auto;
+    background: rgba(30, 30, 60, 0.532);
   }
 
   * {
@@ -315,8 +316,8 @@
 
   .news-card {
     flex: 0 0 400px;
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(30, 42, 60, 0.372);
+    border: 1px solid rgba(255, 255, 255, 0);
     border-radius: 12px;
     padding: 20px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -340,7 +341,7 @@
   .news-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-    border-color: var(--accent);
+    border-color: var(--accent2);
   }
 
 
@@ -441,12 +442,11 @@
   }
 
   .card {
-    background: rgba(255,255,255,0.08);
+    background: #1034647c;
     border-radius: 12px;
     padding: 25px;
     text-align: center;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    border: 1px solid rgba(255, 255, 255, 0.08);
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
@@ -460,7 +460,7 @@
   .card:hover {
     transform: translateY(-8px);
     box-shadow: 0 6px 18px rgba(0,0,0,0.13);
-    border-color: var(--accent);
+    border-color: var(--accent2);
   }
 
   .card::before {
@@ -485,7 +485,7 @@
     object-fit: cover;
     margin-bottom: 15px;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0);
   }
 
   .card:hover img {
@@ -529,7 +529,7 @@
   }
 
   .social-icons a:hover {
-    color: var(--accent);
+    color: var(--accent2);
     transform: scale(1.15);
     transition: transform 0.2s
   }
@@ -629,12 +629,16 @@
     background: rgba(255, 255, 255, 0.1);
     padding: 4px 8px;
     border-radius: 4px;
-    font-size: clamp(0.7rem, 1.5vw, 0.8rem);
+    font-size: clamp(14px, 1.0vw, 16px);
+    color: white;
+    font-weight: 600;
   }
 
   .publication-year {
-    color: var(--accent);
     font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: var(--accent);
   }
 
   .abstract {
@@ -817,6 +821,10 @@
     margin-top: 10px;
   }
 
+  .research-card img {
+    background-color: #fff;
+  }
+
   .research-card:hover {
     transform: translateY(-8px);
   }
@@ -830,7 +838,7 @@
     transform-style: preserve-3d;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0);
   }
 
   @media (hover: hover) and (pointer: fine) {
@@ -869,6 +877,7 @@
     text-align: justify;
     justify-content: center;
     box-sizing: border-box;
+    background: #1034647c;
   }
   
   .research-card__front img {
@@ -927,7 +936,7 @@
   .research-card__back p::-webkit-scrollbar-thumb {
     background-color: var(--accent);
     border-radius: 10px;
-    border: 2px solid rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0);
   }
 
   .research-card__body-front{
